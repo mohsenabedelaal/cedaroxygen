@@ -1,38 +1,324 @@
-.App {
+h1 .body{
+font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+font-size: 24px;
+font-style: normal;
+ font-variant: normal;
+ font-weight: 700;
+ line-height: 26.4px;
+}
+
+.home-bg {
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  background-color: #005454;
+}
+.home-bg3 {
+  /* min-height: 100%;
+  min-width: 100%;
+  width: 100%; */
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: #005454; */
+}
+
+
+
+.home-bg2 {
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: #005454; */
+}
+
+
+
+
+
+
+.authBox {
+  width: 700px;
+  overflow: hidden;
+  margin: 80px auto 30px;
+  /* background-color: white; */
+
+}
+
+.leftBox {
+  width: 300px;
+  height: 480px;
+  float: left;
+  position: relative;
+  display: block;
+}
+.bgGreen {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-top-left-radius: 90px;
+}
+
+.imageAuth {
+  background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/05/Cedar-Oxygen_Logo-favicon.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-left-radius: 90px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.imageText {
+  font-size: 28px;
+  position: absolute;
+  color: #ffffff;
+}
+
+.imageText.bold {
+  font-weight: bold;
+}
+.imageText.style1 {
+  top: 200px;
+  left: 20px;
+}
+.imageText.style2 {
+  top: 250px;
+  left: 20px;
+}
+
+.rightBox{
+  width: 398px;
+  height: 478px;
+  float: center;
+  border: 1px solid gray;
+  background-color: white;
+  margin: auto;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+.rightBox2 {
+  width: 398px;
+  height: 398px;
+  float: center;
+  border: 1px solid gray;
+  background-color: white;
+  margin: auto;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+
+.box {
+  width: 310px;
+  height: 415px;
+  margin: 32px auto;
+}
+
+.titleAuth {
+  font-size: 22px;
   text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #116149;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.inputSBOX {
+  width: 300px;
+  height: 42px;
+  border-bottom: 2px solid #d8d8d8;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.inputS {
+  width: 100%;
+  height: 98%;
+  font-size: 14px;
+  color: #37353f;
+  text-indent: 10px;
+  border: 0;
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contentBox {
+  overflow: hidden;
+  height: 38px;
+  margin-bottom: 30px;
+}
+
+.checkboxBox {
+  overflow: hidden;
+  float: left;
+
+}
+.checkbox {
+  float: left;
+}
+.checkboxLabel {
+  float: left;
+  font-size: 14px;
+  margin-left: 5px;
+  color: #37353f;
+
+
+}
+.text1 {
+  float: right;
+  font-size: 14px;
+  color: #006cbc;
+  cursor: pointer;
+}
+
+.btnAuth{
+  width: 300px;
+  height: 47px;
+  color: #ffffff;
+  background-color: #3CB371;
+  text-align: center;
+  line-height: 47px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.borderBox {
+  width: px;
+  height: 20px;
+  position: relative;
+  margin-top: 6px;
+  margin-bottom: 7px;
+  /* margin: 20px 0; */
+}
+
+.line {
+  border-bottom: 2px solid #d8d8d8;
+  position: absolute;
+  top: 22px;
+  width: 100%;
+
+}
+
+.text2 {
+  font-size: 14px;
+  color: #818487;
+}
+
+.text2.or {
+  position : absolute ;
+  top: 14px;
+  left: 140px;
+  width: 25px;
+  height: 16px;
+  background-color: #ffffff;
+  text-align: center;
+
+}
+
+.socialMediaBox {
+  overflow: hidden;
+  width: 184px;
+  height: 43px;
+  /* margin-top: 10px ; */
+  margin-left: 105px;
+
+  /* margin-right: 20px;
+  margin-bottom: 100px; */
+}
+
+.icAuth {
+  width: 50px;
+  height: 45px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  margin-right: 30px;
+  cursor: pointer;
+
+}
+/* .icAuth:last-child{
+  margin-right: 0;
+} */
+/* .icAuth.google {
+
+  background-image: url("https://img.icons8.com/bubbles/2x/google-logo.png");
+
+} */
+.toggler{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* margin-left: 50px; */
+  margin-bottom: 15px;
+  border: 1px solid gray;
+}
+.tlogin{
+  margin: auto;
+  /* cursor: pointer; */
+}
+.tlogin >button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.tregister{
+  margin: auto;
+  /* cursor: pointer; */
+}
+.tregister > button{
+  border: none;
+  background: none;
+
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.errorMsg {
+  color: red;
+  font-size: 16px;
+}
+@media screen and (max-width: 768px ) {
+  .authBox {
+    width: 100%;
+  }
+  .leftBox{
+    display: none;
+  }
+  .rightBox{
+    width: 100%;
+    float: initial;
+    border: 0;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
