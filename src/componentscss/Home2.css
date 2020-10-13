@@ -18,5 +18,7 @@ div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3
  .flag-select__btn {
     border-top-right-radius: 2rem ;
     border-bottom-right-radius: 2rem;
+    line-height: 2.36rem;
 }
-
+ol {
+    padding-inline-start: 2.9%;}

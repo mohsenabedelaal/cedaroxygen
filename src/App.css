@@ -118,22 +118,26 @@ font-style: normal;
 
 .rightBox{
   width: 398px;
-  height: 478px;
+  height: 410px;
   float: center;
   border: 1px solid gray;
-  background-color: white;
+  background-color:  rgb(241, 233, 233);
   margin: auto;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
 }
+.emailInputlogin{
+  margin-top: 2.9rem;
+
+}
 .rightBox2 {
   width: 398px;
-  height: 398px;
+  height: 330px;
   float: center;
   border: 1px solid gray;
-  background-color: white;
+  background-color: rgb(241, 233, 233);
   margin: auto;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
@@ -206,11 +210,13 @@ font-style: normal;
   width: 300px;
   height: 47px;
   color: #ffffff;
-  background-color: #3CB371;
+  background-color: #005454;
   text-align: center;
   line-height: 47px;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
+  margin-top: 6%;
+  font-weight: bold;
 }
 
 .borderBox {

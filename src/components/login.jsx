@@ -29,13 +29,11 @@ const Login = (props) => {
     <div className={'authBox'}>
 
       <div className="home-bg2"></div>
-      <Link to="/"><img src="https://cedaroxygen.com/wp-content/uploads/2020/06/Cedar-Oxygen_Logo.png"
-        style={{ width: "40%", marginLeft: "29%", marginBottom: "3%" }}
-        alt="icon" /></Link>
+      <h1 style={{ color:"white", marginTop:"12%",marginLeft:"28%",marginBottom:"3%",fontWeight:"bold" }}>Welcome Back</h1>
       <div className={'rightBox2'}>
         <div className={'box'}>
-          <div className={'titleAuth'}> Login  </div>
-          <div className={''}>
+          {/* <div className={'titleAuth'}> Login  </div> */}
+          <div className={'emailInputlogin'}>
             <input
               className='form-control'
               type='text'
@@ -59,7 +57,9 @@ const Login = (props) => {
           </div>
           <p className={'errorMsg'}>{passwordError}</p>
 
-          <button className={'btnAuth'} onClick={handleLogin}>Sign In</button>
+          <p style={{ marginTop:"2rem",marginLeft:"4rem" }}>Forgot Your Password</p>
+
+          <button className={'btnAuth'} onClick={handleLogin}><i class="fas fa-lock" style={{ marginRight:"10px" }}></i>Log In</button>
 
           {/* <p>Forgot your password</p> */}
 

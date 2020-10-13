@@ -15,6 +15,8 @@ import Footering from './components/Footer.jsx';
 import Navbarn from './components/Navbarn.jsx';
 import Home2 from './components/Home2.jsx';
 import Testingz from './components/Testingz';
+import Home3 from './components/Home3.jsx';
+import { HashLink } from 'react-router-hash-link';
 // ------------------------------------------------------------------------------
 
 
@@ -147,14 +149,14 @@ const App = () => {
 
   //When the page logs the rates are rendered -----------------------------------------------
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios.get("/rates/listall")
-      .then(res => {
-        console.log(res.data);
-        setRates(res.data);
-      }).catch(err => console.log(err))
-  }, [])
+  //   axios.get("/rates/listall")
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setRates(res.data);
+  //     }).catch(err => console.log(err))
+  // }, [])
 
 //-------------------------------------------------------------------------------------------
 
@@ -178,7 +180,7 @@ const App = () => {
 
 
       {/* ----(Main page)--------------------------------------------------------------- */}
-        <Route path="/" exact>
+        <Route path="/tester" exact>
 
           <Navbar handleLogout={handleLogout} user={user} handleShow={handleShow} />
           <div className="home-bg"></div>
@@ -296,10 +298,42 @@ const App = () => {
           <Profile user={user} />
         </Route>
           {/* --------------------------------------------------------------------------------------------------------------------------- */}
-          <Route path="/tester" exact>
-          <Navbarn/>
-          <Home2/>
+          <Route path="/" exact>
+          <Navbarn handleLogout={handleLogout} user={user}/>
+
+          <Home2 />
+           {/* <h1>hello</h1> */}
+           <Home3/>
+           {user ? <></>:
+           <div id="register"><Register
+                // loginSection = {loginSection}
+                // registerSection = {registerSection}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                name={name}
+                setName={setName}
+                last_name={last_name}
+                setLastName={setLastName}
+                phone={phone}
+                setPhone={setPhone}
+                address={address}
+                setAddress={setAddress}
+                handleLogin={handleLogin}
+                handleSignup={handleSignup}
+                hasAccount={hasAccount}
+                setHasAccount={setHasAccount}
+                emailError={emailError}
+                passwordError={passwordError}
+              /></div>}
+              <h1>Helloooooooooo</h1>
+
+
           </Route>
+
+
+
           <Route path="/www" exact>
             <Testingz/>
           </Route>
@@ -336,6 +370,7 @@ const App = () => {
 
           {/* Login route------------------------------------------------------------------------ */}
             <Route path="/login" exact>
+            <Navbarn handleLogout={handleLogout} user={user}/>
               <Login
                 // loginSection = {loginSection}
                 // registerSection = {registerSection}
