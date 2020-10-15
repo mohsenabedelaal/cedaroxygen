@@ -125,12 +125,12 @@ const Requests = (props) => {
   //===================================================================================================================================
   return (
     <>
-      <div className="container-fluid">
+      <div className="">
         <div className="row">
-          <h1>Submit A Request</h1>
+          <h1 style={{ marginLeft:"25%",color:"white" }}>Submit A Request</h1>
         </div>
 
-        <div className="rightBox2" style={{ height: "60vh" }}>
+        <div className="rightBox3" style={{ height: "60vh" }}>
           <div>
             {props.user == "admin@admin.com" ? (
               <div></div>

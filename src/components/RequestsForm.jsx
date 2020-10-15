@@ -84,6 +84,7 @@ const RequestsForm = (props) => {
               fontSize: "14.43px",
               fontFamily: "arial",
               paddingLeft: "5%",
+              // height:"60%"
             }}
           >
             <div
@@ -169,16 +170,15 @@ const RequestsForm = (props) => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary  "
+              className="btn"
               style={{
                 width: "30%",
                 alignContent: "center",
                 margin: "auto",
-                color: "#005454",
-              }}
-            >
-              Submit
-            </button>
+                backgroundColor: "#005454",
+                color:"white",
+                fontWeight:"bold"
+              }}>Submit</button>
           </div>
         </form>
         {/* <form autoComplete="off" onSubmit={handleFormSubmit}>

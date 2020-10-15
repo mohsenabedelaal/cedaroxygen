@@ -7,6 +7,32 @@ h1 .body {
   line-height: 26.4px;
 }
 
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 10% 100%;
+  gap: 0px 0px;
+  grid-template-areas:
+    "nav-bar nav-bar"
+    "submit table";
+  /* background: url("./media/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+
+}
+
+.nav-bar { grid-area: nav-bar; }
+
+.submit { grid-area: submit;
+
+}
+
+.table { grid-area: table; }
+
+
 .home-bg {
   min-height: 100%;
   min-width: 100%;
@@ -58,7 +84,8 @@ h1 .body {
   background-color: #282c34;
   min-height: 100vh;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  /* margin-bottom: "1000%"; */
 }
 
 .leftBox {
@@ -118,6 +145,7 @@ h1 .body {
   border-bottom-right-radius: 2rem;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
+  /* margin-bottom: "40%"; */
 }
 .emailInputlogin {
   margin-top: 2.9rem;
@@ -125,6 +153,18 @@ h1 .body {
 .rightBox2 {
   width: 398px;
   height: 330px;
+  float: center;
+  border: 1px solid gray;
+  background-color: rgb(241, 233, 233);
+  margin: auto;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+.rightBox3 {
+  width: 55%;
+  height: 60%;
   float: center;
   border: 1px solid gray;
   background-color: rgb(241, 233, 233);

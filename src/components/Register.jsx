@@ -32,17 +32,18 @@ const Register = (props) => {
   return (
     <div className="container-fluid authbox">
       <div className="row" style={{ height: "100%" }}>
-        <div className="col">
+        <div className="col" style={{ marginBottom:"35%" }}>
           <div>
             {/* <div className="home-bg2"></div> */}
 
             <h3
               style={{
-                marginTop: "5%",
+                // marginTop: "2%",
                 marginBottom: "5%",
                 fontWeight: "bold",
                 fontSize: "36px",
                 fontFamily: "arial",
+                // marginRight:"1%"
               }}
             >
               Register and open an account
@@ -156,7 +157,13 @@ const Register = (props) => {
                   />
                 </div>
 
-                <button className={"btnAuth"} onClick={handleSignup}>
+                <button className={"btnAuth"} onClick={handleSignup}
+                style={{
+                  // marginTop: "2rem",
+                  fontSize: "16px",
+                  fontFamily: "arial",
+                  fontWeight: "bold",
+                   }}>
                   SUBMIT
                 </button>
               </div>

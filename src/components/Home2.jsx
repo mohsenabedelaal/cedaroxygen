@@ -166,18 +166,25 @@ const Home2 = () => {
               }}
             />
 
-            <ReactFlagsSelect
+            {/* <ReactFlagsSelect
               countries={["US", "LB"]}
               defaultCountry="LB"
               customLabels={{ US: "USD", LB: "LBP" }}
               style={{
                 backgroundColor: "black",
-                fontWeight: "bold",
-                fontFamily: "arial",
-                fontSize: "22.06px",
+                // fontWeight: "bold",
+                // fontFamily: "arial",
+                // fontSize: "22.06px",
                 color: "black",
-              }}
-            />
+
+              }} />*/}
+              <ReactFlagsSelect
+                    countries={["US", "LB"]}
+                    defaultCountry="LB"
+                    customLabels={{ US: "USD", LB: "LBP" }}
+                    // style={{ backgroundColor: "black" }}
+                  />
+
 
             <p
               style={{ marginLeft: "0%", marginTop: "5%", marginBottom: "5%" }}
@@ -187,14 +194,19 @@ const Home2 = () => {
                 onClick={() => setShow(!show)}
                 style={{ color: "#33c7bf", paddingLeft: "5%" }}
               >
-                <i
+               {show ? <i
                   className="fas fa-angle-double-down"
                   data-toggle="collapse"
                   href="#multiCollapseExample1"
                   role="button"
                   aria-expanded="false"
                   aria-controls="multiCollapseExample1"
-                ></i>
+               ></i> :
+               <i class="fas fa-angle-double-up" data-toggle="collapse"
+               href="#multiCollapseExample1"
+               role="button"
+               aria-expanded="false"
+               aria-controls="multiCollapseExample1"></i> }
               </a>
             </p>
 

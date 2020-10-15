@@ -18,6 +18,7 @@ import Testingz from './components/Testingz';
 import Home3 from './components/Home3.jsx';
 import { HashLink } from 'react-router-hash-link';
 import Requests from "./components/Requests";
+import RequestList from "./components/RequestList";
 // ------------------------------------------------------------------------------
 
 
@@ -174,7 +175,38 @@ const App = () => {
          <Route path="/requestpage" exact>
            {!user ? <Redirect to="/" /> : <></>}
           <Navbarn handleLogout={handleLogout} user={user} handleShow={handleShow} />
-          <Requests user={user} />
+          {/* <Requests user={user} />  */}
+          {/* <div className="home-bg3" /> */}
+          {/* <div class="grid-container">
+
+            <div class="nav-bar">
+            <Navbarn handleLogout={handleLogout} user={user} handleShow={handleShow} />
+            </div>
+            <div class="submit">
+            <Requests user={user} />
+            </div>
+            <div class="table">
+            <RequestList user={user}/>
+            </div>
+            </div> */}
+            {user != "admin@admin.com" ?
+            <div class="container-fuild" style={{ height:"100%",width:"100%",backgroundImage:"url(https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg)",backgroundSize:"cover" ,backgroundPosition:"center" }}>
+            <div class="row">
+            <div class="col">
+            <Requests user={user} />
+            </div>
+            <div class="col">
+            <RequestList user={user}/>
+            </div>
+            </div>
+
+          </div> :
+          <>
+          <div className="home-bg3"/>
+          <RequestList user={user}/></>
+
+           }
+
         </Route>
 
       {/* ------------------------------------------------------------------------------ */}
@@ -309,7 +341,7 @@ const App = () => {
             // border: "2px solid green",
             height: "20vh",
           }}></div>
-          
+
            <Home3/>
            <Footering/>
            </Route>
@@ -338,7 +370,7 @@ const App = () => {
                 emailError={emailError}
                 passwordError={passwordError}
               /></div>}
-              
+
 
 
           </Route>

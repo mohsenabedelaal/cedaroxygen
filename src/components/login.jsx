@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
+// import LockIcon from '@material-ui/icons/Lock';
 
 const Login = (props) => {
   const {
@@ -29,7 +30,8 @@ const Login = (props) => {
     <div
       className={"authBox"}
       style={{
-        border: "1px solid red",
+        border: "1px solid transparent",
+        // marginBottom:"14%"
       }}
     >
       <div className="home-bg2"></div>
@@ -38,8 +40,8 @@ const Login = (props) => {
           fontSize: "36px",
           fontFamily: "arial",
           color: "white",
-          marginTop: "12%",
-          marginBottom: "3%",
+          marginTop: "9%",
+          marginBottom: "2%",
           fontWeight: "bold",
           textAlign: "center",
         }}
@@ -85,20 +87,25 @@ const Login = (props) => {
               fontSize: "16px",
               fontFamily: "arial",
               fontWeight: "bold",
+              marginLeft:"19%"
             }}
           >
             Forgot Your Password
           </p>
 
           <button className={"btnAuth"} onClick={handleLogin}>
-            <i
-              class="fas fa-lock"
+            {/* <i
+              className="fas fa-lock"
               style={{
                 fontSize: "18px",
                 fontFamily: "arial",
                 fontWeight: "bold",
               }}
-            ></i>
+            ></i> */}
+          <i class="fas fa-lock"
+          style={{ marginRight:"2.5%" }}
+          ></i>
+
             Log in
           </button>
 
