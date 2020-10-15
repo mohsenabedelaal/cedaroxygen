@@ -1,10 +1,10 @@
-h1 .body{
-font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
-font-size: 24px;
-font-style: normal;
- font-variant: normal;
- font-weight: 700;
- line-height: 26.4px;
+h1 .body {
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
 }
 
 .home-bg {
@@ -38,8 +38,6 @@ font-style: normal;
   /* background-color: #005454; */
 }
 
-
-
 .home-bg2 {
   min-height: 100%;
   min-width: 100%;
@@ -49,24 +47,18 @@ font-style: normal;
   top: 0;
   left: 0;
   z-index: -1;
-  background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
   /* background-color: #005454; */
 }
 
-
-
-
-
-
 .authBox {
-  width: 700px;
-  overflow: hidden;
-  margin: 80px auto 30px;
-  /* background-color: white; */
-
+  padding: 0;
+  background-image: url("./media/background.jpg");
+  background-size: cover;
+  background-color: #282c34;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .leftBox {
@@ -95,7 +87,6 @@ font-style: normal;
   position: absolute;
   top: 0;
   left: 0;
-
 }
 
 .imageText {
@@ -116,21 +107,20 @@ font-style: normal;
   left: 20px;
 }
 
-.rightBox{
-  width: 398px;
-  height: 410px;
+.rightBox {
+  width: 90%;
+  height: 20%;
   float: center;
   border: 1px solid gray;
-  background-color:  rgb(241, 233, 233);
-  margin: auto;
+  background-color: rgb(241, 233, 233);
+  margin: "0%";
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
 }
-.emailInputlogin{
+.emailInputlogin {
   margin-top: 2.9rem;
-
 }
 .rightBox2 {
   width: 398px;
@@ -145,10 +135,9 @@ font-style: normal;
   border-top-right-radius: 2rem;
 }
 
-
 .box {
   width: 310px;
-  height: 415px;
+  height: 100%;
   margin: 32px auto;
 }
 
@@ -186,7 +175,6 @@ font-style: normal;
 .checkboxBox {
   overflow: hidden;
   float: left;
-
 }
 .checkbox {
   float: left;
@@ -196,8 +184,6 @@ font-style: normal;
   font-size: 14px;
   margin-left: 5px;
   color: #37353f;
-
-
 }
 .text1 {
   float: right;
@@ -206,7 +192,7 @@ font-style: normal;
   cursor: pointer;
 }
 
-.btnAuth{
+.btnAuth {
   width: 300px;
   height: 47px;
   color: #ffffff;
@@ -233,7 +219,6 @@ font-style: normal;
   position: absolute;
   top: 22px;
   width: 100%;
-
 }
 
 .text2 {
@@ -242,14 +227,13 @@ font-style: normal;
 }
 
 .text2.or {
-  position : absolute ;
+  position: absolute;
   top: 14px;
   left: 140px;
   width: 25px;
   height: 16px;
   background-color: #ffffff;
   text-align: center;
-
 }
 
 .socialMediaBox {
@@ -272,7 +256,6 @@ font-style: normal;
   float: left;
   margin-right: 30px;
   cursor: pointer;
-
 }
 /* .icAuth:last-child{
   margin-right: 0;
@@ -282,49 +265,46 @@ font-style: normal;
   background-image: url("https://img.icons8.com/bubbles/2x/google-logo.png");
 
 } */
-.toggler{
+.toggler {
   display: flex;
   /* margin-left: 50px; */
   margin-bottom: 15px;
   border: 1px solid gray;
 }
-.tlogin{
+.tlogin {
   margin: auto;
   /* cursor: pointer; */
 }
-.tlogin >button {
+.tlogin > button {
   border: none;
   background: none;
   cursor: pointer;
 }
-.tregister{
+.tregister {
   margin: auto;
   /* cursor: pointer; */
 }
-.tregister > button{
+.tregister > button {
   border: none;
   background: none;
 
   cursor: pointer;
 }
-
-
 
 .errorMsg {
   color: red;
   font-size: 16px;
 }
-@media screen and (max-width: 768px ) {
+@media screen and (max-width: 768px) {
   .authBox {
     width: 100%;
   }
-  .leftBox{
+  .leftBox {
     display: none;
   }
-  .rightBox{
+  .rightBox {
     width: 100%;
     float: initial;
     border: 0;
   }
 }
-
