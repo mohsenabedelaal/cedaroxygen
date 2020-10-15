@@ -17,6 +17,7 @@ import Home2 from './components/Home2.jsx';
 import Testingz from './components/Testingz';
 import Home3 from './components/Home3.jsx';
 import { HashLink } from 'react-router-hash-link';
+import Requests from "./components/Requests";
 // ------------------------------------------------------------------------------
 
 
@@ -162,7 +163,7 @@ const App = () => {
 
 //-------------------------------------------------------------------------------------------
   return (
-    <div>
+    <div className="authbox">
     {/* -------------Router----------------------------------------------------------- */}
       <Router>
 
@@ -172,8 +173,8 @@ const App = () => {
 
          <Route path="/requestpage" exact>
            {!user ? <Redirect to="/" /> : <></>}
-          <Navbar handleLogout={handleLogout} user={user} handleShow={handleShow} />
-          <Home user={user} />
+          <Navbarn handleLogout={handleLogout} user={user} handleShow={handleShow} />
+          <Requests user={user} />
         </Route>
 
       {/* ------------------------------------------------------------------------------ */}
@@ -302,8 +303,18 @@ const App = () => {
           <Navbarn handleLogout={handleLogout} user={user}/>
 
           <Home2 />
-           {/* <h1>hello</h1> */}
+          <div
+          style={{
+            backgroundColor: "#005454",
+            // border: "2px solid green",
+            height: "20vh",
+          }}></div>
+          
            <Home3/>
+           <Footering/>
+           </Route>
+           <Route path="/registration" exact>
+           <Navbarn handleLogout={handleLogout} user={user}/>
            {user ? <></>:
            <div id="register"><Register
                 // loginSection = {loginSection}
@@ -327,7 +338,7 @@ const App = () => {
                 emailError={emailError}
                 passwordError={passwordError}
               /></div>}
-              <h1>Helloooooooooo</h1>
+              
 
 
           </Route>
