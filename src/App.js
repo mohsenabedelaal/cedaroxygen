@@ -190,9 +190,9 @@ const App = () => {
             </div>
             </div> */}
             {user != "admin@admin.com" ?
-            <div class="container-fuild" style={{ height:"100%",width:"100%",backgroundImage:"url(https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Cedar-scaled.jpg)",backgroundSize:"cover" ,backgroundPosition:"center" }}>
-            <div class="row">
-            <div class="col">
+            <div className="container-fuild authBox" style={{margin:"0%", position:"absolute", width:"100%"}} >
+            <div className="row">
+            <div className="col">
             <Requests user={user} />
             </div>
             <div class="col">

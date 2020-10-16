@@ -125,26 +125,35 @@ const Requests = (props) => {
   //===================================================================================================================================
   return (
     <>
-      <div className="">
+      <div className="container">
         <div className="row">
-          <h1 style={{ marginLeft:"25%",color:"white" }}>Submit A Request</h1>
-        </div>
+          <h1
+            style={{
+              marginLeft: "25%",
+              color: "white",
+              fontFamily: "arial",
+              fontSize: "36px",
+              fontWeight: "bold",
+            }}
+          >
+            Submit A Request
+          </h1>
 
-        <div className="rightBox3" style={{ height: "60vh" }}>
-          <div>
-            {props.user == "admin@admin.com" ? (
-              <div></div>
-            ) : (
-              <RequestsForm
-                user={props.user}
-                addorEdit={addorEdit}
-                currentId={currentId}
-                setCurrentId={setCurrentId}
-                contactObjects={contactObjects}
-              />
-            )}
+          <div className="rightBox3" style={{ height: "60vh" }}>
+            <div>
+              {props.user == "admin@admin.com" ? (
+                <div></div>
+              ) : (
+                <RequestsForm
+                  user={props.user}
+                  addorEdit={addorEdit}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                  contactObjects={contactObjects}
+                />
+              )}
 
-            {/* {props.user == "admin@admin.com" && currentId &&
+              {/* {props.user == "admin@admin.com" && currentId &&
                 <RequestsForm
                 user = {props.user}
                 addorEdit = {addorEdit}
@@ -153,6 +162,7 @@ const Requests = (props) => {
                 contactObjects = {contactObjects}
                  />
                     } */}
+            </div>
           </div>
         </div>
       </div>
