@@ -86,6 +86,7 @@ const Register = (props) => {
                     className="form-control"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    required
                     placeholder="Password"
                     id="x1x1"
                     aria-label="Recipient's username"

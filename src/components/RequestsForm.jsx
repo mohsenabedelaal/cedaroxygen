@@ -43,6 +43,10 @@ const RequestsForm = (props) => {
     // notificationOnClick();
     // console.log(values)
     event.preventDefault();
+    if(parseInt(values.amount) < 0){
+      alert("Please Enter Positive Amount")
+      return 
+    }
     emailjs
       .sendForm(
         "service_nmjie39",

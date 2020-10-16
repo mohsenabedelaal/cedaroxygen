@@ -13,7 +13,7 @@ const Home2 = () => {
 
   useEffect(() => {
     axios
-      .get("/rates/listall")
+      .get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/rates/listall")
       .then((res) => {
         console.log(res.data);
         setRates(res.data);

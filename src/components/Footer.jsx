@@ -7,34 +7,34 @@ export default function Footering() {
         className="page-footer font-small blue-grey lighten-5"
         style={{
           color: "white",
-          border: "1px solid red",
+          border: "0px solid transparentt",
           height: "100vh",
         }}
       >
         <div
           style={{
             backgroundColor: "#005454",
-            border: "2px solid green",
+            border: "2px solid transparent",
             height: "20vh",
           }}
         >
           <div
             className="container"
             style={{
-              border: "2px solid blue",
+              border: "2px solid transparent",
               height: "100%",
             }}
           >
             <div
               className="row py-4 d-flex align-self-center"
               style={{
-                border: "2px solid yellow",
+                border: "2px solid transparent",
                 marginTop: "1%",
               }}
             >
               <div
                 className="col-md-8 col-lg-8 text-center text-md-left"
-                style={{ border: "2px solid red", width: "100vw" }}
+                style={{ border: "2px solid transparent", width: "100vw" }}
               >
                 <h5 className="mb-0">
                   Get involved in investing and supporting Lebanese

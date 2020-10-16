@@ -27,7 +27,7 @@ const Requests = (props) => {
 
   useEffect(() => {
     axios
-      .get("/api/clients/listall")
+      .get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
       .then((res) => {
         // console.log("2na be 2wal useEffect");
         // console.log(res.data)
@@ -50,7 +50,7 @@ const Requests = (props) => {
 
   useEffect(() => {
     axios
-      .get("/api/requests/listall")
+      .get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/listall")
       .then((res) => {
         setContactObjects(res.data);
       })
@@ -78,7 +78,7 @@ const Requests = (props) => {
   const addorEdit = (obj) => {
     axios
       .post(
-        "/api/requests/add?client_id=" +
+        "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
           currentId +
           "&amount=" +
           obj.amount +
@@ -110,7 +110,7 @@ const Requests = (props) => {
   const onDelete = (id) => {
     if (window.confirm("Are you sure to delete this request ? ")) {
       axios
-        .post("/api/requests/delete?id=" + id)
+        .post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
         .then((res) => console.log(res.data))
         .then((done) => window.location.reload())
         .catch((err) => console(err));

@@ -71,7 +71,7 @@ const App = () => {
   const handleLogin = () => {
     clearErrors();
 
-    axios.get("/login?username=" + email + "&password=" + password)
+    axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/login?username="+email+"&password="+password)
       .then(res => res.data).then(response => {
         if (response == 'True') {
           console.log(response)
@@ -79,7 +79,9 @@ const App = () => {
           setUser(email)
           localStorage.setItem('email', email)
           localStorage.setItem('password', password)
-          window.location.reload()
+          window.location.href = "https://cedars-oxygen-8a47a.web.app/"
+
+          
         } else {
           console.log(response)
           setEmailError("Check Your Email")
@@ -106,7 +108,7 @@ const App = () => {
     if (!name || !phone || !last_name || !email || !password || !address) {
       alert("Fill the Form")
     } else {
-      axios.post("/api/clients/add?name=" + name + "&last_name=" + last_name + "&phone=" + phone + "&address=" + address + "&username=" + email + "&password=" + password)
+      axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/add?name="+name+"&last_name="+last_name+"&phone="+phone+"&address="+address+"&username="+email+"&password="+password)
         .then(res => console.log(res.data)).then(response => { handleLogin() }).catch(err => console.log(err))
     }
 
@@ -119,7 +121,8 @@ const App = () => {
     // fire.auth().signOut();
     localStorage.removeItem('email');
     localStorage.removeItem('password');
-    window.location.href = "http://localhost:3000/"
+    // window.location.href = "http://localhost:3000/"
+    window.location.href = "https://cedars-oxygen-8a47a.web.app/"
     // handleShow();
     // props.history.push('/');
     // history.push('/');
@@ -386,6 +389,7 @@ const App = () => {
         {!user ?
           <>
             <Route path="/registration" exact>
+              {user ? <Redirect to="/" /> : <></> }
               <Register
                 // loginSection = {loginSection}
                 // registerSection = {registerSection}
