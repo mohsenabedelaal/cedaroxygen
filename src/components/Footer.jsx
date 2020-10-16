@@ -7,56 +7,42 @@ export default function Footering() {
         className="page-footer font-small blue-grey lighten-5"
         style={{
           color: "white",
-          // border: "1px solid red",
+          border: "1px solid red",
           height: "100vh",
         }}
       >
         <div
           style={{
             backgroundColor: "#005454",
-            // border: "2px solid green",
+            border: "2px solid green",
             height: "20vh",
           }}
         >
           <div
             className="container"
             style={{
-              // border: "2px solid blue",
+              border: "2px solid blue",
               height: "100%",
             }}
           >
             <div
               className="row py-4 d-flex align-self-center"
               style={{
-                // border: "2px solid yellow",
-                margin: "0%",
+                border: "2px solid yellow",
+                marginTop: "1%",
               }}
             >
-              <div className="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                <h6 className="mb-0">Connect with us on social networks!</h6>
+              <div
+                className="col-md-8 col-lg-8 text-center text-md-left"
+                style={{ border: "2px solid red", width: "100vw" }}
+              >
+                <h5 className="mb-0">
+                  Get involved in investing and supporting Lebanese
+                  manufacturers
+                </h5>
               </div>
 
-              <div className="col-md-6 col-lg-7 text-center text-md-right">
-                <a className="fb-ic">
-                  <i className="fab fa-facebook-f white-text mr-4"> </i>
-                </a>
-
-                <a className="tw-ic">
-                  <i className="fab fa-twitter white-text mr-4"> </i>
-                </a>
-
-                <a className="gplus-ic">
-                  <i className="fab fa-google-plus-g white-text mr-4"> </i>
-                </a>
-
-                <a className="li-ic">
-                  <i className="fab fa-linkedin-in white-text mr-4"> </i>
-                </a>
-
-                <a className="ins-ic">
-                  <i className="fab fa-instagram white-text"> </i>
-                </a>
-              </div>
+              <div className="col-md-4 col-lg-4 text-center text-md-right"></div>
             </div>
           </div>
         </div>
@@ -70,67 +56,89 @@ export default function Footering() {
           }}
         >
           <div className="row mt-3 dark-grey-text justify-content-end align-self-end">
-            <div className="col-md-3 col-lg-4 col-xl-3 mb-4 dark-grey-text">
-              <h6 className="text-uppercase font-weight-bold dark-grey-text">
-                Cedar Oxygen
-              </h6>
-              <hr
-                className="accent-3 mb-4 mt-0 d-inline-block mx-auto dark-grey-text"
-                style={{ width: "60px" }}
+            <div className="col-md-3 col-lg-5 col-xl-3 mb-4 dark-grey-text">
+              <img
+                src="https://cedaroxygen.com/wp-content/uploads/2020/06/Cedar-Oxygen_Logo-green.png"
+                className="navbar-brand ml-2"
+                width="200"
+                height="50"
+                alt="icon"
               />
             </div>
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase font-weight-bold">Useful links</h6>
-              <hr
-                className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto"
-                style={{ width: "60px" }}
-              />
               <p>
                 <a className="dark-grey-text" href="#!">
-                  Your Account
+                  Home
                 </a>
               </p>
               <p>
                 <a className="dark-grey-text" href="#!">
-                  Become an Affiliate
+                  About Us
                 </a>
               </p>
               <p>
                 <a className="dark-grey-text" href="#!">
-                  Shipping Rates
+                  Our Story
                 </a>
               </p>
               <p>
                 <a className="dark-grey-text" href="#!">
-                  Help
+                  The Team
+                </a>
+              </p>
+              <p>
+                <a className="dark-grey-text" href="#!">
+                  Our Partners
                 </a>
               </p>
             </div>
 
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase font-weight-bold">Contact</h6>
-              <hr
-                className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto"
-                style={{ width: "60px" }}
-              />
+            <div className="col-md-3 col-lg-2 col-xl-3 mx-auto mb-md-0 mb-4">
               <p>
-                <i className="fas fa-home mr-3"></i> New York, NY 10012, US
+                <i></i> The Fund
               </p>
               <p>
-                <i className="fas fa-envelope mr-3"></i> info@example.com
+                <i></i> Our Investment Approach
               </p>
               <p>
-                <i className="fas fa-phone mr-3"></i> + 01 234 567 88
+                <i></i> Impact Investing and ESG
               </p>
               <p>
-                <i className="fas fa-print mr-3"></i> + 01 234 567 89
+                <i></i> Borrowers
               </p>
+              <p>
+                <i></i> Contact Us
+              </p>
+            </div>
+            <div className="col-md-4">
+              <p>
+                <i></i> Connect with us!
+              </p>
+              <a className="fb-ic">
+                <i className="fab fa-facebook-f white-text mr-4"> </i>
+              </a>
+
+              <a className="tw-ic">
+                <i className="fab fa-twitter white-text mr-4"> </i>
+              </a>
+
+              <a className="gplus-ic">
+                <i className="fab fa-google-plus-g white-text mr-4"> </i>
+              </a>
+
+              <a className="li-ic">
+                <i className="fab fa-linkedin-in white-text mr-4"> </i>
+              </a>
+
+              <a className="ins-ic">
+                <i className="fab fa-instagram white-text"> </i>
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="footer-copyright text-center text-black-50 py-3">
+        <div className="footer-copyright col-md-5 text-center text-black-50 py-3">
           © 2020 Copyright:
           <a className="dark-grey-text" href="https://mdbootstrap.com/">
             {" "}
