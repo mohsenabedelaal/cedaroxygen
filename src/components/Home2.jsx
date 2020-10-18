@@ -45,6 +45,10 @@ const Home2 = ({user}) => {
   const onSelectFlag = (countryCode)=>{
     console.log("hyde l country yalle na2yta",countryCode);
     setSelected(countryCode);
+    document.getElementById("main").value = ""
+    document.getElementById("SayrafaDollarRate").value = ""
+    document.getElementById("PrevailingMarketRate").value = ""
+    document.getElementById("officialDollarRate").value = ""
     if(countryCode == "US"){
     buttonRef1.current.updateSelected("LB")
     buttonRef2.current.updateSelected("LB")
