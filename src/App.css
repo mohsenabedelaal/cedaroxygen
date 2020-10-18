@@ -7,6 +7,12 @@ h1 .body {
   line-height: 26.4px;
 }
 
+.regInput:valid {
+  color: green;
+}
+.regInput:invalid {
+  color: red;
+}
 
 
 .grid-container {
@@ -135,7 +141,7 @@ h1 .body {
 }
 
 .rightBox {
-  width: 90%;
+  width: 120%;
   height: 20%;
   float: center;
   border: 1px solid gray;

@@ -1,4 +1,7 @@
 import React from "react";
+import "../App.css";
+import '../componentscss/Footer.css';
+// import "../componentscss"
 
 export default function Footering() {
   return (
@@ -68,27 +71,27 @@ export default function Footering() {
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <p>
-                <a className="dark-grey-text" href="#!">
+                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/" >
                   Home
                 </a>
               </p>
               <p>
-                <a className="dark-grey-text" href="#!">
+                <a className="dark-grey-text footercolor" href="#!">
                   About Us
                 </a>
               </p>
               <p>
-                <a className="dark-grey-text" href="#!">
+                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/our-story/">
                   Our Story
                 </a>
               </p>
               <p>
-                <a className="dark-grey-text" href="#!">
+                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/the-team/">
                   The Team
                 </a>
               </p>
               <p>
-                <a className="dark-grey-text" href="#!">
+                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/impact-finance-fund/">
                   Our Partners
                 </a>
               </p>
@@ -138,12 +141,12 @@ export default function Footering() {
           </div>
         </div>
 
-        <div className="footer-copyright col-md-5 text-center text-black-50 py-3">
-          © 2020 Copyright:
-          <a className="dark-grey-text" href="https://mdbootstrap.com/">
+        <div className="footer-copyright col-md-5 text-center text-black-50 py-3" style={{marginLeft:"10rem"}}>
+          Copyright Cedar Oxygen © 2020 Cedar Oxygen. All rights reserved
+          {/* <a className="dark-grey-text" href="https://mdbootstrap.com/">
             {" "}
             Cedar Oxygen
-          </a>
+          </a> */}
         </div>
       </footer>
     </div>

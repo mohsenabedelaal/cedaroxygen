@@ -25,9 +25,11 @@ const Register = (props) => {
     setHasAccount,
     emailError,
     passwordError,
+    loading
   } = props;
 
   const [show, setShow] = useState(true);
+  // const [loading,setLoading] = useState(false);
 
   return (
     <div className="container-fluid authbox">
@@ -43,10 +45,11 @@ const Register = (props) => {
                 fontWeight: "bold",
                 fontSize: "36px",
                 fontFamily: "arial",
+                marginLeft:"36%"
                 // marginRight:"1%"
               }}
             >
-              Register and open an account
+              Register
             </h3>
             <div className={"rightBox"}>
               <div
@@ -60,7 +63,7 @@ const Register = (props) => {
                   style={{ fontSize: "14.43px", fontFamily: "arial" }}
                 >
                   <input
-                    className={"form-control"}
+                    className={"form-control regInput"}
                     type={"text"}
                     placeholder={"Email"}
                     // autoFocus
@@ -83,7 +86,7 @@ const Register = (props) => {
                 <div className="input-group mb-2">
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control regInput"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required
@@ -119,7 +122,7 @@ const Register = (props) => {
                 {/* <p className={'errorMsg'}>{passwordError}</p> */}
                 <div className="mb-2">
                   <input
-                    className={"form-control"}
+                    className={"form-control regInput"}
                     type={"text"}
                     placeholder={"First Name"}
                     required
@@ -129,7 +132,7 @@ const Register = (props) => {
                 </div>
                 <div className="mb-2">
                   <input
-                    className={"form-control"}
+                    className={"form-control regInput"}
                     type={"text"}
                     placeholder={"Last Name"}
                     required
@@ -139,17 +142,21 @@ const Register = (props) => {
                 </div>
                 <div className="mb-2">
                   <input
-                    className={"form-control"}
-                    type={"number"}
+                    className={"form-control regInput"}
+                    type={"text"}
                     placeholder={"Phone Number"}
                     required
                     value={phone}
+                    maxlength="8"
+                    id="pin"
+                    pattern="\d{8}"
                     onChange={(e) => setPhone(e.target.value)}
                   />
+                  
                 </div>
                 <div className="mb-2">
                   <input
-                    className={"form-control"}
+                    className={"form-control regInput"}
                     type={"text"}
                     placeholder={"Address"}
                     required
@@ -157,8 +164,10 @@ const Register = (props) => {
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
-
-                <button className={"btnAuth"} onClick={handleSignup}
+                {!loading ?
+                <button className={"btnAuth"}
+                type="submit" 
+                onClick={handleSignup}
                 style={{
                   // marginTop: "2rem",
                   fontSize: "16px",
@@ -166,7 +175,13 @@ const Register = (props) => {
                   fontWeight: "bold",
                    }}>
                   SUBMIT
-                </button>
+                </button> : 
+                <div class="spinner-border text-success" style={{marginLeft:"42%"}}role="status">
+                <span class="sr-only">Loading...</span>
+                </div>}
+                  {/* <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                    </div> */}
               </div>
             </div>
           </div>

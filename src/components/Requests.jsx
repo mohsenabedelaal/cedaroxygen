@@ -76,15 +76,21 @@ const Requests = (props) => {
 
   //add new request using api-------------------------------------------------------------------------------------------------------------------
   const addorEdit = (obj) => {
+
+
+    // alert(parseFloat(obj.amount).toLocaleString('en'))
+
+    // obj.amount = parseFloat(obj.amount).toLocaleString('en')
+
+    // alert(obj.amount)
+
     axios
       .post(
         "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
           currentId +
-          "&amount=" +
-          obj.amount +
-          "&currency=" +
-          obj.currency +
-          "&action=" +
+          "&amount="+obj.amount+
+          "&currency="+obj.currency+
+          "&action="+
           obj.action
       )
       .then((res) => console.log(res.data))
@@ -136,7 +142,7 @@ const Requests = (props) => {
               fontWeight: "bold",
             }}
           >
-            Submit A Request
+            Submit a Request
           </h1>
 
           <div className="rightBox3" style={{ height: "60vh" }}>

@@ -1,5 +1,5 @@
 // Modules used for this project or page-----------------------------------------
-import React, { Component, useEffect, useState, useContext } from 'react'
+import React, { Component, useEffect, useState, useContext,useRef } from 'react'
 import Login from './components/login.jsx';
 import fire from './firebase/firebase';
 import Register from './components/Register.jsx';
@@ -19,6 +19,9 @@ import Home3 from './components/Home3.jsx';
 import { HashLink } from 'react-router-hash-link';
 import Requests from "./components/Requests";
 import RequestList from "./components/RequestList";
+import ReactFlagsSelect from "react-flags-select";
+import "react-flags-select/css/react-flags-select.css";
+import { Spinner,Accordion,Card,Toast } from 'react-bootstrap';
 // ------------------------------------------------------------------------------
 
 
@@ -43,8 +46,10 @@ const App = () => {
   const [primary, setPrimary] = useState(0);
   const [second, setSecond] = useState(0);
   const [rates, setRates] = useState('')
+  const [loading, setLoading] =useState(false)
   // ------------------------------------------------------------------------------
-
+  const [showA, setShowA] = useState(true);
+  const toggleShowA = () => setShowA(!showA);
 
 
   // This function is to clear the inputs values ---------------------------------------------------------
@@ -81,7 +86,7 @@ const App = () => {
           localStorage.setItem('password', password)
           window.location.href = "https://cedars-oxygen-8a47a.web.app/"
 
-          
+
         } else {
           console.log(response)
           setEmailError("Check Your Email")
@@ -103,13 +108,27 @@ const App = () => {
 
   // function responsible for sign up using api -------------------------------------------------
   const handleSignup = () => {
+
     clearErrors();
+
+    // alert(typeof phone)
+    // alert()
+
+
 
     if (!name || !phone || !last_name || !email || !password || !address) {
       alert("Fill the Form")
-    } else {
+      return
+    }
+    if (isNaN(phone)){
+
+      alert("Write Your Phone Number in Numbers")
+      return
+
+    }else {
+      setLoading(true)
       axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/add?name="+name+"&last_name="+last_name+"&phone="+phone+"&address="+address+"&username="+email+"&password="+password)
-        .then(res => console.log(res.data)).then(response => { handleLogin() }).catch(err => console.log(err))
+        .then(res => console.log(res.data)).then(response => { handleLogin() }).then(res => setLoading(false)).catch(err => console.log(err))
     }
 
   }
@@ -320,6 +339,54 @@ const App = () => {
               </div>
             </div>
 
+            <Accordion>
+  <Card>
+    <Card.Header>
+      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+        Click me!
+      </Accordion.Toggle>
+    </Card.Header>
+    <Accordion.Collapse eventKey="0">
+      <Card.Body>Hello! I'm the body</Card.Body>
+    </Accordion.Collapse>
+  </Card>
+  </Accordion>
+  <div
+  aria-live="polite"
+  aria-atomic="true"
+  style={{
+    position: 'relative',
+    minHeight: '100px',
+  }}
+>
+  <Toast show={showA} onClose={toggleShowA}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded mr-2"
+              alt=""
+            />
+            <strong className="mr-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+          </Toast.Header>
+          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+        </Toast></div>
+
+            <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+  <div class="input-group-append">
+    {/* <button class="btn btn-outline-secondary" type="button">Button</button> */}
+    <ReactFlagsSelect
+    // ref={textInput}
+    defaultCountry="LB"
+    />
+    {/* {console.log(parseFloat("1234567.89").toLocaleString('en'))} */}
+  </div><br/>
+
+
+
+</div>
+
 
           </div>
 
@@ -337,7 +404,7 @@ const App = () => {
           <Route path="/" exact>
           <Navbarn handleLogout={handleLogout} user={user}/>
 
-          <Home2 />
+          <Home2 user={user}/>
           <div
           style={{
             backgroundColor: "#005454",
@@ -372,6 +439,7 @@ const App = () => {
                 setHasAccount={setHasAccount}
                 emailError={emailError}
                 passwordError={passwordError}
+                loading={loading}
               /></div>}
 
 

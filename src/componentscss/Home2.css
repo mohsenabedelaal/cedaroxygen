@@ -15,8 +15,8 @@ div.container-fluid {
 }
 
 div.row {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin-right: 6%;
+  margin-left: 0%;
   margin-top: 10%;
   margin-top: 10%;
 }
@@ -85,3 +85,13 @@ div.col-xs-9 {
 ol {
   padding-inline-start: 2.9%;
 }
+
+.cards{
+  background-color:transparent;
+  border: 0px solid transparent !important;
+}
+
+.BlackRate{
+  margin-bottom: 7%;
+}
+

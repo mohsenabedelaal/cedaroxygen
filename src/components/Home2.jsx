@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import "../componentscss/Home2.css";
 import ReactFlagsSelect from "react-flags-select";
@@ -6,10 +6,13 @@ import "react-flags-select/css/react-flags-select.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { Button,Spinner,Accordion,Card,Toast } from 'react-bootstrap';
+//---------------------------------------------------------------------------
 
-const Home2 = () => {
+const Home2 = ({user}) => {
   const [show, setShow] = useState(true);
   const [rates, setRates] = useState("");
+  const [selected, setSelected] = useState("LB");
 
   useEffect(() => {
     axios
@@ -20,6 +23,45 @@ const Home2 = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // useEffect(()=>{
+  //   try{
+  //   this.refs.userFlag.updateSelected(selected)}
+  //   catch{console.log("error")}
+  // },[selected])
+
+
+  const buttonRef = useRef();
+
+
+
+
+  const onSelectFlag = (countryCode)=>{
+    console.log("hyde l country yalle na2yta",countryCode);
+    buttonRef.current.updateSelected(countryCode)
+
+    // let firstvisit = 0;
+
+    // if(selected == countryCode){
+
+    //   buttonRef.current.updateSelected("LB")
+
+    // }
+    // setSelected(countryCode);
+    // buttonRef.current.__proto__.updateSelected("US")
+    // if(selected == "US"){
+    //   buttonRef.current.updateSelected("LB")
+    // }else{
+    //   buttonRef.current.updateSelected("US")
+
+
+    // console.log("shou captain",buttonRef.current.updateSelected(selected))
+
+
+  };
+
+
+// =================================================================================================================================
 
   return (
     <>
@@ -46,7 +88,7 @@ const Home2 = () => {
               width: "100vw",
               // border: "1px solid blue",
               padding: "5%",
-              paddingTop: "7%",
+              paddingTop: "5%",
             }}
           >
             <h1
@@ -120,6 +162,7 @@ const Home2 = () => {
               </li>
             </ol>
           </div>
+{/* the second half of the home screen ============================================================================================ */}
           <div
             className="col-6"
             style={{
@@ -128,7 +171,7 @@ const Home2 = () => {
               paddingLeft: "15%",
               width: "100vw",
               margin: "0%",
-              paddingTop: "7%",
+              paddingTop: "5%",
             }}
           >
             <label
@@ -151,7 +194,7 @@ const Home2 = () => {
               id="upper"
               name="upper"
               placeholder="You're exchanging"
-              value={rates ? rates[0].platform_rate : 0}
+              value={rates ? rates[0].platform_rate : "Loading..."}
               style={{
                 width: "60%",
                 height: "9vh",
@@ -182,32 +225,37 @@ const Home2 = () => {
                     countries={["US", "LB"]}
                     defaultCountry="LB"
                     customLabels={{ US: "USD", LB: "LBP" }}
+                    // ref="userflag"
+                    onSelect={onSelectFlag}
                     // style={{ backgroundColor: "black" }}
                   />
-
+            {/* {console.log("hydeeeeeeeezz",this.refs.userflag.value)} */}
 
             <p
-              style={{ marginLeft: "0%", marginTop: "5%", marginBottom: "5%" }}
+              style={{ marginLeft: "0%", marginTop: "3%", marginBottom: "3%" }}
             >
-              <a
+              {/* <a
                 role="button"
-                onClick={() => setShow(!show)}
+                onClick={() => {
+
+                  setTimeout(()=>{ setShow(!show) }, 290);
+                }}
                 style={{ color: "#33c7bf", paddingLeft: "5%" }}
-              >
-               {show ? <i
+              > */}
+               {show ? <label> <i
                   className="fas fa-angle-double-down"
                   data-toggle="collapse"
                   href="#multiCollapseExample1"
                   role="button"
                   aria-expanded="false"
                   aria-controls="multiCollapseExample1"
-               ></i> :
+               ></i>  Show Market Rates</label> :
                <i class="fas fa-angle-double-up" data-toggle="collapse"
                href="#multiCollapseExample1"
                role="button"
                aria-expanded="false"
                aria-controls="multiCollapseExample1"></i> }
-              </a>
+              {/* </a> */}
             </p>
 
             <div className="collapse multi-collapse" id="multiCollapseExample1">
@@ -254,47 +302,13 @@ const Home2 = () => {
                   customLabels={{ US: "USD", LB: "LBP" }}
                   style={{
                     color: "black",
-                    height: "15%",
+                    // height: "15%",
                     margin: "0%",
                   }}
+                  alignOptions="right"
                 />
               </div>
-            </div>
-
-            <div style={{ color: "black" }}>
-              {show ? (
-                <>
-                  <Link to="/registration">
-                    <button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#25DAC5",
-                        fontWeight: "bold",
-                        fontFamily: "arial",
-                        fontSize: "16px",
-                        border: "none",
-                        textAlign: "left",
-                        borderBottomLeftRadius: "1.3rem",
-                        borderTopLeftRadius: "1.3rem",
-                        height: "9vh",
-                        width: "60%",
-                        margin: "0%",
-                        paddingLeft: "5%",
-                        border: "none",
-                      }}
-                    >
-                      REGISTER HERE TODAY >{" "}
-                    </button>
-                  </Link>
-                  <ReactFlagsSelect
-                    countries={["US", "LB"]}
-                    defaultCountry="LB"
-                    customLabels={{ US: "USD", LB: "LBP" }}
-                    style={{ backgroundColor: "black" }}
-                  />
-                </>
-              ) : (
-                <>
+              <div className="BlackRate">
                   {/* <input type="number" role="button" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} >Register</input> */}
                   <label
                     htmlFor="lower"
@@ -305,7 +319,7 @@ const Home2 = () => {
                       fontWeight: "bold",
                     }}
                   >
-                    Black Market Rate
+                    Prevailing Market Rate
                   </label>
                   <br />
                   <input
@@ -332,14 +346,93 @@ const Home2 = () => {
                     customLabels={{ US: "USD", LB: "LBP" }}
                     style={{ backgroundColor: "black" }}
                   />
+                </div>
+                <div className="BlackRate">
+                  {/* <input type="number" role="button" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} >Register</input> */}
+                  <label
+                    htmlFor="lower"
+                    style={{
+                      color: "white",
+                      fontFamily: "arial",
+                      fontSize: "20.25px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Prevailing Market Rate
+                  </label>
+                  <br />
+                  <input
+                    type="text"
+                    id="lower"
+                    name="upper"
+                    placeholder="You're exchanging"
+                    value={rates ? rates[0].black_market_rate : 0}
+                    style={{
+                      borderTopLeftRadius: "1.3rem",
+                      borderBottomLeftRadius: "1.3rem",
+                      width: "60%",
+                      margin: "0%",
+                      fontFamily: "arial",
+                      fontSize: "21.65px",
+                      height: "9vh",
+                      border: "none",
+                    }}
+                  />
+                  {/* <ReactFlagsSelect defaultCountry="US"/> */}
+                  <ReactFlagsSelect
+                    countries={["US", "LB"]}
+                    defaultCountry="LB"
+                    customLabels={{ US: "USD", LB: "LBP" }}
+                    style={{ backgroundColor: "black" }}
+                  />
+                </div>
+            </div>
+
+            <div style={{ color: "black" }}>
+
+                <>
+                  <Link to={user ? "/requestpage" : "/registration"}>
+                    <button
+                      style={{
+                        color: "white",
+                        backgroundColor: "#25DAC5",
+                        fontWeight: "bold",
+                        fontFamily: "arial",
+                        fontSize: "16px",
+                        border: "none",
+                        textAlign: "left",
+                        borderBottomLeftRadius: "1.3rem",
+                        borderTopLeftRadius: "1.3rem",
+                        height: "9vh",
+                        // width: "60%",
+                        margin: "0%",
+                        paddingLeft: "5%",
+                        border: "none",
+                      }}
+                    >
+                      REQUEST THE EQUIVALENT AMOUNT >{" "}
+                    </button>
+                  </Link>
+                  <ReactFlagsSelect
+                    countries={["US", "LB"]}
+                    // id="userFlag"
+                    defaultCountry={selected}
+                    ref={buttonRef}
+                    // updateSelected={updateSelected(selected)}
+                    customLabels={{ US: "USD", LB: "LBP" }}
+                    style={{ backgroundColor: "black" }}
+                  />
                 </>
-              )}
+
+
+
               {/* <label htmlFor="lower" style={{ color:"white" }}>Black Market Rate</label><br/>
                 <input type="number" id="lower" name="upper" placeholder="amount" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} />
 
                 <ReactFlagsSelect  countries={["US", "LB"]}
                 defaultCountry="LB"
                  customLabels={{"US": "USD","LB": "LBP"}} /> */}
+
             </div>
           </div>
         </div>

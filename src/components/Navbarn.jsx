@@ -60,18 +60,18 @@ const Navbarn = ({ user, handleLogout }) => {
           style={{ paddingRight: "3%" }}
         >
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item mr-2">
+            {/* <li className="nav-item mr-2">
               <Link to="/" className="nav-link active">
                 Home
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item mr-2">
               {user ? (
                 <Link className="nav-link active" to="/requestpage">
                   Request
                 </Link>
               ) : (
-                <Link className="nav-link disabled" to="/requestpage">
+                <Link className="nav-link active" to="/registration">
                   Request
                 </Link>
               )}

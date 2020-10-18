@@ -140,7 +140,7 @@ const RequestList = (props) => {
                                     request => {
                                         console.log("@na")
                                         return <tr key={request.Id} >
-                                            <td>{request.amount}</td>
+                                            <td>{parseFloat(request.amount).toLocaleString('en')}</td>
                                             <td>{request.currency}</td>
                                             <td>{request.action}</td>
                                             {/* <td>{contactObjects[id].status}</td> */}
@@ -159,7 +159,7 @@ const RequestList = (props) => {
                                 ) : contactObjects.map(
                                     request => {
                                         return <tr key={request.Id} >
-                                            <td>{request.amount}</td>
+                                            <td>{parseFloat(request.amount).toLocaleString('en')}</td>
                                             <td>{request.currency}</td>
                                             <td>{request.action}</td>
                                             {/* <td>{contactObjects[id].status}</td> */}

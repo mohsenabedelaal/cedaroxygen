@@ -47,21 +47,23 @@ const RequestsForm = (props) => {
       alert("Please Enter Positive Amount")
       return 
     }
-    emailjs
-      .sendForm(
-        "service_nmjie39",
-        "template_k5aqzsi",
-        event.target,
-        "user_zxvsZyEmkbWFzo9eqYu2G"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    // emailjs
+    //   .sendForm(
+    //     "service_nmjie39",
+    //     "template_k5aqzsi",
+    //     event.target,
+    //     "user_zxvsZyEmkbWFzo9eqYu2G"
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
+
+    
 
     props.addorEdit(values);
     // notificationOnClick();
@@ -124,7 +126,7 @@ const RequestsForm = (props) => {
                 <option value="..." defaultValue>
                   Choose Currency
                 </option>
-                <option value="Dollor($)">US Dollor ($)</option>
+                <option value="US Dollar">US Dollor ($)</option>
                 <option value="Lira(LBP)">Lebanse Pound (LBP)</option>
                 <option value="Euro (€)">Euro (€)</option>
               </select>
