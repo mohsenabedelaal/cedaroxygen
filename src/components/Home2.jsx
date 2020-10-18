@@ -12,7 +12,8 @@ import { Button,Spinner,Accordion,Card,Toast } from 'react-bootstrap';
 const Home2 = ({user}) => {
   const [show, setShow] = useState(true);
   const [rates, setRates] = useState("");
-  const [selected, setSelected] = useState("LB");
+  const [selected, setSelected] = useState();
+  const [converter,setConverter] = useState()
 
   useEffect(() => {
     axios
@@ -31,14 +32,30 @@ const Home2 = ({user}) => {
   // },[selected])
 
 
-  const buttonRef = useRef();
+  const buttonRef1 = useRef();
+  const buttonRef2 = useRef();
+  const buttonRef3 = useRef();
+  const buttonRef4 = useRef();
+
+
 
 
 
 
   const onSelectFlag = (countryCode)=>{
     console.log("hyde l country yalle na2yta",countryCode);
-    buttonRef.current.updateSelected(countryCode)
+    setSelected(countryCode);
+    if(countryCode == "US"){
+    buttonRef1.current.updateSelected("LB")
+    buttonRef2.current.updateSelected("LB")
+    buttonRef3.current.updateSelected("LB")
+    buttonRef4.current.updateSelected("LB")
+    }else{
+      buttonRef1.current.updateSelected("US")
+      buttonRef2.current.updateSelected("US")
+      buttonRef3.current.updateSelected("US")
+      buttonRef4.current.updateSelected("US")
+    } };
 
     // let firstvisit = 0;
 
@@ -56,9 +73,23 @@ const Home2 = ({user}) => {
 
 
     // console.log("shou captain",buttonRef.current.updateSelected(selected))
+    const handleConverter = (e)=>{
+      if(selected == 'US'){
+
+        rates ? document.getElementById("SayrafaDollarRate").value = e.target.value * rates[0].bdl_rate : document.getElementById("SayrafaDollarRate").value = "Loading...";
+        rates ? document.getElementById("PrevailingMarketRate").value = e.target.value * rates[0].black_market_rate : document.getElementById("PrevailingMarketRate").value = "Loading...";
+        document.getElementById("officialDollarRate").value = e.target.value *1515
+      }
+      if(selected == 'LB'){
+
+        rates ? document.getElementById("SayrafaDollarRate").value = e.target.value / rates[0].bdl_rate : document.getElementById("SayrafaDollarRate").value = "Loading...";
+        rates ? document.getElementById("PrevailingMarketRate").value = e.target.value / rates[0].black_market_rate : document.getElementById("PrevailingMarketRate").value = "Loading...";
+        document.getElementById("officialDollarRate").value = e.target.value / 1515
+      }
+    }
 
 
-  };
+
 
 
 // =================================================================================================================================
@@ -188,13 +219,14 @@ const Home2 = ({user}) => {
                 ? "Cedar Oxygen Platform Dollar Rate"
                 : "Official Dollar Rate"}
             </label>
-
+              <h1>{converter}</h1>
             <input
-              type="text"
-              id="upper"
+              type="number"
+              id="main"
               name="upper"
               placeholder="You're exchanging"
-              value={rates ? rates[0].platform_rate : "Loading..."}
+              onChange={handleConverter}
+              // value={rates ? rates[0].platform_rate : "Loading..."}
               style={{
                 width: "60%",
                 height: "9vh",
@@ -266,6 +298,7 @@ const Home2 = ({user}) => {
                   marginBottom: "5%",
                 }}
               >
+                {/* {setShow(!show)} */}
                 <label
                   htmlFor="hidden"
                   style={{
@@ -275,15 +308,16 @@ const Home2 = ({user}) => {
                     fontWeight: "bold",
                   }}
                 >
-                  Lebanese Dollar Rate
+                  Sayrafa Dollar Rate
                 </label>
                 <br />
                 <input
                   type="text"
-                  id="hidden"
+                  id="SayrafaDollarRate"
+                  readOnly
                   name="upper"
                   placeholder="You're exchanging"
-                  value={rates ? rates[0].bdl_rate : 0}
+                  // value={rates ? rates[0].bdl_rate : 0}
                   style={{
                     borderTopLeftRadius: "1.3rem",
                     borderBottomLeftRadius: "1.3rem",
@@ -300,6 +334,7 @@ const Home2 = ({user}) => {
                   countries={["US", "LB"]}
                   defaultCountry="LB"
                   customLabels={{ US: "USD", LB: "LBP" }}
+                  ref={buttonRef1}
                   style={{
                     color: "black",
                     // height: "15%",
@@ -317,17 +352,17 @@ const Home2 = ({user}) => {
                       fontFamily: "arial",
                       fontSize: "20.25px",
                       fontWeight: "bold",
-                    }}
-                  >
+                    }}>
                     Prevailing Market Rate
                   </label>
                   <br />
                   <input
-                    type="text"
-                    id="lower"
+                    type="number"
+                    id="PrevailingMarketRate"
+                    readOnly
                     name="upper"
                     placeholder="You're exchanging"
-                    value={rates ? rates[0].black_market_rate : 0}
+                    // value={rates ? rates[0].black_market_rate : 0}
                     style={{
                       borderTopLeftRadius: "1.3rem",
                       borderBottomLeftRadius: "1.3rem",
@@ -343,6 +378,7 @@ const Home2 = ({user}) => {
                   <ReactFlagsSelect
                     countries={["US", "LB"]}
                     defaultCountry="LB"
+                    ref={buttonRef2}
                     customLabels={{ US: "USD", LB: "LBP" }}
                     style={{ backgroundColor: "black" }}
                   />
@@ -358,15 +394,15 @@ const Home2 = ({user}) => {
                       fontWeight: "bold",
                     }}
                   >
-                    Prevailing Market Rate
+                    Official Dollar Rate
                   </label>
                   <br />
                   <input
                     type="text"
-                    id="lower"
+                    id="officialDollarRate"
                     name="upper"
                     placeholder="You're exchanging"
-                    value={rates ? rates[0].black_market_rate : 0}
+                    // value={rates ? rates[0].black_market_rate : 0}
                     style={{
                       borderTopLeftRadius: "1.3rem",
                       borderBottomLeftRadius: "1.3rem",
@@ -382,6 +418,7 @@ const Home2 = ({user}) => {
                   <ReactFlagsSelect
                     countries={["US", "LB"]}
                     defaultCountry="LB"
+                    ref={buttonRef3}
                     customLabels={{ US: "USD", LB: "LBP" }}
                     style={{ backgroundColor: "black" }}
                   />
@@ -416,15 +453,15 @@ const Home2 = ({user}) => {
                   <ReactFlagsSelect
                     countries={["US", "LB"]}
                     // id="userFlag"
-                    defaultCountry={selected}
-                    ref={buttonRef}
+                    defaultCountry="LB"
+                    ref={buttonRef4}
                     // updateSelected={updateSelected(selected)}
                     customLabels={{ US: "USD", LB: "LBP" }}
                     style={{ backgroundColor: "black" }}
                   />
                 </>
 
-
+                  {console.log("@2na honnnnn,,",buttonRef4.current)}
 
               {/* <label htmlFor="lower" style={{ color:"white" }}>Black Market Rate</label><br/>
                 <input type="number" id="lower" name="upper" placeholder="amount" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} />

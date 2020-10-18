@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
+import NumberFormat from 'react-number-format';
 //-------------------------------------------------------------------------------------------
 
 const RequestsForm = (props) => {
@@ -43,10 +44,14 @@ const RequestsForm = (props) => {
     // notificationOnClick();
     // console.log(values)
     event.preventDefault();
-    if(parseInt(values.amount) < 0){
-      alert("Please Enter Positive Amount")
-      return 
+    values.amount = values.amount.replace(/,/g, "")
+    if(values.amount.length > 10){
+      alert("Reduce the amount ")
+      return
     }
+
+    // alert(values.amount.length)
+    // return
     // emailjs
     //   .sendForm(
     //     "service_nmjie39",
@@ -63,7 +68,7 @@ const RequestsForm = (props) => {
     //     }
     //   );
 
-    
+
 
     props.addorEdit(values);
     // notificationOnClick();
@@ -99,7 +104,7 @@ const RequestsForm = (props) => {
             >
               <input type="hidden" name="user" value={props.user} />
               <label htmlFor="inputCity">Amount</label>
-              <input
+              {/* <input
                 type="number"
                 name="amount"
                 onChange={handleInputChange}
@@ -107,7 +112,12 @@ const RequestsForm = (props) => {
                 className="form-control"
                 id="inputCity"
                 style={{ width: "90%" }}
-              />
+              /> */}
+              <NumberFormat class="form-control"
+              name="amount"
+              value={values.amount}
+              onChange={handleInputChange}
+               thousandSeparator={true} style={{ width: "90%" }} allowNegative={false}/>
             </div>
             <div className="form-group col-auto" style={{ padding: "0%" }}>
               <label htmlFor="inputCurrency" style={{ padding: "0%" }}>

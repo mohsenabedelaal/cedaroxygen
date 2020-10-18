@@ -22,6 +22,7 @@ import RequestList from "./components/RequestList";
 import ReactFlagsSelect from "react-flags-select";
 import "react-flags-select/css/react-flags-select.css";
 import { Spinner,Accordion,Card,Toast } from 'react-bootstrap';
+import NumberFormat from 'react-number-format';
 // ------------------------------------------------------------------------------
 
 
@@ -48,8 +49,8 @@ const App = () => {
   const [rates, setRates] = useState('')
   const [loading, setLoading] =useState(false)
   // ------------------------------------------------------------------------------
-  const [showA, setShowA] = useState(true);
-  const toggleShowA = () => setShowA(!showA);
+  const [showA, setShowA] = useState();
+
 
 
   // This function is to clear the inputs values ---------------------------------------------------------
@@ -339,38 +340,11 @@ const App = () => {
               </div>
             </div>
 
-            <Accordion>
-  <Card>
-    <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="0">
-        Click me!
-      </Accordion.Toggle>
-    </Card.Header>
-    <Accordion.Collapse eventKey="0">
-      <Card.Body>Hello! I'm the body</Card.Body>
-    </Accordion.Collapse>
-  </Card>
-  </Accordion>
-  <div
-  aria-live="polite"
-  aria-atomic="true"
-  style={{
-    position: 'relative',
-    minHeight: '100px',
-  }}
->
-  <Toast show={showA} onClose={toggleShowA}>
-          <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded mr-2"
-              alt=""
-            />
-            <strong className="mr-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-          </Toast.Header>
-          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-        </Toast></div>
+            <NumberFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            <NumberFormat thousandSeparator={true} onChange={(e)=>{setShowA(e.target.value)}} allowNegative={false}/>
+            <h1>{showA}</h1>
+
+
 
             <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
