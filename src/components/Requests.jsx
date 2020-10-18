@@ -95,7 +95,7 @@ const Requests = (props) => {
       )
       .then((res) => console.log(res.data))
       .then((done) => window.location.reload())
-      .catch((error) => console.log("sorry", error));
+      .catch((error) => alert("Sorry", error));
   };
 
   //-----------------------------------------------------------------------------------------------------------------------------------
