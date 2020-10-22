@@ -1,27 +1,15 @@
 import React from "react";
-// import "../componentscss/Home2.css"
+import "../componentscss/Home3.css";
 
 const Home3 = () => {
   return (
-    <div
-      style={{
-        backgroundImage:
-          "url(https://cedaroxygen.com/wp-content/uploads/2020/07/Cedar-Oxygen_Baalbeck2-scaled.jpg)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        color: "white",
-        height: "100vh",
-        // border: "1px solid red",
-        fontFamily: "arial",
-      }}
-    >
+    <div className="container-fluid bg2 text-center justify-content-center">
       <h1
         className="col-12"
         style={{
-          textAlign: "center",
           fontSize: "36px",
           padding: "1%",
-          paddingTop: "5%",
+          paddingTop: "10%",
           fontWeight: "bold",
           // border: "1px solid green",
           fontFamily: "arial",
@@ -34,12 +22,11 @@ const Home3 = () => {
         style={{
           fontSize: "24px",
           padding: "1%",
-          textAlign: "center",
           // border: "1px solid blue",
           fontFamily: "arial",
         }}
       >
-        Simple and transparent access to currency.
+        Simple and transparent access to currency
       </p>
       <div
         className="container justify-content-center"
@@ -54,6 +41,7 @@ const Home3 = () => {
             // border: "1px solid red",
             fontFamily: "arial",
             width: "100%",
+            marginTop: "7%",
           }}
         >
           <div
@@ -69,7 +57,7 @@ const Home3 = () => {
                 fontSize: "48px",
                 color: "#25DAC5",
                 marginBottom: "1rem",
-                marginLeft: "45%",
+                // marginLeft: "45%",
               }}
             ></i>
             <p
@@ -95,8 +83,7 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Transactions performed on our platform <br />
-              are all fast and secure
+              Transactions performed on our platform are all fast and secure
             </p>
           </div>
           <div className="col-sm">
@@ -106,7 +93,7 @@ const Home3 = () => {
                 fontSize: "48px",
                 color: "#25DAC5",
                 marginBottom: "1rem",
-                marginLeft: "45%",
+                // marginLeft: "45%",
               }}
             ></i>
             <p
@@ -134,8 +121,8 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Cedar Oxygen's intuitive interface makes <br />
-              trading easier for everyone.
+              Cedar Oxygen's intuitive interface makes trading easier for
+              everyone
             </p>
           </div>
 
@@ -146,7 +133,7 @@ const Home3 = () => {
                 fontSize: "48px",
                 color: "#25DAC5",
                 marginBottom: "1rem",
-                marginLeft: "45%",
+                // marginLeft: "45%",
               }}
             ></i>
             <p
@@ -173,8 +160,8 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Cedar Oxygen's excellent support team <br />
-              is available to help you, 5 days/week.
+              Cedar Oxygen's excellent support team is available to help you, 5
+              days/week
             </p>
           </div>
         </div>

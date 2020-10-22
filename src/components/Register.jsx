@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import "../componentscss/Home2.css";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
 
@@ -25,36 +26,54 @@ const Register = (props) => {
     setHasAccount,
     emailError,
     passwordError,
-    loading
+    loading,
   } = props;
 
   const [show, setShow] = useState(true);
   // const [loading,setLoading] = useState(false);
 
   return (
-    <div className="container-fluid authbox">
-      <div className="row" style={{ height: "100%" }}>
-        <div className="col" style={{ marginBottom:"35%" }}>
-          <div>
+    <div className="container-fluid bg1">
+      <div className="row justify-content-center">
+        <div
+          className="col justify-content-center"
+          style={{ marginTop: "100px" }}
+        >
+          <div className="justify-content-center text-center">
             {/* <div className="home-bg2"></div> */}
 
             <h3
               style={{
                 // marginTop: "2%",
-                marginBottom: "5%",
+                marginBottom: "3%",
                 fontWeight: "bold",
                 fontSize: "36px",
                 fontFamily: "arial",
-                marginLeft:"36%"
+
                 // marginRight:"1%"
               }}
             >
               Register
             </h3>
-            <div className={"rightBox"}>
+            <div
+              className="rightBox justify-content-center align-self-center "
+              style={{
+                width: "400px",
+                height: "450px",
+                border: "none",
+                position: "relative",
+                margin: "auto",
+              }}
+            >
               <div
                 className={"box"}
-                style={{ position: "relative", height: "100%" }}
+                style={{
+                  position: "relative",
+                  height: "100%",
+                  marginTop: "0%",
+                  paddingTop: "10%",
+                  marginBottom: "0%",
+                }}
               >
                 {/* <div className={'titleAuth'}> Join  </div> */}
 
@@ -152,7 +171,6 @@ const Register = (props) => {
                     pattern="\d{8}"
                     onChange={(e) => setPhone(e.target.value)}
                   />
-                  
                 </div>
                 <div className="mb-2">
                   <input
@@ -164,22 +182,30 @@ const Register = (props) => {
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
-                {!loading ?
-                <button className={"btnAuth"}
-                type="submit" 
-                onClick={handleSignup}
-                style={{
-                  // marginTop: "2rem",
-                  fontSize: "16px",
-                  fontFamily: "arial",
-                  fontWeight: "bold",
-                   }}>
-                  SUBMIT
-                </button> : 
-                <div class="spinner-border text-success" style={{marginLeft:"42%"}}role="status">
-                <span class="sr-only">Loading...</span>
-                </div>}
-                  {/* <div class="spinner-border text-success" role="status">
+                {!loading ? (
+                  <button
+                    className={"btnAuth"}
+                    type="submit"
+                    onClick={handleSignup}
+                    style={{
+                      // marginTop: "2rem",
+                      fontSize: "16px",
+                      fontFamily: "arial",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    SUBMIT
+                  </button>
+                ) : (
+                  <div
+                    class="spinner-border text-success"
+                    style={{ marginLeft: "42%" }}
+                    role="status"
+                  >
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                )}
+                {/* <div class="spinner-border text-success" role="status">
                     <span class="sr-only">Loading...</span>
                     </div> */}
               </div>

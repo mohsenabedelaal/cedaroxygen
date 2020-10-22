@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../componentscss/Navbarn.css";
 import { HashLink } from "react-router-hash-link";
 
-const Navbarn = ({ user, handleLogout }) => {
+const Navbarn = ({ handleLogout, user }) => {
   return (
     <div>
       {/* <nav className="navbar sticky-top navbar-expand-lg " style={{ backgroundColor: "#005454" }}>
@@ -29,12 +29,9 @@ const Navbarn = ({ user, handleLogout }) => {
         className="navbar navbar-expand-lg navbar-dark fixed-top p-3 "
         style={{
           backgroundColor: "#005454",
-          height: "12vh",
-          width: "100vw",
-          margin: "0%",
         }}
       >
-        <Link to="/" style={{ paddingLeft: "3%" }}>
+        <Link to="/">
           <img
             src="https://cedaroxygen.com/wp-content/uploads/2020/06/Cedar-Oxygen_Logo.png"
             className="navbar-brand ml-2"
@@ -57,7 +54,6 @@ const Navbarn = ({ user, handleLogout }) => {
         <div
           className="collapse navbar-collapse"
           id="navbarSupportedContent-333"
-          style={{ paddingRight: "3%" }}
         >
           <ul className="navbar-nav ml-auto">
             {/* <li className="nav-item mr-2">

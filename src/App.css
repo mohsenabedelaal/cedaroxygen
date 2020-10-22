@@ -1,5 +1,5 @@
 h1 .body {
-  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  font-family: "Arial Rounded MT Bold", Arial;
   font-size: 24px;
   font-style: normal;
   font-variant: normal;
@@ -14,7 +14,7 @@ h1 .body {
   color: red;
 }
 
-
+/*
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -27,19 +27,21 @@ h1 .body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
+/* } */
 
+/* .nav-bar {
+  grid-area: nav-bar;
 }
 
-.nav-bar { grid-area: nav-bar; }
+.submit {
+  grid-area: submit;
+} */
 
-.submit { grid-area: submit;
-
+.table {
+  grid-area: table;
 }
 
-.table { grid-area: table; }
-
-
-.home-bg {
+/* .home-bg {
   min-height: 100%;
   min-width: 100%;
   width: 100%;
@@ -52,13 +54,13 @@ h1 .body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
-  background-color: #005454;
-}
+/* background-color: #005454; */
+/* }
 .home-bg3 {
   /* min-height: 100%;
   min-width: 100%;
   width: 100%; */
-  height: auto;
+/* height: auto;
   position: fixed;
   top: 0;
   left: 0;
@@ -68,9 +70,9 @@ h1 .body {
   background-size: cover;
   background-repeat: no-repeat;
   /* background-color: #005454; */
-}
+/* } */
 
-.home-bg2 {
+/* .home-bg2 {
   min-height: 100%;
   min-width: 100%;
   width: 100%;
@@ -78,23 +80,23 @@ h1 .body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: -1; */
 
-  /* background-color: #005454; */
-}
-
+/* background-color: #005454; */
+/* } */
 .authBox {
   padding: 0;
   background-image: url("./media/background.jpg");
   background-size: cover;
   background-color: #282c34;
   min-height: 100vh;
+  margin: "0%";
   align-items: center;
   /* justify-content: center; */
   /* margin-bottom: "1000%"; */
 }
 
-.leftBox {
+/* .leftBox {
   width: 300px;
   height: 480px;
   float: left;
@@ -106,7 +108,7 @@ h1 .body {
   height: 100%;
   background-color: gray;
   border-top-left-radius: 90px;
-}
+} */
 
 .imageAuth {
   background-image: url("https://cedaroxygen.com/wp-content/uploads/2020/05/Cedar-Oxygen_Logo-favicon.png");
@@ -141,9 +143,9 @@ h1 .body {
 }
 
 .rightBox {
-  width: 120%;
+  width: 50%;
   height: 20%;
-  float: center;
+  align-items: center;
   border: 1px solid gray;
   background-color: rgb(241, 233, 233);
   margin: "0%";
