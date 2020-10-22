@@ -21,6 +21,7 @@ const Requests = (props) => {
   const [users, setUsers] = useState([]);
   const [yourRequests, setYourRequests] = useState([]);
   const firebaseDb = firebase.database().ref();
+  const [loading ,setLoading] = useState(false)
   //-------------------------------------------------------------------------------
 
   //UseEffect fetch all data from the api-----------------------------------------
@@ -83,7 +84,7 @@ const Requests = (props) => {
     // obj.amount = parseFloat(obj.amount).toLocaleString('en')
 
     // alert(obj.amount)
-
+    setLoading(true)
     axios
       .post(
         "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
@@ -95,7 +96,10 @@ const Requests = (props) => {
       )
       .then((res) => console.log(res.data))
       .then((done) => window.location.reload())
-      .catch((error) => alert("Sorry", error));
+      .catch((error) => {
+        alert("Sorry", error)
+        setLoading(false)
+      });
   };
 
   //-----------------------------------------------------------------------------------------------------------------------------------
@@ -151,11 +155,15 @@ const Requests = (props) => {
                 <div></div>
               ) : (
                 <RequestsForm
+                  converter={props.converter}
+                  setConverter={props.setConverter}
                   user={props.user}
                   addorEdit={addorEdit}
                   currentId={currentId}
                   setCurrentId={setCurrentId}
                   contactObjects={contactObjects}
+                  loading={loading}
+                  // setLoading={setLoading}
                 />
               )}
 

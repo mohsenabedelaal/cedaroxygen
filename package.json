@@ -26,7 +26,8 @@
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.2.2",
     "react-scripts": "3.4.3",
-    "react-sidebar-ui": "^1.2.1"
+    "react-sidebar-ui": "^1.2.1",
+    "reactjs-alert": "^1.2.5"
   },
   "scripts": {
     "start": "react-scripts start",

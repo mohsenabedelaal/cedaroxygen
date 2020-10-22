@@ -18,6 +18,7 @@ const Login = (props) => {
     setHasAccount,
     emailError,
     passwordError,
+    loading
   } = props;
 
   // clearErrors();
@@ -25,6 +26,7 @@ const Login = (props) => {
   //   clearErrors()
 
   // }, [])
+  // const [loading,setLoading] = useState(false)
 
   return (
     <div
@@ -92,7 +94,7 @@ const Login = (props) => {
           >
             Forgot Your Password
           </p>
-
+          {!loading ?
           <button className={"btnAuth"} onClick={handleLogin}>
             {/* <i
               className="fas fa-lock"
@@ -107,7 +109,10 @@ const Login = (props) => {
           ></i>
 
             Log in
-          </button>
+          </button> :
+          <div class="spinner-border text-success" style={{ marginLeft:"40%" }} role="status">
+          <span class="sr-only">Loading...</span>
+          </div> }
 
           {/* <p>Forgot your password</p> */}
         </div>

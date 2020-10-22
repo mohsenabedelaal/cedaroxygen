@@ -21,6 +21,7 @@ const RequestList = (props) => {
     const [users, setUsers] = useState([]);
     const [yourRequests, setYourRequests] = useState([]);
     const firebaseDb = firebase.database().ref();
+
     //-------------------------------------------------------------------------------
 
     //UseEffect fetch all data from the api-----------------------------------------
@@ -116,6 +117,36 @@ const RequestList = (props) => {
     // console.log(users);
     console.log(props.user)
     //===================================================================================================================================
+    if(contactObjects.length == 0){
+        return (
+            <div >
+
+                <div className="row">
+                    <table className="table table-borderless table-striped">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Amount </th>
+                                <th>Currency </th>
+                                <th>Action </th>
+                                <th>Status</th>
+                                {props.user == "admin@admin.com" ? <th>User</th> : ""}
+                                {/* <th>User</th> */}
+                                {props.user == "admin@admin.com" ? <th>Edit and Delete</th> : ""}
+                            </tr>
+                        </thead>
+                        <tbody style={{ backgroundColor: "white" }}>
+
+                        </tbody>
+
+                    </table>
+                    <div class="spinner-border text-success" style={{ width:"3rem" , height:"3rem", marginLeft:"48%" }} role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                </div>
+            </div>
+
+        )
+    }else{
     return (
         <>
 
@@ -128,13 +159,14 @@ const RequestList = (props) => {
                                 <th>Amount </th>
                                 <th>Currency </th>
                                 <th>Action </th>
-                                {/* <th>Status</th> */}
+                                <th>Status</th>
                                 {props.user == "admin@admin.com" ? <th>User</th> : ""}
                                 {/* <th>User</th> */}
                                 {props.user == "admin@admin.com" ? <th>Edit and Delete</th> : ""}
                             </tr>
                         </thead>
-                        <tbody style={{ backgroundColor:"white" }}>
+                        <tbody style={{ backgroundColor: "white" }}>
+
                             {
                                 props.user != "admin@admin.com" ? contactObjects.filter(obj => obj.client_id == currentId).map(
                                     request => {
@@ -186,6 +218,6 @@ const RequestList = (props) => {
                 </div>
             </div>
         </>
-    )
+    )}
 }
 export default RequestList;

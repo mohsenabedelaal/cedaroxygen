@@ -9,11 +9,11 @@ import { HashLink } from "react-router-hash-link";
 import { Button,Spinner,Accordion,Card,Toast } from 'react-bootstrap';
 //---------------------------------------------------------------------------
 
-const Home2 = ({user}) => {
+const Home2 = ({user,converter,setConverter}) => {
   const [show, setShow] = useState(true);
   const [rates, setRates] = useState("");
-  const [selected, setSelected] = useState();
-  const [converter,setConverter] = useState()
+  const [selected, setSelected] = useState("LB");
+
 
   useEffect(() => {
     axios
@@ -78,6 +78,8 @@ const Home2 = ({user}) => {
 
     // console.log("shou captain",buttonRef.current.updateSelected(selected))
     const handleConverter = (e)=>{
+
+      setConverter({selected:selected , amount:e.target.value});
       if(selected == 'US'){
 
         rates ? document.getElementById("SayrafaDollarRate").value = e.target.value * rates[0].bdl_rate : document.getElementById("SayrafaDollarRate").value = "Loading...";
@@ -223,7 +225,7 @@ const Home2 = ({user}) => {
                 ? "Cedar Oxygen Platform Dollar Rate"
                 : "Official Dollar Rate"}
             </label>
-              <h1>{converter}</h1>
+
             <input
               type="number"
               id="main"

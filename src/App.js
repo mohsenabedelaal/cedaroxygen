@@ -48,6 +48,7 @@ const App = () => {
   const [second, setSecond] = useState(0);
   const [rates, setRates] = useState('')
   const [loading, setLoading] =useState(false)
+  const [converter,setConverter] = useState({selected : "", amount:0})
   // ------------------------------------------------------------------------------
   const [showA, setShowA] = useState();
 
@@ -76,7 +77,7 @@ const App = () => {
 
   const handleLogin = () => {
     clearErrors();
-
+    setLoading(true);
     axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/login?username="+email+"&password="+password)
       .then(res => res.data).then(response => {
         if (response == 'True') {
@@ -85,6 +86,7 @@ const App = () => {
           setUser(email)
           localStorage.setItem('email', email)
           localStorage.setItem('password', password)
+          setLoading(false);
           window.location.href = "https://cedars-oxygen-8a47a.web.app/"
 
 
@@ -94,7 +96,9 @@ const App = () => {
           setPasswordError("Check Your Password")
           clearInputs();
         }
-      })
+      }).catch(error => {
+        alert(error)
+          setLoading(false)})
   }
 
   console.log(localStorage.getItem('email'))
@@ -129,7 +133,7 @@ const App = () => {
     }else {
       setLoading(true)
       axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/add?name="+name+"&last_name="+last_name+"&phone="+phone+"&address="+address+"&username="+email+"&password="+password)
-        .then(res => console.log(res.data)).then(response => { handleLogin() }).then(res => setLoading(false)).catch(err => console.log(err))
+        .then(res => console.log(res.data)).then(response => { handleLogin() }).catch(err => console.log(err))
     }
 
   }
@@ -216,7 +220,7 @@ const App = () => {
             <div className="container-fuild authBox" style={{margin:"0%", position:"absolute", width:"100%"}} >
             <div className="row">
             <div className="col">
-            <Requests user={user} />
+            <Requests user={user} converter={converter} setConverter={setConverter}/>
             </div>
             <div class="col">
             <RequestList user={user}/>
@@ -378,7 +382,7 @@ const App = () => {
           <Route path="/" exact>
           <Navbarn handleLogout={handleLogout} user={user}/>
 
-          <Home2 user={user}/>
+          <Home2 user={user} converter={converter} setConverter={setConverter}/>
           <div
           style={{
             backgroundColor: "#005454",
@@ -473,6 +477,7 @@ const App = () => {
                 setHasAccount={setHasAccount}
                 emailError={emailError}
                 passwordError={passwordError}
+                loading={loading}
               />
             </Route>
           </> : <Redirect to="/" exact />

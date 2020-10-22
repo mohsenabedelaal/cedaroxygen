@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import NumberFormat from 'react-number-format';
+import ReactJsAlert from "reactjs-alert";
 //-------------------------------------------------------------------------------------------
 
 const RequestsForm = (props) => {
@@ -11,9 +12,22 @@ const RequestsForm = (props) => {
     user: props.user,
     status: "Pending",
   };
+  initialFieldValues.amount = props.converter.amount;
+  // initialFieldValues.currency = props.converter.selected;
+  // console.log("hon honnnnnnnnnnnnnnnnnnnnn",props.converter.selected)
+  // props.converter.selected ? "" : initialFieldValues.currency = "Lira(LBP)";
+
+  if(props.converter.selected == "US" ){
+    initialFieldValues.currency = "US Dollar ($)"
+  }
+  if(props.converter.selected == "LB" ){
+    initialFieldValues.currency = "Lira(LBP)"
+  }
+  // initialFieldValues.currency = "US Dollar ($)"
   // console.log(props)
   // console.log(initialFieldValues.user);
   const [values, setValues] = useState(initialFieldValues);
+
 
   // useEffect(() => {
   //     if (props.currentId === '') {
@@ -48,6 +62,19 @@ const RequestsForm = (props) => {
     if(values.amount.length > 10){
       alert("Reduce the amount ")
       return
+    }
+    if(!values.amount || !values.currency || !values.action ){
+     return  <ReactJsAlert
+    type="success"   // success, warning, error, info
+    title="Hey! this is an alert."   // title you want to display
+    status={true}   // true or false
+    button="Try Again"
+    color="#1d36ad"
+    quote="You can change the color, quote, title of you own"
+    Close={() => this.setState({ status: false })}   // callback method for hide
+/>
+      // alert("Fill the submit form")
+      // return
     }
 
     // alert(values.amount.length)
@@ -133,10 +160,10 @@ const RequestsForm = (props) => {
               >
                 {/* <option defaultValue>Choose...</option>
            <option value="amount">amount</option> */}
-                <option value="..." defaultValue>
+                <option value="..." >
                   Choose Currency
                 </option>
-                <option value="US Dollar">US Dollor ($)</option>
+                <option value="US Dollar ($)">US Dollar ($)</option>
                 <option value="Lira(LBP)">Lebanse Pound (LBP)</option>
                 <option value="Euro (€)">Euro (€)</option>
               </select>
@@ -158,8 +185,8 @@ const RequestsForm = (props) => {
                 <option value="..." defaultValue>
                   Choose Action
                 </option>
-                <option value="sell">Sell</option>
-                <option value="buy">Buy</option>
+                <option value="Sell">Sell</option>
+                <option value="Buy">Buy</option>
               </select>
               {props.user == "admin@admin.com" && props.currentId && (
                 <>
@@ -184,6 +211,7 @@ const RequestsForm = (props) => {
               {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
               {/* {console.log()} */}
             </div>
+            {!props.loading ?
             <button
               type="submit"
               className="btn"
@@ -194,7 +222,11 @@ const RequestsForm = (props) => {
                 backgroundColor: "#005454",
                 color:"white",
                 fontWeight:"bold"
-              }}>Submit</button>
+              }}>Confirm</button> :
+
+                  <div class="spinner-border text-success" style={{ marginLeft:"25%" }} role="status">
+                  <span class="sr-only">Loading...</span>
+                        </div>}
           </div>
         </form>
         {/* <form autoComplete="off" onSubmit={handleFormSubmit}>
