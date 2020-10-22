@@ -18,7 +18,7 @@ const Login = (props) => {
     setHasAccount,
     emailError,
     passwordError,
-    loading
+    loading,
   } = props;
 
   // clearErrors();
@@ -89,14 +89,19 @@ const Login = (props) => {
               fontSize: "16px",
               fontFamily: "arial",
               fontWeight: "bold",
-              marginLeft:"19%"
+              marginLeft: "19%",
+              color: "gray",
             }}
           >
-            Forgot Your Password
+            Forgot your password?
           </p>
-          {!loading ?
-          <button className={"btnAuth"} onClick={handleLogin}>
-            {/* <i
+          {!loading ? (
+            <button
+              className={"btnAuth"}
+              onClick={handleLogin}
+              style={{ border: "none" }}
+            >
+              {/* <i
               className="fas fa-lock"
               style={{
                 fontSize: "18px",
@@ -104,15 +109,21 @@ const Login = (props) => {
                 fontWeight: "bold",
               }}
             ></i> */}
-          <i class="fas fa-lock"
-          style={{ marginRight:"2.5%" }}
-          ></i>
-
-            Log in
-          </button> :
-          <div class="spinner-border text-success" style={{ marginLeft:"40%" }} role="status">
-          <span class="sr-only">Loading...</span>
-          </div> }
+              <i
+                class="fas fa-lock"
+                style={{ marginRight: "2.5%", border: "none" }}
+              ></i>
+              Log in
+            </button>
+          ) : (
+            <div
+              class="spinner-border text-success"
+              style={{ marginLeft: "40%" }}
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          )}
 
           {/* <p>Forgot your password</p> */}
         </div>

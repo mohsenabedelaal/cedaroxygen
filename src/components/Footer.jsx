@@ -1,123 +1,156 @@
 import React from "react";
 import "../App.css";
-import '../componentscss/Footer.css';
+import "../componentscss/Footer.css";
 // import "../componentscss"
 
 export default function Footering() {
   return (
-    <div>
-      <footer
-        className="page-footer font-small blue-grey lighten-5"
+    <footer
+      className="container-fluid page-footer font-small blue-grey lighten-5"
+      style={{
+        color: "white",
+        // border: "0px solid transparentt",
+        // height: "100vh",
+      }}
+    >
+      <div
+        className="container text-center text-md-left mt-5 dark-grey-text"
         style={{
-          color: "white",
-          border: "0px solid transparentt",
-          height: "100vh",
+          // border: "2px solid red",
+          color: "grayText",
+          marginBottom: "5%",
         }}
       >
-        <div
-          style={{
-            backgroundColor: "#005454",
-            border: "2px solid transparent",
-            height: "20vh",
-          }}
-        >
-          <div
-            className="container"
-            style={{
-              border: "2px solid transparent",
-              height: "100%",
-            }}
-          >
-            <div
-              className="row py-4 d-flex align-self-center"
-              style={{
-                border: "2px solid transparent",
-                marginTop: "1%",
-              }}
-            >
-              <div
-                className="col-md-8 col-lg-8 text-center text-md-left"
-                style={{ border: "2px solid transparent", width: "100vw" }}
-              >
-                <h5 className="mb-0">
-                  Get involved in investing and supporting Lebanese
-                  manufacturers
-                </h5>
-              </div>
-
-              <div className="col-md-4 col-lg-4 text-center text-md-right"></div>
-            </div>
+        <div className="row mt-3 dark-grey-text justify-content-end align-self-end">
+          <div className="col-md-3 col-lg-5 col-xl-3 mb-4 dark-grey-text">
+            <img
+              src="https://cedaroxygen.com/wp-content/uploads/2020/06/Cedar-Oxygen_Logo-green.png"
+              className="navbar-brand"
+              width="200"
+              height="50"
+              alt="icon"
+            />
           </div>
-        </div>
 
-        <div
-          className="container text-center text-md-left mt-5 dark-grey-text"
-          style={{
-            // border: "2px solid red",
-            color: "grayText",
-            marginBottom: "5%",
-          }}
-        >
-          <div className="row mt-3 dark-grey-text justify-content-end align-self-end">
-            <div className="col-md-3 col-lg-5 col-xl-3 mb-4 dark-grey-text">
-              <img
-                src="https://cedaroxygen.com/wp-content/uploads/2020/06/Cedar-Oxygen_Logo-green.png"
-                className="navbar-brand ml-2"
-                width="200"
-                height="50"
-                alt="icon"
+          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/"
+              >
+                Home
+              </a>
+            </p>
+            <p>
+              <a className="dark-grey-text footercolor" href="#!">
+                About Us
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/our-story/"
+              >
+                Our Story
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/the-team/"
+              >
+                The Team
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/impact-finance-fund/"
+              >
+                Our Partners
+              </a>
+            </p>
+          </div>
+          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/"
+              >
+                The Fund
+              </a>
+            </p>
+            <p>
+              <a className="dark-grey-text footercolor" href="#!">
+                Our Investment Approach
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/our-story/"
+              >
+                Impact Investing and ESG
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/the-team/"
+              >
+                Borrowers
+              </a>
+            </p>
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                href="https://cedaroxygen.com/impact-finance-fund/"
+              >
+                Contact Us
+              </a>
+            </p>
+          </div>
+
+          <div className="col-md-3">
+            <p>
+              <a
+                className="dark-grey-text footercolor"
+                style={{
+                  color: "black",
+                }}
+              >
+                Subscribe to our Newsletter
+              </a>
+            </p>
+            <di>
+              <input
+                style={{
+                  width: "55%",
+                  margin: "0%",
+                  marginRight: "3%",
+                  marginBottom: "10%",
+                  display: "inline",
+                  borderRadius: "2rem",
+                }}
+                type="email"
+                class="form-control"
+                // id="exampleFormControlInput1"
+                placeholder="Your email"
               />
-            </div>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style={{
+                  backgroundColor: "#33c7bf",
+                  border: "1px solid #33c7bf",
+                  borderRadius: "2rem",
+                }}
+              >
+                Subscribe
+              </button>
+            </di>
 
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <p>
-                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/" >
-                  Home
-                </a>
-              </p>
-              <p>
-                <a className="dark-grey-text footercolor" href="#!">
-                  About Us
-                </a>
-              </p>
-              <p>
-                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/our-story/">
-                  Our Story
-                </a>
-              </p>
-              <p>
-                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/the-team/">
-                  The Team
-                </a>
-              </p>
-              <p>
-                <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/impact-finance-fund/">
-                  Our Partners
-                </a>
-              </p>
-            </div>
-
-            <div className="col-md-3 col-lg-2 col-xl-3 mx-auto mb-md-0 mb-4">
-              <p>
-                <i></i> The Fund
-              </p>
-              <p>
-                <i></i> Our Investment Approach
-              </p>
-              <p>
-                <i></i> Impact Investing and ESG
-              </p>
-              <p>
-                <i></i> Borrowers
-              </p>
-              <p>
-                <i></i> Contact Us
-              </p>
-            </div>
-            <div className="col-md-4">
-              <p>
-                <i></i> Connect with us!
-              </p>
+            <div>
               <a className="fb-ic">
                 <i className="fab fa-facebook-f white-text mr-4"> </i>
               </a>
@@ -140,15 +173,18 @@ export default function Footering() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="footer-copyright col-md-5 text-center text-black-50 py-3" style={{marginLeft:"10rem"}}>
-          Copyright Cedar Oxygen © 2020 Cedar Oxygen. All rights reserved
-          {/* <a className="dark-grey-text" href="https://mdbootstrap.com/">
+      <div
+        className="footer-copyright text-md-left text-xs-center text-black-50 py-3"
+        // style={{ marginLeft: "10rem" }}
+      >
+        Copyright Cedar Oxygen © 2020 Cedar Oxygen. All rights reserved
+        {/* <a className="dark-grey-text" href="https://mdbootstrap.com/">
             {" "}
             Cedar Oxygen
           </a> */}
-        </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 }
