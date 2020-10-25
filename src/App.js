@@ -61,8 +61,38 @@ const App = () => {
   const [rates, setRates] = useState("");
   const [loading, setLoading] = useState(false);
   const [converter, setConverter] = useState({ selected: "", amount: 0 });
+  const [actions, setAction] = useState("Buy")
   // ------------------------------------------------------------------------------
-  const [showA, setShowA] = useState();
+  const [username, setUsername] = useState();
+
+  useEffect(() => {
+    if(user){
+      axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
+        .then(res => {
+
+          // console.log(res.data ? res.data.map(user=>{}):"loading");
+          // console.log(res.data)
+          // setUsers(res.data)
+          if(res.data){
+            for(var i = 0; i <= res.data.length; i++){
+              if(res.data[i].username == user){
+                // console.log("inside loop")
+                // console.log("found him",res.data[i].username)
+                // console.log("name is ",res.data[i])
+                let name = res.data[i].name
+                let last = res.data[i][ 'last name' ]
+                // console.log("hyda l esmee",name)
+                setUsername(name +" "+last)
+                break
+              }
+            }
+            // console.log("2na dsadasdas",username);
+          }
+        }
+          //
+        ).catch(err => {alert(err)
+          console.log(err)})}
+    }, []);
 
   // This function is to clear the inputs values ---------------------------------------------------------
   const clearInputs = () => {
@@ -71,6 +101,7 @@ const App = () => {
   };
 
   // -----------------------------------------------------------------------------------------------------
+
 
   // function to clear the errors -----------------------------------------------------------------------
   const clearErrors = () => {
@@ -101,7 +132,7 @@ const App = () => {
           localStorage.setItem("email", email);
           localStorage.setItem("password", password);
           setLoading(false);
-          window.location.href = "http://localhost:3000/";
+          window.location.href = "https://cedars-oxygen-8a47a.web.app/";
         } else {
           console.log(response);
           setEmailError("Check Your Email");
@@ -172,7 +203,7 @@ const App = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
     // window.location.href = "http://localhost:3000/"
-    window.location.href = "http://localhost:3000/";
+    window.location.href = "https://cedars-oxygen-8a47a.web.app/";
     // handleShow();
     // props.history.push('/');
     // history.push('/');
@@ -222,10 +253,12 @@ const App = () => {
 
           <Route path="/requestpage" exact>
             {!user ? <Redirect to="/" /> : <></>}
+
             <Navbarn
               handleLogout={handleLogout}
               user={user}
               handleShow={handleShow}
+              username={username}
             />
             {/* <Requests user={user} />  */}
             {/* <div className="home-bg3" /> */}
@@ -246,266 +279,52 @@ const App = () => {
                 className="container-fuild authBox"
                 style={{ margin: "0%", position: "absolute", width: "100%" }}
               >
-                <div className="row">
+                <div className="row" style={{ marginTop:"10%" }}>
                   <div className="col">
-                    <Requests user={user} />
+                    <Requests user={user} converter={converter} setConverter={setConverter} actions={actions} username={username}/>
                   </div>
-                  <div class="col">
+                  <div class="col" style={{ marginRight:"3%" }}>
                     <RequestList user={user} />
                   </div>
                 </div>
               </div>
             ) : (
               <>
-                <div className="home-bg3" />
+              <div
+                className="container-fuild authBox"
+                style={{ margin: "0%", position: "absolute", width: "100%" }}
+              >
+                {/* <div className="home-bg3" /> */}
                 <RequestList user={user} />
+                </div>
+                {/* <div
+                className="container-fuild authBox"
+                style={{ margin: "0%", position: "absolute", width: "100%" }}
+              >
+                <div className="row" style={{ marginTop:"10%" }}>
+                  <div className="col">
+                    <Requests user={user} converter={converter} setConverter={setConverter} actions={actions}/>
+                  </div> */}
+                  {/* <div class="col" style={{ marginRight:"3%" }}>
+                    <RequestList user={user} />
+                  </div> */}
+                {/* </div> */}
+              {/* </div> */}
               </>
             )}
           </Route>
 
           {/* ------------------------------------------------------------------------------ */}
 
-          {/* ----(Main page)--------------------------------------------------------------- */}
-          <Route path="/tester" exact>
-            <Navbar
-              handleLogout={handleLogout}
-              user={user}
-              handleShow={handleShow}
-            />
-            <div className="home-bg"></div>
-            {/* {user ? <></> :
-            <>
-              <Button variant="primary" style={{ marginLeft: "40rem" }} onClick={handleShow}>
-                Make Your Request Now
-      </Button>
-              <ModalPop
-                show={show}
-                setShow={setShow}
-                handleClose={handleClose}
-                handleShow={handleShow}
-                // onHide={handleClose}
-                setEmail={setEmail}
-                emailError={emailError}
-                setPassword={setPassword}
-                passwordError={passwordError}
-                handleLogin={handleLogin}
-              />
-            </>} */}
-            {/* <button onClick={handleLogout}>Logout</button> */}
-            {/* <div className="row col-md-6">
-            <div className="card" style={{ width: "18rem", marginLeft: "15rem", }}>
-              <div className="card-header">
-                Converter
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-
-                  <input type="number" className="form-control" id="basic-url" placeholder="Enter Value $ or LBP" name="primary" value={primary} onChange={handleInputCon} aria-describedby="basic-addon3" />
-                </li>
-                <li className="list-group-item"><label htmlFor="inputAction">Curreny</label>
-                  <select id="inputAction" name="action" className="form-control" onChange={handleInputCon2}>
-
-                    <option value="..." defaultValue >Choose Currency</option>
-                    <option value="sell" >Dollar</option>
-                    <option value="buy">Lira</option>
-                  </select></li>
-                <li className="list-group-item"><input readOnly type="number" name="second" value={second} className="form-control" id="basic-url" aria-describedby="basic-addon3" /></li>
-              </ul>
-            </div>
-
-          </div>
-          <div className="card " style={{ width: "18rem", marginLeft: "15rem", marginTop: "1rem" }}>
-            <div className="card-header">
-              Dollar Rate
-  </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">Black Market 1$ = 8000 LBP</li>
-              <li className="list-group-item"><label htmlFor="inputAction">Official Rate 1$ = 1515 LBP</label></li>
-              <li className="list-group-item"> Saraf Rate 1$ = 3900 LBP</li>
-            </ul>
-          </div> */}
-
-            <div className="m-3">
-              <div class="card-columns">
-                <div
-                  class="card"
-                  style={{ backgroundColor: "#005454", color: "white" }}
-                >
-                  <div class="card-body">
-                    <h5 class="card-title">BDL Dollar Rate</h5>
-                    {/* <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
-                    <input className="card-text" readOnly={true} value="1 $" />
-                    <br /> <label>=</label>
-                    <br />{" "}
-                    <input
-                      className="card-text"
-                      readOnly={true}
-                      value={rates ? rates[0].bdl_rate + " LBP" : 0 + "LBP"}
-                    />
-                  </div>
-                </div>
-                <div
-                  class="card"
-                  style={{
-                    backgroundColor: "#005454",
-                    color: "white",
-                    paddingLeft: "17%",
-                  }}
-                >
-                  <div class="card-body">
-                    <h5 class="card-title">Black Market Dollar Rate</h5>
-                    {/* <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
-                    <input className="card-text" readOnly={true} value="1 $" />
-                    <br /> <label>=</label>
-                    <br />
-                    <input
-                      className="card-text"
-                      readOnly={true}
-                      value={
-                        rates ? rates[0].black_market_rate + " LBP" : 0 + "LBP"
-                      }
-                    />
-                  </div>
-                </div>
-                <div
-                  class="card"
-                  style={{
-                    backgroundColor: "#005454",
-                    color: "white",
-                    paddingLeft: "17%",
-                  }}
-                >
-                  <div class="card-body">
-                    <h5 class="card-title">Platform Dollar Rate</h5>
-                    {/* <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
-                    <input className="card-text" readOnly={true} value="1 $" />
-                    <br /> <label>=</label>
-                    <br />
-                    <input
-                      className="card-text"
-                      readOnly={true}
-                      value={
-                        rates ? rates[0].platform_rate + " LBP" : 0 + "LBP"
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="card col-5"
-                style={{ backgroundColor: "#005454", color: "white" }}
-              >
-                <div class="card-body">
-                  <h5 class="card-title">Converter</h5>
-                  {/* <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
-                  {/* <input className="card-text" readOnly={true} value="1 $" /><br/> <label>=</label><br/> */}
-                  {/* <input className="card-text" readOnly={true} value={rates ? rates[0].platform_rate+" LBP" : 0+"LBP" } /> */}
-                  <div class="input-group">
-                    <input
-                      type="number"
-                      class="form-control"
-                      onChange={handleConverterInput}
-                      aria-label="Text input with dropdown button"
-                      placeholder="Enter Amount in $ or LBP"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-secondary dropdown-toggle bg-primary"
-                        style={{ color: "white" }}
-                        type="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Choose A Currency
-                      </button>
-                      <div class="dropdown-menu">
-                        <option
-                          class="dropdown-item"
-                          style={{ cursor: "pointer" }}
-                          value="dollar"
-                          onClick={handleConverterDrop}
-                        >
-                          US Dollar
-                        </option>
-                        <option
-                          class="dropdown-item"
-                          style={{ cursor: "pointer" }}
-                          value="lira"
-                          onClick={handleConverterDrop}
-                        >
-                          Lebanese Lira
-                        </option>
-                      </div>
-                    </div>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control mt-3"
-                    aria-label="Text input with dropdown button"
-                    value={second}
-                    disabled
-                    readOnly
-                  />
-                </div>
-              </div>
-
-              <NumberFormat
-                value={2456981}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
-              />
-              <NumberFormat
-                thousandSeparator={true}
-                onChange={(e) => {
-                  setShowA(e.target.value);
-                }}
-                allowNegative={false}
-              />
-              <h1>{showA}</h1>
-
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Recipient's username"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                />
-                <div class="input-group-append">
-                  {/* <button class="btn btn-outline-secondary" type="button">Button</button> */}
-                  <ReactFlagsSelect
-                    // ref={textInput}
-                    defaultCountry="LB"
-                  />
-                  {/* {console.log(parseFloat("1234567.89").toLocaleString('en'))} */}
-                </div>
-                <br />
-              </div>
-            </div>
-          </Route>
-          {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-
-          {/* profile Route------------------------------------------------------------------------------------------------------------------ */}
-
-          <Route path="/profile" exact>
-            <Navbar
-              handleLogout={handleLogout}
-              user={user}
-              handleShow={handleShow}
-            />
-            <Profile user={user} />
-          </Route>
           {/* --------------------------------------------------------------------------------------------------------------------------- */}
           <Route path="/" exact>
-            <Navbarn handleLogout={handleLogout} user={user} />
-
+            <Navbarn handleLogout={handleLogout} user={user} username={username}/>
             <Home2
               user={user}
               converter={converter}
               setConverter={setConverter}
+              actions={actions}
+              setAction={setAction}
             />
             <div
               className="jumbotron jumbotron-fluid"
@@ -570,8 +389,11 @@ const App = () => {
             </div>
             <Footering />
           </Route>
+
+
+
           <Route path="/registration" exact>
-            <Navbarn handleLogout={handleLogout} user={user} />
+            <Navbarn handleLogout={handleLogout} user={user} username={username}/>
             {user ? (
               <></>
             ) : (
@@ -644,6 +466,7 @@ const App = () => {
                   handleLogout={handleLogout}
                   user={user}
                   firstName={name}
+                  username={username}
                 />
                 <Login
                   // loginSection = {loginSection}

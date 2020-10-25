@@ -92,7 +92,8 @@ const Requests = (props) => {
           "&amount="+obj.amount+
           "&currency="+obj.currency+
           "&action="+
-          obj.action
+          obj.action+
+          "&status="+obj.status
       )
       .then((res) => console.log(res.data))
       .then((done) => window.location.reload())
@@ -131,7 +132,7 @@ const Requests = (props) => {
 
   // console.log(currentId);
   // console.log(users);
-  console.log(props.user);
+  // console.log(props.user);
   //===================================================================================================================================
   return (
     <>
@@ -163,6 +164,8 @@ const Requests = (props) => {
                   setCurrentId={setCurrentId}
                   contactObjects={contactObjects}
                   loading={loading}
+                  actions={props.actions}
+                  username={props.username}
                   // setLoading={setLoading}
                 />
               )}

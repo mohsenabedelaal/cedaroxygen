@@ -86,6 +86,7 @@ const Register = (props) => {
                     type={"text"}
                     placeholder={"Email"}
                     // autoFocus
+                    readOnly={loading}
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -110,6 +111,7 @@ const Register = (props) => {
                     value={password}
                     required
                     placeholder="Password"
+                    readOnly={loading}
                     id="x1x1"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
@@ -146,6 +148,7 @@ const Register = (props) => {
                     placeholder={"First Name"}
                     required
                     value={name}
+                    readOnly={loading}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -155,6 +158,7 @@ const Register = (props) => {
                     type={"text"}
                     placeholder={"Last Name"}
                     required
+                    readOnly={loading}
                     value={last_name}
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -165,6 +169,7 @@ const Register = (props) => {
                     type={"text"}
                     placeholder={"Phone Number"}
                     required
+                    readOnly={loading}
                     value={phone}
                     maxlength="8"
                     id="pin"
@@ -178,6 +183,7 @@ const Register = (props) => {
                     type={"text"}
                     placeholder={"Address"}
                     required
+                    readOnly={loading}
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   />

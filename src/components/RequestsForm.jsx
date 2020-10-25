@@ -10,7 +10,7 @@ const RequestsForm = (props) => {
     currency: "",
     action: "",
     user: props.user,
-    status: "",
+    status: "Pending",
   };
   initialFieldValues.amount = props.converter.amount;
   // initialFieldValues.currency = props.converter.selected;
@@ -22,6 +22,9 @@ const RequestsForm = (props) => {
   }
   if (props.converter.selected == "LB") {
     initialFieldValues.currency = "Lira(LBP)";
+  }
+  if (props.actions){
+    initialFieldValues.action = props.actions
   }
   // initialFieldValues.currency = "US Dollar ($)"
   // console.log(props)
@@ -56,6 +59,8 @@ const RequestsForm = (props) => {
   const handleFormSubmit = (event) => {
     // notificationOnClick();
     // console.log(values)
+    // alert(event.target.username.value);
+    // return
     event.preventDefault();
     values.amount = values.amount.replace(/,/g, "");
     if (values.amount.length > 10) {
@@ -63,38 +68,44 @@ const RequestsForm = (props) => {
       return;
     }
     if (!values.amount || !values.currency || !values.action) {
-      return (
-        <ReactJsAlert
-          type="success" // success, warning, error, info
-          title="Hey! this is an alert." // title you want to display
-          status={true} // true or false
-          button="Try Again"
-          color="#1d36ad"
-          quote="You can change the color, quote, title of you own"
-          Close={() => this.setState({ status: false })} // callback method for hide
-        />
-      );
-      // alert("Fill the submit form")
-      // return
+
+      alert("Fill the submit form")
+      return
     }
 
     // alert(values.amount.length)
     // return
-    // emailjs
-    //   .sendForm(
-    //     "service_nmjie39",
-    //     "template_k5aqzsi",
-    //     event.target,
-    //     "user_zxvsZyEmkbWFzo9eqYu2G"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    emailjs
+      .sendForm(
+        "service_3hmxaes",
+        "template_dlxn602",
+        event.target,
+        "user_nOtz7jsUpNqSqqfoMjk9l"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+
+      emailjs
+      .sendForm(
+        "service_3hmxaes",
+        "template_lu74ray",
+        event.target,
+        "user_nOtz7jsUpNqSqqfoMjk9l"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
     props.addorEdit(values);
     // notificationOnClick();
@@ -129,7 +140,8 @@ const RequestsForm = (props) => {
               style={{ padding: "0%", paddingTop: "5%" }}
             >
               <input type="hidden" name="user" value={props.user} />
-              <label htmlFor="inputCity">Amount</label>
+              <input type="hidden" name="username" value={props.username} />
+              <label style={{ color:"black" }}>Amount</label>
               {/* <input
                 type="number"
                 name="amount"
@@ -140,6 +152,7 @@ const RequestsForm = (props) => {
                 style={{ width: "90%" }}
               /> */}
               <NumberFormat
+                required
                 class="form-control"
                 name="amount"
                 value={values.amount}
@@ -147,10 +160,11 @@ const RequestsForm = (props) => {
                 thousandSeparator={true}
                 style={{ width: "90%" }}
                 allowNegative={false}
+                readOnly={props.loading}
               />
             </div>
             <div className="form-group col-auto" style={{ padding: "0%" }}>
-              <label htmlFor="inputCurrency" style={{ padding: "0%" }}>
+              <label htmlFor="inputCurrency" style={{ padding: "0%" ,color:"black"}}>
                 Currency
               </label>
               <select
@@ -159,6 +173,7 @@ const RequestsForm = (props) => {
                 className="form-control"
                 onChange={handleInputChange}
                 value={values.currency}
+                readOnly={props.loading}
                 style={{ padding: "0%", width: "90%" }}
               >
                 {/* <option defaultValue>Choose...</option>
@@ -172,13 +187,14 @@ const RequestsForm = (props) => {
               {/* {console.log()} */}
             </div>
             <div className="form-group">
-              <label htmlFor="inputAction">Action</label>
+              <label htmlFor="inputAction" style={{ color:"black" }}>Action</label>
               <select
                 id="inputAction"
                 name="action"
                 className="form-control"
                 onChange={handleInputChange}
                 value={values.action}
+                readOnly={props.loading}
                 style={{ padding: "0%", width: "90%" }}
               >
                 {/* <option defaultValue>Choose...</option>
@@ -191,7 +207,7 @@ const RequestsForm = (props) => {
               </select>
               {props.user == "admin@admin.com" && props.currentId && (
                 <>
-                  <label htmlFor="inputStatus">Status</label>
+                  <label htmlFor="inputStatus" style={{ color:"black" }}>Status</label>
                   <select
                     id="inputAction"
                     name="status"

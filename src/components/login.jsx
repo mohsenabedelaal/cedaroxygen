@@ -64,6 +64,7 @@ const Login = (props) => {
               autoFocus
               required
               value={email}
+              readOnly={loading}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -78,6 +79,7 @@ const Login = (props) => {
               placeholder={"Password"}
               required
               value={password}
+              readOnly={loading}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

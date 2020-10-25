@@ -1,9 +1,26 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import "../componentscss/Navbarn.css";
 import { HashLink } from "react-router-hash-link";
 
-const Navbarn = ({ handleLogout, user }) => {
+const Navbarn = ({ handleLogout, user,username }) => {
+
+  const [users, setUsers] = useState([]);
+
+
+
+  // useEffect(() => {
+  //   axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
+  //     .then(res => {
+
+  //       console.log(res.data ? res.data.map(user=>{}):"loading");
+  //       // setUsers(res.data)
+  //     }
+  //       //
+  //     ).catch(err => console.log(err))
+  // }, []);
+
   return (
     <div>
       {/* <nav className="navbar sticky-top navbar-expand-lg " style={{ backgroundColor: "#005454" }}>
@@ -80,7 +97,7 @@ const Navbarn = ({ handleLogout, user }) => {
                 </Link>
               </li>
             ) : (
-              <div className="nav-link disabled">Welcome, {user}</div>
+              <div className="nav-link disabled">Welcome, {username}</div>
             )}
             <li className="nav-item mr-2">
               {/* <HashLink smooth to="/#register">

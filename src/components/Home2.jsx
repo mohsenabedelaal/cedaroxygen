@@ -9,10 +9,11 @@ import { HashLink } from "react-router-hash-link";
 import { Button, Spinner, Accordion, Card, Toast } from "react-bootstrap";
 //---------------------------------------------------------------------------
 
-const Home2 = ({ user, converter, setConverter }) => {
+const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
   const [show, setShow] = useState(true);
   const [rates, setRates] = useState("");
   const [selected, setSelected] = useState("LB");
+
 
   useEffect(() => {
     axios
@@ -219,6 +220,7 @@ const Home2 = ({ user, converter, setConverter }) => {
                   fontWeight: "bold",
                 }}
               >
+                {/* <h1>{actions}</h1> */}
                 {show
                   ? "Cedar Oxygen Platform Dollar Rate"
                   : "Official Dollar Rate"}
@@ -227,14 +229,14 @@ const Home2 = ({ user, converter, setConverter }) => {
                 <div class="input-group-prepend">
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active">
-                      <input type="radio" name="options" id="option1" checked />{" "}
+                      <input type="radio" name="options" onClick={()=>{setAction('Buy')}} id="option1" checked />{" "}
                       Buy
                     </label>
                     <label
                       class="btn btn-secondary"
                       style={{ borderRadius: "0rem" }}
                     >
-                      <input type="radio" name="options" id="option2" /> Sell
+                      <input type="radio" name="options" id="option2" onClick={()=>{setAction('Sell')}} /> Sell
                     </label>
                   </div>
                 </div>
@@ -371,9 +373,10 @@ const Home2 = ({ user, converter, setConverter }) => {
                 {/* <ReactFlagsSelect defaultCountry="US"/> */}
                 <ReactFlagsSelect
                   countries={["US", "LB"]}
-                  defaultCountry="LB"
+                  defaultCountry="US"
                   customLabels={{ US: "USD", LB: "LBP" }}
                   ref={buttonRef1}
+                  disabled={true}
                   style={{
                     color: "black",
                     // height: "15%",
@@ -418,8 +421,9 @@ const Home2 = ({ user, converter, setConverter }) => {
                 {/* <ReactFlagsSelect defaultCountry="US"/> */}
                 <ReactFlagsSelect
                   countries={["US", "LB"]}
-                  defaultCountry="LB"
+                  defaultCountry="US"
                   ref={buttonRef2}
+                  disabled={true}
                   customLabels={{ US: "USD", LB: "LBP" }}
                   style={{ backgroundColor: "black" }}
                 />
@@ -444,6 +448,7 @@ const Home2 = ({ user, converter, setConverter }) => {
                   id="officialDollarRate"
                   name="upper"
                   placeholder="You're exchanging"
+                  readOnly
                   // value={rates ? rates[0].black_market_rate : 0}
                   // style={{
                   //   borderTopLeftRadius: "1.3rem",
@@ -459,8 +464,9 @@ const Home2 = ({ user, converter, setConverter }) => {
                 {/* <ReactFlagsSelect defaultCountry="US"/> */}
                 <ReactFlagsSelect
                   countries={["US", "LB"]}
-                  defaultCountry="LB"
+                  defaultCountry="US"
                   ref={buttonRef3}
+                  disabled={true}
                   customLabels={{ US: "USD", LB: "LBP" }}
                   style={{ backgroundColor: "black" }}
                 />
