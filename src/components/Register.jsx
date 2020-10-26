@@ -183,7 +183,7 @@ const Register = (props) => {
                       onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
-                  <div className="mb-2">
+                  {/* <div className="mb-2">
                     <input
                       className={"form-control regInput"}
                       type={"text"}
@@ -193,7 +193,7 @@ const Register = (props) => {
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   {!loading ? (
                     <button
                       className={"btnAuth"}
@@ -213,7 +213,7 @@ const Register = (props) => {
                   ) : (
                     <div
                       class="spinner-border text-success"
-                      style={{ marginLeft: "42%" }}
+                      style={{ marginLeft: "" }}
                       role="status"
                     >
                       <span class="sr-only">Loading...</span>

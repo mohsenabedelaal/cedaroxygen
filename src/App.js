@@ -49,7 +49,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [last_name, setLastName] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState("No");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState();
@@ -105,6 +105,9 @@ const App = () => {
   const clearInputs = () => {
     setEmail("");
     setPassword("");
+    setName("");
+    setPhone("");
+    setLastName("");
   };
 
   // -----------------------------------------------------------------------------------------------------
@@ -132,17 +135,19 @@ const App = () => {
       .then((res) => res.data)
       .then((response) => {
         if (response == "True") {
-          console.log(response);
-          console.log("Welcome");
+          // console.log(response);
+          // console.log("Welcome");
           setUser(email);
           localStorage.setItem("email", email);
           localStorage.setItem("password", password);
           setLoading(false);
           window.location.href = "https://cedars-oxygen-8a47a.web.app/";
         } else {
-          console.log(response);
+          // console.log(response);
+          alert("Something Wrong")
           setEmailError("Check Your Email");
           setPasswordError("Check Your Password");
+          setLoading(false);
           clearInputs();
         }
       })
@@ -155,9 +160,9 @@ const App = () => {
   console.log(localStorage.getItem("email"));
 
   if (localStorage.getItem("email")) {
-    console.log("in");
+    // console.log("in");
   } else {
-    console.log("out");
+    // console.log("out");
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -165,11 +170,11 @@ const App = () => {
   // function responsible for sign up using api -------------------------------------------------
   const handleSignup = () => {
     clearErrors();
-
+    // console.log("in the sign up")
     // alert(typeof phone)
     // alert()
 
-    if (!name || !phone || !last_name || !email || !password || !address) {
+    if (!name || !phone || !last_name || !email || !password ) {
       alert("Fill the Form");
       return;
     }
@@ -290,24 +295,26 @@ const App = () => {
                   <div className="container-fluid">
                     <div className="row" style={{ marginTop: "10%" }}>
                       <div className="col-6">
-                        <h1
-                          style={{
-                            // textAlign: "center",
-                            // marginLeft: "25%",
-                            color: "white",
-                            fontFamily: "arial",
-                            fontSize: "36px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Submit a Request
-                        </h1>
+
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col">
+                  <h1
+                     style={{
+                            // textAlign: "center",
+                            // marginLeft: "25%",
+                      color: "white",
+                      fontFamily: "arial",
+                      fontSize: "36px",
+                      fontWeight: "bold",
+                      marginLeft:"23%"
+                          }}
+                        >
+                          Submit a Request
+                        </h1>
                     <Requests
                       user={user}
                       converter={converter}
@@ -410,9 +417,10 @@ const App = () => {
                   </div>
 
                   <div className="col-md-2 col-lg-4 text-center align-self-center">
-                    <button
+                    <a
                       class="btn btn-primary"
                       type="submit"
+                      href="https://cedaroxygen.com/contact"
                       style={{
                         height: "150%",
                         width: "50%",
@@ -423,7 +431,7 @@ const App = () => {
                       }}
                     >
                       Get in Touch
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -470,8 +478,6 @@ const App = () => {
 
           {/* Registration route--------------------------------------------------------------------------------------------------------- */}
 
-          {!user ? (
-            <>
               <Route path="/registration" exact>
                 {user ? <Redirect to="/" /> : <></>}
                 <Register
@@ -501,6 +507,7 @@ const App = () => {
 
               {/* Login route------------------------------------------------------------------------ */}
               <Route path="/login" exact>
+                {user ? <Redirect to="/" exact/> : ""}
                 <Navbarn
                   handleLogout={handleLogout}
                   user={user}
@@ -523,10 +530,8 @@ const App = () => {
                   loading={loading}
                 />
               </Route>
-            </>
-          ) : (
-            <Redirect to="/" exact />
-          )}
+
+
           {/* ---------------------------------------------------------------------------------------- */}
           {/* --Testing Route-------------------------------------------------------------------------- */}
 

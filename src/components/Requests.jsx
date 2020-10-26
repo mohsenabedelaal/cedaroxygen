@@ -139,7 +139,7 @@ const Requests = (props) => {
   //===================================================================================================================================
   return (
     <>
-      <div className="container" style={{ height: "100%" }}>
+      <div className="container" >
         <div className="row" style={{ height: "100%", width: "100%" }}>
           <div className="row" style={{ height: "100%", width: "100%" }}>
             <div className="rightBox3" style={{ height: "55vh", width: "60%" }}>

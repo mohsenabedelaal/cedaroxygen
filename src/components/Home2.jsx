@@ -20,7 +20,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/rates/listall"
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRates(res.data);
       })
       .catch((err) => console.log(err));
@@ -38,7 +38,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
   const buttonRef4 = useRef();
 
   const onSelectFlag = (countryCode) => {
-    console.log("hyde l country yalle na2yta", countryCode);
+    // console.log("hyde l country yalle na2yta", countryCode);
     setSelected(countryCode);
     document.getElementById("main").value = "";
     document.getElementById("SayrafaDollarRate").value = "";
@@ -159,7 +159,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
               }}
             >
               The world's banking systems weren't designed for people without
-              borders. That's why we're building a new one.
+              borders.<br/> That's why we're building a new one.
             </p>
             <p
               style={{
@@ -167,7 +167,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                 color: "rgb(37, 218, 197)",
               }}
             >
-              1.
+
               <span
                 style={{
                   align: "justify",
@@ -175,20 +175,29 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                   fontFamily: "arial",
                 }}
               >
-                &nbsp; Be radically transparent
-              </span>
-              <br /> 2.
-              <span
-                style={{
-                  fontFamily: "arial",
+                <span style={{
                   align: "justify",
-                  color: "white",
-                }}
-              >
-                &nbsp; Charge as little as possible
+                  color: "rgb(37, 218, 197)",
+                  fontFamily: "arial",
+                }}>1.</span>&nbsp; Be radically transparent
               </span>
               <br />
-              3.
+              <span
+                style={{
+                  fontFamily: "arial",
+                  align: "justify",
+                  color: "white",
+                }}
+              >
+
+                <span style={{
+                  align: "justify",
+                  color: "rgb(37, 218, 197)",
+                  fontFamily: "arial",
+                }}>2.</span>&nbsp; Charge as little as possible
+              </span>
+              <br />
+
               <span
                 style={{
                   align: "justify",
@@ -196,7 +205,11 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                   fontFamily: "arial",
                 }}
               >
-                &nbsp; Make premium the new
+                <span style={{
+                  align: "justify",
+                  color: "rgb(37, 218, 197)",
+                  fontFamily: "arial",
+                }}>3.</span>&nbsp; Make premium the new
               </span>
             </p>
           </div>
@@ -318,7 +331,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                   id="tara2"
                   style={{
                     color: "#33c7bf",
-                    paddingLeft: "5%",
+                    // paddingLeft: "5%",
                     fontWeight: "bold",
                   }}
                 >
@@ -330,8 +343,8 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                     role="button"
                     aria-expanded="false"
                     aria-controls="multiCollapseExample1"
-                  ></i>{" "}
-                  Show market rates
+                  >{" "}
+                  <span style={{ fontFamily:"Arial",fontWeight:"bold",fontSize:"17px" }}>Show Market Rates</span></i>
                 </label>
               ) : (
                 <i

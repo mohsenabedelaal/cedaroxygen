@@ -36,7 +36,7 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="#"
+                href="https://cedaroxygen.com/"
                 style={{ fontWeight: "bold" }}
               >
                 Home
@@ -45,24 +45,24 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="#!"
+                href="https://cedaroxygen.com/"
                 style={{ fontWeight: "bold" }}
               >
                 About Us
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#">
+              <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/our-story/">
                 Our Story
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#">
+              <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/the-team/">
                 The Team
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#">
+              <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/our-partners/">
                 Our Partners
               </a>
             </p>
@@ -71,26 +71,26 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="#"
+                href="https://cedaroxygen.com/impact-finance-fund/"
                 style={{ fontWeight: "bold" }}
               >
                 The Fund
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#!">
+              <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/impact-finance-fund/">
                 Our Investment Approach
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#">
+              <a className="dark-grey-text footercolor" href="https://cedaroxygen.com/esg-impact/">
                 Impact Investing and ESG
               </a>
             </p>
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="#"
+                href="https://cedaroxygen.com/?page_id=54"
                 style={{ fontWeight: "bold" }}
               >
                 Borrowers
@@ -99,7 +99,7 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="#"
+                href="https://cedaroxygen.com/?page_id=56"
                 style={{ fontWeight: "bold" }}
               >
                 Contact Us

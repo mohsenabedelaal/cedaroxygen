@@ -75,37 +75,37 @@ const RequestsForm = (props) => {
 
     // alert(values.amount.length)
     // return
-    // emailjs
-    //   .sendForm(
-    //     "service_3hmxaes",
-    //     "template_dlxn602",
-    //     event.target,
-    //     "user_nOtz7jsUpNqSqqfoMjk9l"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    emailjs
+      .sendForm(
+        "service_3hmxaes",
+        "template_dlxn602",
+        event.target,
+        "user_nOtz7jsUpNqSqqfoMjk9l"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
-    //   emailjs
-    //   .sendForm(
-    //     "service_3hmxaes",
-    //     "template_lu74ray",
-    //     event.target,
-    //     "user_nOtz7jsUpNqSqqfoMjk9l"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+      emailjs
+      .sendForm(
+        "service_3hmxaes",
+        "template_lu74ray",
+        event.target,
+        "user_nOtz7jsUpNqSqqfoMjk9l"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
     props.addorEdit(values);
     // notificationOnClick();

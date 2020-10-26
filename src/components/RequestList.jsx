@@ -8,6 +8,7 @@ import { store } from "react-notifications-component";
 import NumberFormat from "react-number-format";
 import axios from "axios";
 import { useHistory } from "react-router";
+import "../componentscss/Requestlist.css";
 //-------------------------------------------------------------------------------
 
 // This is the Requests Component -----------------------------------------------------
@@ -212,8 +213,8 @@ const RequestList = (props) => {
       return (
         <>
           <label
-            class="radio-inline"
-            style={{ color: "black", marginRight: "4%" }}
+            class="radio-inline radiocolor"
+            style={{ color: "black ", marginRight: "4%" }}
           >
             <input
               type="radio"
@@ -224,7 +225,7 @@ const RequestList = (props) => {
             Accept
           </label>
           <label
-            class="radio-inline"
+            class="radio-inline radiocolor"
             style={{ color: "black", marginRight: "4%" }}
           >
             <input
@@ -304,6 +305,7 @@ const RequestList = (props) => {
             ) : (
               <button
                 className="btn btn-primary"
+                style={{ backgroundColor:"rgb(0, 84, 84)" }}
                 onClick={() => {
                   onSet(request.Id);
                 }}
@@ -384,7 +386,7 @@ const RequestList = (props) => {
         className="container justify-content-center align-content-middle text-center"
         style={
           props.user == "admin@admin.com"
-            ? { marginTop: "7%", marginLeft: "1%" }
+            ? { marginTop: "7%", marginLeft: "13%" }
             : {}
         }
       >
@@ -468,7 +470,7 @@ const RequestList = (props) => {
                             request.status != "Accept" ? (
                               <>
                                 <label
-                                  class="radio-inline"
+                                  class="radio-inline radiocolor"
                                   style={{ color: "black", marginRight: "4%" }}
                                 >
                                   <input
@@ -480,7 +482,7 @@ const RequestList = (props) => {
                                   Accept
                                 </label>
                                 <label
-                                  class="radio-inline"
+                                  class="radio-inline radiocolor"
                                   style={{ color: "black", marginRight: "4%" }}
                                 >
                                   <input
