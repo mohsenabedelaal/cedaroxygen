@@ -75,37 +75,37 @@ const RequestsForm = (props) => {
 
     // alert(values.amount.length)
     // return
-    emailjs
-      .sendForm(
-        "service_3hmxaes",
-        "template_dlxn602",
-        event.target,
-        "user_nOtz7jsUpNqSqqfoMjk9l"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    // emailjs
+    //   .sendForm(
+    //     "service_3hmxaes",
+    //     "template_dlxn602",
+    //     event.target,
+    //     "user_nOtz7jsUpNqSqqfoMjk9l"
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
 
-      emailjs
-      .sendForm(
-        "service_3hmxaes",
-        "template_lu74ray",
-        event.target,
-        "user_nOtz7jsUpNqSqqfoMjk9l"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    //   emailjs
+    //   .sendForm(
+    //     "service_3hmxaes",
+    //     "template_lu74ray",
+    //     event.target,
+    //     "user_nOtz7jsUpNqSqqfoMjk9l"
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
 
     props.addorEdit(values);
     // notificationOnClick();
@@ -181,7 +181,7 @@ const RequestsForm = (props) => {
                 <option value="...">Choose Currency</option>
                 <option value="US Dollar ($)">US Dollar ($)</option>
                 <option value="Lira(LBP)">Lebanse Pound (LBP)</option>
-                <option value="Euro (€)">Euro (€)</option>
+                {/* <option value="Euro (€)">Euro (€)</option> */}
               </select>
               {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
               {/* {console.log()} */}

@@ -28,7 +28,7 @@ const Requests = (props) => {
 
   useEffect(() => {
     axios
-      .get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
+      .get("http://fx-p2p-platform.herokuapp.com/api/clients/listall")
       .then((res) => {
         // console.log("2na be 2wal useEffect");
         // console.log(res.data)
@@ -51,7 +51,7 @@ const Requests = (props) => {
 
   useEffect(() => {
     axios
-      .get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/listall")
+      .get("http://fx-p2p-platform.herokuapp.com/api/requests/listall")
       .then((res) => {
         setContactObjects(res.data);
       })
@@ -87,7 +87,7 @@ const Requests = (props) => {
     setLoading(true)
     axios
       .post(
-        "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
+        "http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
           currentId +
           "&amount="+obj.amount+
           "&currency="+obj.currency+
@@ -121,7 +121,7 @@ const Requests = (props) => {
   const onDelete = (id) => {
     if (window.confirm("Are you sure to delete this request ? ")) {
       axios
-        .post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
+        .post("http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
         .then((res) => console.log(res.data))
         .then((done) => window.location.reload())
         .catch((err) => console(err));

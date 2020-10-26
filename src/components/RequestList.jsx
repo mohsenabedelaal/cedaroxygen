@@ -31,7 +31,7 @@ const RequestList = (props) => {
 
 
     useEffect(() => {
-        axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall").then(res => {
+        axios.get("http://fx-p2p-platform.herokuapp.com/api/clients/listall").then(res => {
             // console.log("2na be 2wal useEffect");
             // console.log(res.data)
             setUsers(res.data)
@@ -56,10 +56,13 @@ const RequestList = (props) => {
 
     useEffect(() => {
 
-        axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/listall").then(res => {
+        axios.get("http://fx-p2p-platform.herokuapp.com/api/requests/listall").then(res => {
             setContactObjects(res.data)
+
         }
         ).catch(error => console.log(error))
+
+        
 
         // if (props.user == "admin@admin.com"){
         //     console.log("2na jowa 3rd effect 1st part")
@@ -75,14 +78,14 @@ const RequestList = (props) => {
         //         setContactObjects(temp)
         //     }).then(console.log("done mafroud")).catch(err => console.log(err))
         // }
-    }, [currentId])
+    }, [])
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------
 
     //add new request using api-------------------------------------------------------------------------------------------------------------------
     const addorEdit = (obj) => {
-        axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" + currentId + "&amount=" + obj.amount + "&currency=" + obj.currency + "&action=" + obj.action)
+        axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" + currentId + "&amount=" + obj.amount + "&currency=" + obj.currency + "&action=" + obj.action)
             .then(res => console.log(res.data)).then(done => window.location.reload()).catch(error => console.log("sorry", error))
     }
 
@@ -104,27 +107,29 @@ const RequestList = (props) => {
     //Delete specific request------------------------------------------------------------------------------------------------------------
 
     const onDelete = (id) => {
-        setDeleting(true)
+        setDeleting("fordelete"+id)
+        // document.getElementById("fordelete")
+        // document.getElementById("fordelete",id).value = true
         if (window.confirm('Are you sure to delete this request ? ')) {
-            axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
+            axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
                 .then(res => console.log(res.data)).then(done => window.location.reload()).catch(err => console(err))
         }
     }
 
 
     const onSave = (id)=>{
-        setSaving(true)
+        setSaving("forrequeststatus"+id)
         let ele = document.getElementsByName(id);
         // alert("innnn",id)
             for( var i = 0; i < ele.length; i++) {
                 if(ele[i].checked) {
                     // alert(ele[i].value)
-                    axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/updatestatus?request_id="+id+"&status="+ele[i].value)
+                    axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/updatestatus?request_id="+id+"&status="+ele[i].value)
                 .then(res => console.log(res.data)).then(done => window.location.reload()).catch(err => {setSaving(false)
                 console.log(err)})
                 }
                 if (ele[i].value =="Reject"){
-                    axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id="+id+"&rate="+0)
+                    axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id="+id+"&rate="+0)
                 .then(res => console.log(res.data)).then(done => window.location.reload()).catch(err => {setSaving(false)
                 console.log(err)})
 
@@ -135,25 +140,26 @@ const RequestList = (props) => {
 
 
     const onSet = (id) =>{
-        setSaving(true)
+        setSaving("forsetrate"+id)
         // alert(document.getElementById("rateset").value)
         let rate = document.getElementById("rateset").value
         // parseInt(value)
         rate = parseInt(rate.replace(/,/g, ""));
-        axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id="+id+"&rate="+rate)
+        axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id="+id+"&rate="+rate)
         .then(res => console.log(res.data)).then(done => window.location.reload()).catch(err => {setSaving(false)
         console.log(err)})
 
     }
 
     const onDeal = (id) =>{
-        setSaving(true)
+        
+        setSaving("fordeal"+id)
         let ele = document.getElementsByName(id);
         // alert("innnn",id)
             for( var i = 0; i < ele.length; i++) {
                 if(ele[i].checked) {
                     // alert(ele[i].value)
-                    axios.post("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/requests/updateratestatus?request_id="+id+"&ratestatus="+ele[i].value)
+                    axios.post("http://fx-p2p-platform.herokuapp.com/api/requests/updateratestatus?request_id="+id+"&ratestatus="+ele[i].value)
                 .then(res => console.log(res.data)).then(done => window.location.reload()).catch(err => {setSaving(false)
                 console.log(err)})
                 }
@@ -173,7 +179,7 @@ const RequestList = (props) => {
                 <input type="radio" value="Reject" id={"second",request.Id} name={request.Id}/>{" "}Reject
                 </label>
                 <label class="radio-inline" >
-                {saving ?
+                {saving=="fordeal"+request.Id ?
                 <div class="spinner-grow text-success" role="status">
                 <span class="sr-only">Loading...</span>
                 </div> :
@@ -186,6 +192,8 @@ const RequestList = (props) => {
         }
         else if (request.ratestatus){
             return(request.ratestatus)
+        }else if(!request.ratestatus){
+            return("Pending")
         }
 
     }
@@ -210,7 +218,7 @@ const RequestList = (props) => {
             />
             </label>
             <label class="radio-inline" >
-            {saving ?
+            {saving=="forsetrate"+request.Id ?
             <div class="spinner-grow text-success" role="status">
             <span class="sr-only">Loading...</span>
             </div> :
@@ -223,12 +231,60 @@ const RequestList = (props) => {
             )
         }
         else if (request.status == "Reject"){
-            return(request.rate)
+            return("Cancled")
+        }
+        else if(request.status != "Accept" && request.status != "Reject" ){
+            return ("Unset")
         }else{
             return (request.rate)
         }
 
 
+    }
+
+    const forDelete = (request) =>{
+        // {deleteing ?
+        //      : <a className="btn text-danger" onClick={() => { onDelete(request.Id) }}>
+        //          <i className="fas fa-trash-alt"></i>
+        //      </a> }
+        
+        if(deleteing == "fordelete"+request.Id ){
+            return(
+                <div class="spinner-grow text-danger" role="status">
+        //      <span class="sr-only">Loading...</span>
+        //      </div>
+            )
+
+        }
+        else if(request.status == "Reject" || request.ratestatus){
+            return("Done")
+        }else{
+            return(
+                <a className="btn text-danger" onClick={() => { onDelete(request.Id) }}>
+                <i className="fas fa-trash-alt"></i>
+                </a>
+            )
+        }
+
+    }
+
+    const dynamicsort =(property,order)=> {
+        var sort_order = 1;
+        if(order === "desc"){
+            sort_order = -1;
+        }
+        return function (a, b){
+            // a should come before b in the sorted order
+            if(a[property] < b[property]){
+                    return -1 * sort_order;
+            // a should come after b in the sorted order
+            }else if(a[property] > b[property]){
+                    return 1 * sort_order;
+            // a and b are the same
+            }else{
+                    return 0 * sort_order;
+            }
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -253,19 +309,20 @@ const RequestList = (props) => {
                                 <th>Amount </th>
                                 <th>Currency </th>
                                 <th>Action </th>
-                                <th>Request Status</th>
+                                <th>Admin Response</th>
                                 <th>Rate</th>
-                                <th>{props.user != "admin@admin.com" ? "Status" : "Client Response"}</th>
-                                {props.user == "admin@admin.com" ? <th>User</th> : ""}
+                                <th>Client Response</th>
+                                {props.user == "admin@admin.com" ? <th>Client</th> : ""}
                                 {/* <th>User</th> */}
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody style={{ backgroundColor: "white" }}>
                             {
-                                props.user != "admin@admin.com" ? contactObjects.filter(obj => obj.client_id == currentId).map(
+                                props.user != "admin@admin.com" ? contactObjects.sort(dynamicsort("Id","desc")).filter(obj => obj.client_id == currentId).map(
                                     request => {
                                         // console.log("@na")
+                                        
                                         return <tr key={request.Id} >
                                             <td>{parseFloat(request.amount).toLocaleString('en')}</td>
                                             <td>{request.currency}</td>
@@ -278,12 +335,13 @@ const RequestList = (props) => {
                                                 {/* <a className="btn text-primary" onClick = {()=>{setCurrentId(id)}}>
                                                 <i className="fas fa-pencil-alt"></i>
                                             </a> */}
-                                               {deleteing ?
+                                               {/* {deleteing ?
                                                <div class="spinner-grow text-danger" role="status">
                                                 <span class="sr-only">Loading...</span>
                                                 </div> : <a className="btn text-danger" onClick={() => { onDelete(request.Id) }}>
                                                     <i className="fas fa-trash-alt"></i>
-                                                </a> }
+                                                </a> } */}
+                                                {forDelete(request)}
                                             </td>
                                             {/* <td>{contactObjects[id].status}</td> */}
                                             {/* <td>{contactObjects[id].address}</td> */}
@@ -298,7 +356,7 @@ const RequestList = (props) => {
                                         </td>} */}
                                         </tr>
                                     }
-                                ) : contactObjects.map(
+                                ) : contactObjects.sort(dynamicsort("Id","desc")).map(
                                     request => {
                                         return <tr key={request.Id} >
                                             <td>{parseFloat(request.amount).toLocaleString('en')}</td>
@@ -314,7 +372,7 @@ const RequestList = (props) => {
                                             <input type="radio" value="Reject" id={"second",request.Id} name={request.Id}/>{" "}Reject
                                             </label>
                                             <label class="radio-inline" >
-                                            {saving ?
+                                            {saving == "forrequeststatus"+request.Id ?
                                             <div class="spinner-grow text-success" role="status">
                                             <span class="sr-only">Loading...</span>
                                             </div> :
@@ -332,10 +390,12 @@ const RequestList = (props) => {
                                                 {/* <a className="btn text-primary" onClick = {()=>{setCurrentId(id)}}>
                                                 <i className="fas fa-pencil-alt"></i>
                                             </a> */}
-                                                {deleteing ?
+                                                {/* {document.getElementById("fordelete",request.Id).value = false} */}
+                                                {deleteing == "fordelete"+request.Id ?
+
                                                <div class="spinner-grow text-danger" role="status">
                                                 <span class="sr-only">Loading...</span>
-                                                </div> : <a className="btn text-danger" onClick={() => { onDelete(request.Id) }}>
+                                                </div> : <a className="btn text-danger" id={"fordelete",request.Id} onClick={() => { onDelete(request.Id) }}>
                                                     <i className="fas fa-trash-alt"></i>
                                                 </a> }
                                             </td>

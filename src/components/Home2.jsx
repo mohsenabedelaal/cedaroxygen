@@ -475,6 +475,7 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
 
             <div style={{ color: "black" }}>
               <>
+              {user != "admin@admin.com" ?
                 <Link to={user ? "/requestpage" : "/registration"}>
                   <button
                     style={{
@@ -491,7 +492,7 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
                   >
                     REQUEST RATE{" "}
                   </button>
-                </Link>
+                </Link> : <></>}
                 {/* <ReactFlagsSelect
                   countries={["US", "LB"]}
                   // id="userFlag"
@@ -503,7 +504,7 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
                 /> */}
               </>
 
-              {console.log("@2na honnnnn,,", buttonRef4.current)}
+              
 
               {/* <label htmlFor="lower" style={{ color:"white" }}>Black Market Rate</label><br/>
                 <input type="number" id="lower" name="upper" placeholder="amount" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} />

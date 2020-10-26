@@ -63,11 +63,11 @@ const App = () => {
   const [converter, setConverter] = useState({ selected: "", amount: 0 });
   const [actions, setAction] = useState("Buy")
   // ------------------------------------------------------------------------------
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState(localStorage.getItem("username"));
 
   useEffect(() => {
     if(user){
-      axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
+      axios.get("http://fx-p2p-platform.herokuapp.com/api/clients/listall")
         .then(res => {
 
           // console.log(res.data ? res.data.map(user=>{}):"loading");
@@ -80,9 +80,11 @@ const App = () => {
                 // console.log("found him",res.data[i].username)
                 // console.log("name is ",res.data[i])
                 let name = res.data[i].name
-                let last = res.data[i][ 'last name' ]
+                // let last = res.data[i][ 'last name' ]
                 // console.log("hyda l esmee",name)
-                setUsername(name +" "+last)
+                name = name.charAt(0).toUpperCase() + name.slice(1)
+                setUsername(name)
+                localStorage.setItem("username", name)
                 break
               }
             }
@@ -118,7 +120,7 @@ const App = () => {
     setLoading(true);
     axios
       .get(
-        "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/login?username=" +
+        "http://fx-p2p-platform.herokuapp.com/login?username=" +
           email +
           "&password=" +
           password
@@ -174,7 +176,7 @@ const App = () => {
       setLoading(true);
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/add?name=" +
+          "http://fx-p2p-platform.herokuapp.com/api/clients/add?name=" +
             name +
             "&last_name=" +
             last_name +
@@ -202,6 +204,7 @@ const App = () => {
     // fire.auth().signOut();
     localStorage.removeItem("email");
     localStorage.removeItem("password");
+    localStorage.removeItem("username")
     // window.location.href = "http://localhost:3000/"
     window.location.href = "https://cedars-oxygen-8a47a.web.app/";
     // handleShow();
@@ -423,10 +426,6 @@ const App = () => {
                 />
               </div>
             )}
-          </Route>
-
-          <Route path="/www" exact>
-            <Testingz />
           </Route>
 
           {/* Registration route--------------------------------------------------------------------------------------------------------- */}

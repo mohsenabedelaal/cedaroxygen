@@ -81,7 +81,7 @@ const Navbarn = ({ handleLogout, user,username }) => {
             <li className="nav-item mr-2">
               {user ? (
                 <Link className="nav-link active" to="/requestpage">
-                  Request
+                  {user == "admin@admin.com" ? "Request List" : "Request"}
                 </Link>
               ) : (
                 <Link className="nav-link active" to="/registration">
