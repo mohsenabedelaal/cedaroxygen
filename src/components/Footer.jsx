@@ -36,37 +36,33 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/"
+                href="#"
+                style={{ fontWeight: "bold" }}
               >
                 Home
               </a>
             </p>
             <p>
-              <a className="dark-grey-text footercolor" href="#!">
+              <a
+                className="dark-grey-text footercolor"
+                href="#!"
+                style={{ fontWeight: "bold" }}
+              >
                 About Us
               </a>
             </p>
             <p>
-              <a
-                className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/our-story/"
-              >
+              <a className="dark-grey-text footercolor" href="#">
                 Our Story
               </a>
             </p>
             <p>
-              <a
-                className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/the-team/"
-              >
+              <a className="dark-grey-text footercolor" href="#">
                 The Team
               </a>
             </p>
             <p>
-              <a
-                className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/impact-finance-fund/"
-              >
+              <a className="dark-grey-text footercolor" href="#">
                 Our Partners
               </a>
             </p>
@@ -75,7 +71,8 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/"
+                href="#"
+                style={{ fontWeight: "bold" }}
               >
                 The Fund
               </a>
@@ -86,17 +83,15 @@ export default function Footering() {
               </a>
             </p>
             <p>
-              <a
-                className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/our-story/"
-              >
+              <a className="dark-grey-text footercolor" href="#">
                 Impact Investing and ESG
               </a>
             </p>
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/the-team/"
+                href="#"
+                style={{ fontWeight: "bold" }}
               >
                 Borrowers
               </a>
@@ -104,7 +99,8 @@ export default function Footering() {
             <p>
               <a
                 className="dark-grey-text footercolor"
-                href="https://cedaroxygen.com/impact-finance-fund/"
+                href="#"
+                style={{ fontWeight: "bold" }}
               >
                 Contact Us
               </a>
@@ -116,7 +112,9 @@ export default function Footering() {
               <a
                 className="dark-grey-text footercolor"
                 style={{
-                  color: "black",
+                  color: "gray",
+                  fontWeight: "bold",
+                  fontFamily: "arial",
                 }}
               >
                 Subscribe to our Newsletter
@@ -151,23 +149,15 @@ export default function Footering() {
             </di>
 
             <div>
-              <a className="fb-ic">
+              <a className="fb-ic" href="#">
                 <i className="fab fa-facebook-f white-text mr-4"> </i>
               </a>
 
-              <a className="tw-ic">
-                <i className="fab fa-twitter white-text mr-4"> </i>
-              </a>
-
-              <a className="gplus-ic">
-                <i className="fab fa-google-plus-g white-text mr-4"> </i>
-              </a>
-
-              <a className="li-ic">
+              <a className="li-ic" href="#">
                 <i className="fab fa-linkedin-in white-text mr-4"> </i>
               </a>
 
-              <a className="ins-ic">
+              <a className="ins-ic" href="#">
                 <i className="fab fa-instagram white-text"> </i>
               </a>
             </div>

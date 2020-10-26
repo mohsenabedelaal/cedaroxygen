@@ -1,10 +1,18 @@
 /* a{
     color:gray !important;
 } */
+p,
+a {
+  color: gray;
+  font-family: Arial;
+}
+.footercolor {
+  color: gray;
+  text-decoration-color: #33c7bf;
+}
 
-
-
-.footercolor{
-    color: gray;
-    text-decoration-color: #007bff;
+a:hover,
+i:hover {
+  color: #33c7bf;
+  text-decoration: none;
 }

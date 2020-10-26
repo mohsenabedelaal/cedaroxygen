@@ -61,40 +61,45 @@ const App = () => {
   const [rates, setRates] = useState("");
   const [loading, setLoading] = useState(false);
   const [converter, setConverter] = useState({ selected: "", amount: 0 });
-  const [actions, setAction] = useState("Buy")
+  const [actions, setAction] = useState("Buy");
   // ------------------------------------------------------------------------------
   const [username, setUsername] = useState(localStorage.getItem("username"));
 
   useEffect(() => {
-    if(user){
-      axios.get("http://fx-p2p-platform.herokuapp.com/api/clients/listall")
-        .then(res => {
-
-          // console.log(res.data ? res.data.map(user=>{}):"loading");
-          // console.log(res.data)
-          // setUsers(res.data)
-          if(res.data){
-            for(var i = 0; i <= res.data.length; i++){
-              if(res.data[i].username == user){
-                // console.log("inside loop")
-                // console.log("found him",res.data[i].username)
-                // console.log("name is ",res.data[i])
-                let name = res.data[i].name
-                // let last = res.data[i][ 'last name' ]
-                // console.log("hyda l esmee",name)
-                name = name.charAt(0).toUpperCase() + name.slice(1)
-                setUsername(name)
-                localStorage.setItem("username", name)
-                break
+    if (user) {
+      axios
+        .get("http://fx-p2p-platform.herokuapp.com/api/clients/listall")
+        .then(
+          (res) => {
+            // console.log(res.data ? res.data.map(user=>{}):"loading");
+            // console.log(res.data)
+            // setUsers(res.data)
+            if (res.data) {
+              for (var i = 0; i <= res.data.length; i++) {
+                if (res.data[i].username == user) {
+                  // console.log("inside loop")
+                  // console.log("found him",res.data[i].username)
+                  // console.log("name is ",res.data[i])
+                  let name = res.data[i].name;
+                  // let last = res.data[i][ 'last name' ]
+                  // console.log("hyda l esmee",name)
+                  name = name.charAt(0).toUpperCase() + name.slice(1);
+                  setUsername(name);
+                  localStorage.setItem("username", name);
+                  break;
+                }
               }
+              // console.log("2na dsadasdas",username);
             }
-            // console.log("2na dsadasdas",username);
           }
-        }
           //
-        ).catch(err => {alert(err)
-          console.log(err)})}
-    }, []);
+        )
+        .catch((err) => {
+          alert(err);
+          console.log(err);
+        });
+    }
+  }, []);
 
   // This function is to clear the inputs values ---------------------------------------------------------
   const clearInputs = () => {
@@ -103,7 +108,6 @@ const App = () => {
   };
 
   // -----------------------------------------------------------------------------------------------------
-
 
   // function to clear the errors -----------------------------------------------------------------------
   const clearErrors = () => {
@@ -204,7 +208,7 @@ const App = () => {
     // fire.auth().signOut();
     localStorage.removeItem("email");
     localStorage.removeItem("password");
-    localStorage.removeItem("username")
+    localStorage.removeItem("username");
     // window.location.href = "http://localhost:3000/"
     window.location.href = "https://cedars-oxygen-8a47a.web.app/";
     // handleShow();
@@ -282,23 +286,49 @@ const App = () => {
                 className="container-fuild authBox"
                 style={{ margin: "0%", position: "absolute", width: "100%" }}
               >
-                <div className="row" style={{ marginTop:"10%" }}>
-                  <div className="col">
-                    <Requests user={user} converter={converter} setConverter={setConverter} actions={actions} username={username}/>
+                <div className="container">
+                  <div className="container-fluid">
+                    <div className="row" style={{ marginTop: "10%" }}>
+                      <div className="col-6">
+                        <h1
+                          style={{
+                            // textAlign: "center",
+                            // marginLeft: "25%",
+                            color: "white",
+                            fontFamily: "arial",
+                            fontSize: "36px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Submit a Request
+                        </h1>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col" style={{ marginRight:"3%" }}>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <Requests
+                      user={user}
+                      converter={converter}
+                      setConverter={setConverter}
+                      actions={actions}
+                      username={username}
+                    />
+                  </div>
+                  <div class="col" style={{ marginRight: "3%" }}>
                     <RequestList user={user} />
                   </div>
                 </div>
               </div>
             ) : (
               <>
-              <div
-                className="container-fuild authBox"
-                style={{ margin: "0%", position: "absolute", width: "100%" }}
-              >
-                {/* <div className="home-bg3" /> */}
-                <RequestList user={user} />
+                <div
+                  className="container-fuild authBox"
+                  style={{ margin: "0%", position: "absolute", width: "100%" }}
+                >
+                  {/* <div className="home-bg3" /> */}
+                  <RequestList user={user} />
                 </div>
                 {/* <div
                 className="container-fuild authBox"
@@ -308,11 +338,11 @@ const App = () => {
                   <div className="col">
                     <Requests user={user} converter={converter} setConverter={setConverter} actions={actions}/>
                   </div> */}
-                  {/* <div class="col" style={{ marginRight:"3%" }}>
+                {/* <div class="col" style={{ marginRight:"3%" }}>
                     <RequestList user={user} />
                   </div> */}
                 {/* </div> */}
-              {/* </div> */}
+                {/* </div> */}
               </>
             )}
           </Route>
@@ -321,7 +351,11 @@ const App = () => {
 
           {/* --------------------------------------------------------------------------------------------------------------------------- */}
           <Route path="/" exact>
-            <Navbarn handleLogout={handleLogout} user={user} username={username}/>
+            <Navbarn
+              handleLogout={handleLogout}
+              user={user}
+              username={username}
+            />
             <Home2
               user={user}
               converter={converter}
@@ -366,10 +400,13 @@ const App = () => {
                     className="col-md-8 col-lg-8 text-center text-md-left align-self-center"
                     // style={{ border: "2px solid transparent", width: "100vw" }}
                   >
-                    <h5 className="mb-0 text-white">
+                    <h4
+                      className="mb-0 text-white"
+                      style={{ fontFamily: "arial" }}
+                    >
                       Get involved in investing and supporting Lebanese
                       manufacturers
-                    </h5>
+                    </h4>
                   </div>
 
                   <div className="col-md-2 col-lg-4 text-center align-self-center">
@@ -382,6 +419,7 @@ const App = () => {
                         backgroundColor: "#33c7bf",
                         border: "1px solid #33c7bf",
                         borderRadius: "2rem",
+                        fontFamily: "arial",
                       }}
                     >
                       Get in Touch
@@ -393,10 +431,12 @@ const App = () => {
             <Footering />
           </Route>
 
-
-
           <Route path="/registration" exact>
-            <Navbarn handleLogout={handleLogout} user={user} username={username}/>
+            <Navbarn
+              handleLogout={handleLogout}
+              user={user}
+              username={username}
+            />
             {user ? (
               <></>
             ) : (

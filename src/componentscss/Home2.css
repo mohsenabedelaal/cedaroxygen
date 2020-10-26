@@ -5,9 +5,11 @@ h2,
 h3,
 h4 {
   font-family: Arial;
-  color: white;
+  color: white !important;
 }
-
+#tara2 {
+  color: #33c7bf !important;
+}
 /* div.container-fluid {
   padding: 0;
   background-image: url("../media/background.jpg");
@@ -62,9 +64,16 @@ label.btn.btn-secondary {
 .flag-select__btn:before {
   align-items: center;
 }
+.flag-select__option.flag-select__option--placeholder {
+  margin: 0% !important;
+  vertical-align: middle !important;
+}
+.flag-select__option__label {
+  vertical-align: middle !important;
+}
 .flag-select {
-  border-top-right-radius: 0.7rem;
-  border-bottom-right-radius: 0.7rem;
+  border-top-right-radius: 0.7rem !important;
+  border-bottom-right-radius: 0.7rem !important;
   height: 6vh;
   background-color: #005454 !important;
   /* color: white !important; */

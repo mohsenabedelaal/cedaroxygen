@@ -8,12 +8,18 @@ h1 .body {
 }
 
 .regInput:valid {
-  color: green;
+  color: "#33c7bf";
 }
 .regInput:invalid {
-  color: red;
+  color: #ed2b45;
 }
-
+.hawa {
+  color: gray !important;
+}
+.sr-only {
+  color: #33c7bf;
+  background-color: #33c7bf;
+}
 /*
 .grid-container {
   display: grid;
@@ -40,7 +46,6 @@ h1 .body {
 /* .row{
   margin-top: 6% !important ;
 } */
-
 
 .table {
   grid-area: table;
@@ -241,7 +246,7 @@ h1 .body {
 .text1 {
   float: right;
   font-size: 14px;
-  color: #006cbc;
+  color: #33c7bf;
   cursor: pointer;
 }
 
