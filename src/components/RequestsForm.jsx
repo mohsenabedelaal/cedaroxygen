@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import NumberFormat from "react-number-format";
 import ReactJsAlert from "reactjs-alert";
+import "../componentscss/RequestForm.css";
 //-------------------------------------------------------------------------------------------
 
 const RequestsForm = (props) => {
@@ -23,8 +24,8 @@ const RequestsForm = (props) => {
   if (props.converter.selected == "LB") {
     initialFieldValues.currency = "Lira(LBP)";
   }
-  if (props.actions){
-    initialFieldValues.action = props.actions
+  if (props.actions) {
+    initialFieldValues.action = props.actions;
   }
   // initialFieldValues.currency = "US Dollar ($)"
   // console.log(props)
@@ -68,9 +69,8 @@ const RequestsForm = (props) => {
       return;
     }
     if (!values.amount || !values.currency || !values.action) {
-
-      alert("Fill the submit form")
-      return
+      alert("Fill the submit form");
+      return;
     }
 
     // alert(values.amount.length)
@@ -119,30 +119,37 @@ const RequestsForm = (props) => {
   return (
     <>
       <div>
-        <form
-          autoComplete="off"
-          className="offset-md-0.5  align-items-center"
-          onSubmit={handleFormSubmit}
-        >
-          <div
-            className="col-auto"
-            style={{
-              padding: "0%",
-              color: "black",
-              fontSize: "14.43px",
-              fontFamily: "arial",
-              paddingLeft: "5%",
-              // height:"60%"
-            }}
-          >
-            <div
-              className="form-group "
-              style={{ padding: "0%", paddingTop: "5%" }}
-            >
-              <input type="hidden" name="user" value={props.user} />
-              <input type="hidden" name="username" value={props.username} />
-              <label style={{ color:"black" }}>Amount</label>
-              {/* <input
+        <div className="container">
+          <div className="row align-content-middle justify-content-center">
+            <div className="col">
+              <form
+                autoComplete="off"
+                className="offset-md-0.5  align-items-center"
+                onSubmit={handleFormSubmit}
+              >
+                <div
+                  className="col-auto align-content-middle justify-content-center"
+                  style={{
+                    padding: "0%",
+                    color: "black",
+                    fontSize: "14.43px",
+                    fontFamily: "arial",
+                    paddingLeft: "5%",
+                    // height:"60%"
+                  }}
+                >
+                  <div
+                    className="form-group "
+                    style={{ padding: "0%", paddingTop: "5%" }}
+                  >
+                    <input type="hidden" name="user" value={props.user} />
+                    <input
+                      type="hidden"
+                      name="username"
+                      value={props.username}
+                    />
+                    <label id="tara">Amount</label>
+                    {/* <input
                 type="number"
                 name="amount"
                 onChange={handleInputChange}
@@ -151,110 +158,125 @@ const RequestsForm = (props) => {
                 id="inputCity"
                 style={{ width: "90%" }}
               /> */}
-              <NumberFormat
-                required
-                class="form-control"
-                name="amount"
-                value={values.amount}
-                onChange={handleInputChange}
-                thousandSeparator={true}
-                style={{ width: "90%" }}
-                allowNegative={false}
-                readOnly={props.loading}
-              />
-            </div>
-            <div className="form-group col-auto" style={{ padding: "0%" }}>
-              <label htmlFor="inputCurrency" style={{ padding: "0%" ,color:"black"}}>
-                Currency
-              </label>
-              <select
-                id="inputCurrency"
-                name="currency"
-                className="form-control"
-                onChange={handleInputChange}
-                value={values.currency}
-                readOnly={props.loading}
-                style={{ padding: "0%", width: "90%" }}
-              >
-                {/* <option defaultValue>Choose...</option>
-           <option value="amount">amount</option> */}
-                <option value="...">Choose Currency</option>
-                <option value="US Dollar ($)">US Dollar ($)</option>
-                <option value="Lira(LBP)">Lebanse Pound (LBP)</option>
-                {/* <option value="Euro (€)">Euro (€)</option> */}
-              </select>
-              {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
-              {/* {console.log()} */}
-            </div>
-            <div className="form-group">
-              <label htmlFor="inputAction" style={{ color:"black" }}>Action</label>
-              <select
-                id="inputAction"
-                name="action"
-                className="form-control"
-                onChange={handleInputChange}
-                value={values.action}
-                readOnly={props.loading}
-                style={{ padding: "0%", width: "90%" }}
-              >
-                {/* <option defaultValue>Choose...</option>
-           <option value="amount">amount</option> */}
-                <option value="..." defaultValue>
-                  Choose Action
-                </option>
-                <option value="Sell">Sell</option>
-                <option value="Buy">Buy</option>
-              </select>
-              {props.user == "admin@admin.com" && props.currentId && (
-                <>
-                  <label htmlFor="inputStatus" style={{ color:"black" }}>Status</label>
-                  <select
-                    id="inputAction"
-                    name="status"
-                    className="form-control"
-                    onChange={handleInputChange}
-                    value={values.status}
+                    <NumberFormat
+                      required
+                      class="form-control"
+                      name="amount"
+                      value={values.amount}
+                      onChange={handleInputChange}
+                      thousandSeparator={true}
+                      style={{ width: "90%" }}
+                      allowNegative={false}
+                      readOnly={props.loading}
+                    />
+                  </div>
+                  <div
+                    className="form-group col-auto "
+                    style={{ padding: "0%" }}
                   >
-                    {/* <option defaultValue>Choose...</option>
+                    <label
+                      id="tara"
+                      htmlFor="inputCurrency"
+                      style={{ padding: "0%" }}
+                    >
+                      Currency
+                    </label>
+                    <select
+                      id="inputCurrency"
+                      name="currency"
+                      className="form-control"
+                      onChange={handleInputChange}
+                      value={values.currency}
+                      readOnly={props.loading}
+                      style={{ padding: "0%", width: "90%" }}
+                    >
+                      {/* <option defaultValue>Choose...</option>
            <option value="amount">amount</option> */}
-                    <option value="..." defaultValue>
-                      Choose Status
-                    </option>
-                    <option value="Accepted">Accepted</option>
-                    <option value="Rejected">Rejected</option>
-                  </select>{" "}
-                </>
-              )}
-              {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
-              {/* {console.log()} */}
-            </div>
-            {!props.loading ? (
-              <button
-                type="submit"
-                className="btn"
-                style={{
-                  width: "30%",
-                  alignContent: "center",
-                  margin: "auto",
-                  backgroundColor: "#005454",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                Confirm
-              </button>
-            ) : (
-              <div
-                class="spinner-border text-success"
-                style={{ marginLeft: "25%" }}
-                role="status"
-              >
-                <span class="sr-only">Loading...</span>
-              </div>
-            )}
-          </div>
-        </form>
-        {/* <form autoComplete="off" onSubmit={handleFormSubmit}>
+                      <option value="...">Choose Currency</option>
+                      <option value="US Dollar ($)">US Dollar ($)</option>
+                      <option value="Lira(LBP)">Lebanse Pound (LBP)</option>
+                      {/* <option value="Euro (€)">Euro (€)</option> */}
+                    </select>
+                    {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
+                    {/* {console.log()} */}
+                  </div>
+                  <div className="form-group">
+                    <label id="tara" htmlFor="inputAction">
+                      Action
+                    </label>
+                    <select
+                      id="inputAction"
+                      name="action"
+                      className="form-control"
+                      onChange={handleInputChange}
+                      value={values.action}
+                      readOnly={props.loading}
+                      style={{ padding: "0%", width: "90%" }}
+                    >
+                      {/* <option defaultValue>Choose...</option>
+           <option value="amount">amount</option> */}
+                      <option value="..." defaultValue>
+                        Choose Action
+                      </option>
+                      <option value="Sell">Sell</option>
+                      <option value="Buy">Buy</option>
+                    </select>
+                    {props.user == "admin@admin.com" && props.currentId && (
+                      <>
+                        <label htmlFor="inputStatus" style={{ color: "black" }}>
+                          Status
+                        </label>
+                        <select
+                          id="inputAction"
+                          name="status"
+                          className="form-control"
+                          onChange={handleInputChange}
+                          value={values.status}
+                        >
+                          {/* <option defaultValue>Choose...</option>
+           <option value="amount">amount</option> */}
+                          <option value="..." defaultValue>
+                            Choose Status
+                          </option>
+                          <option value="Accepted">Accepted</option>
+                          <option value="Rejected">Rejected</option>
+                        </select>{" "}
+                      </>
+                    )}
+                    {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
+                    {/* {console.log()} */}
+                  </div>
+                  {!props.loading ? (
+                    <button
+                      type="submit"
+                      className="btnAuth text-center"
+                      style={{
+                        width: "60%",
+                        alignContent: "center",
+                        textAlign: "center",
+                        margin: "auto",
+                        backgroundColor: "#005454",
+                        color: "white",
+                        fontWeight: "bold",
+                        borderRadius: "2rem",
+                        border: "none",
+                        marginTop: "5%",
+                      }}
+                    >
+                      Confirm
+                    </button>
+                  ) : (
+                    <div
+                      class="spinner-border "
+                      style={{ marginLeft: "25%", color: "#33c7bf" }}
+                      role="status"
+                    >
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  )}
+                </div>
+              </form>
+              {/* <form autoComplete="off" onSubmit={handleFormSubmit}>
                 <div className="form-group input-group col-9">
                     <div className="input-group-prepend">
                         <div className="input-group-text"  id="inputGroup-sizing-sm">
@@ -314,9 +336,12 @@ const RequestsForm = (props) => {
                 </div>
 
             </form> */}
-      </div>
+            </div>
 
-      {/* <button onClick={notificationOnClick}>click test</button> */}
+            {/* <button onClick={notificationOnClick}>click test</button> */}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

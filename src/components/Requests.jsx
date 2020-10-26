@@ -21,7 +21,7 @@ const Requests = (props) => {
   const [users, setUsers] = useState([]);
   const [yourRequests, setYourRequests] = useState([]);
   const firebaseDb = firebase.database().ref();
-  const [loading ,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   //-------------------------------------------------------------------------------
 
   //UseEffect fetch all data from the api-----------------------------------------
@@ -77,29 +77,30 @@ const Requests = (props) => {
 
   //add new request using api-------------------------------------------------------------------------------------------------------------------
   const addorEdit = (obj) => {
-
-
     // alert(parseFloat(obj.amount).toLocaleString('en'))
 
     // obj.amount = parseFloat(obj.amount).toLocaleString('en')
 
     // alert(obj.amount)
-    setLoading(true)
+    setLoading(true);
     axios
       .post(
         "http://fx-p2p-platform.herokuapp.com/api/requests/add?client_id=" +
           currentId +
-          "&amount="+obj.amount+
-          "&currency="+obj.currency+
-          "&action="+
-          obj.action+
-          "&status="+obj.status
+          "&amount=" +
+          obj.amount +
+          "&currency=" +
+          obj.currency +
+          "&action=" +
+          obj.action +
+          "&status=" +
+          obj.status
       )
       .then((res) => console.log(res.data))
       .then((done) => window.location.reload())
       .catch((error) => {
-        alert("Sorry", error)
-        setLoading(false)
+        alert("Sorry", error);
+        setLoading(false);
       });
   };
 
@@ -121,7 +122,9 @@ const Requests = (props) => {
   const onDelete = (id) => {
     if (window.confirm("Are you sure to delete this request ? ")) {
       axios
-        .post("http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id)
+        .post(
+          "http://fx-p2p-platform.herokuapp.com/api/requests/delete?id=" + id
+        )
         .then((res) => console.log(res.data))
         .then((done) => window.location.reload())
         .catch((err) => console(err));
@@ -136,41 +139,30 @@ const Requests = (props) => {
   //===================================================================================================================================
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <h1
-            style={{
-              marginLeft: "25%",
-              color: "white",
-              fontFamily: "arial",
-              fontSize: "36px",
-              fontWeight: "bold",
-            }}
-          >
-            Submit a Request
-          </h1>
+      <div className="container" style={{ height: "100%" }}>
+        <div className="row" style={{ height: "100%", width: "100%" }}>
+          <div className="row" style={{ height: "100%", width: "100%" }}>
+            <div className="rightBox3" style={{ height: "55vh", width: "60%" }}>
+              <div>
+                {props.user == "admin@admin.com" ? (
+                  <div></div>
+                ) : (
+                  <RequestsForm
+                    converter={props.converter}
+                    setConverter={props.setConverter}
+                    user={props.user}
+                    addorEdit={addorEdit}
+                    currentId={currentId}
+                    setCurrentId={setCurrentId}
+                    contactObjects={contactObjects}
+                    loading={loading}
+                    actions={props.actions}
+                    username={props.username}
+                    // setLoading={setLoading}
+                  />
+                )}
 
-          <div className="rightBox3" style={{ height: "60vh" }}>
-            <div>
-              {props.user == "admin@admin.com" ? (
-                <div></div>
-              ) : (
-                <RequestsForm
-                  converter={props.converter}
-                  setConverter={props.setConverter}
-                  user={props.user}
-                  addorEdit={addorEdit}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                  contactObjects={contactObjects}
-                  loading={loading}
-                  actions={props.actions}
-                  username={props.username}
-                  // setLoading={setLoading}
-                />
-              )}
-
-              {/* {props.user == "admin@admin.com" && currentId &&
+                {/* {props.user == "admin@admin.com" && currentId &&
                 <RequestsForm
                 user = {props.user}
                 addorEdit = {addorEdit}
@@ -179,6 +171,7 @@ const Requests = (props) => {
                 contactObjects = {contactObjects}
                  />
                     } */}
+              </div>
             </div>
           </div>
         </div>

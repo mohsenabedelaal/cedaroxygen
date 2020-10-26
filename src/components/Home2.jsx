@@ -9,11 +9,10 @@ import { HashLink } from "react-router-hash-link";
 import { Button, Spinner, Accordion, Card, Toast } from "react-bootstrap";
 //---------------------------------------------------------------------------
 
-const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
+const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
   const [show, setShow] = useState(true);
   const [rates, setRates] = useState("");
   const [selected, setSelected] = useState("LB");
-
 
   useEffect(() => {
     axios
@@ -229,14 +228,30 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
                 <div class="input-group-prepend">
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active">
-                      <input type="radio" name="options" onClick={()=>{setAction('Buy')}} id="option1" checked />{" "}
+                      <input
+                        type="radio"
+                        name="options"
+                        onClick={() => {
+                          setAction("Buy");
+                        }}
+                        id="option1"
+                        checked
+                      />{" "}
                       Buy
                     </label>
                     <label
                       class="btn btn-secondary"
                       style={{ borderRadius: "0rem" }}
                     >
-                      <input type="radio" name="options" id="option2" onClick={()=>{setAction('Sell')}} /> Sell
+                      <input
+                        type="radio"
+                        name="options"
+                        id="option2"
+                        onClick={() => {
+                          setAction("Sell");
+                        }}
+                      />{" "}
+                      Sell
                     </label>
                   </div>
                 </div>
@@ -300,6 +315,7 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
               > */}
               {show ? (
                 <label
+                  id="tara2"
                   style={{
                     color: "#33c7bf",
                     paddingLeft: "5%",
@@ -475,24 +491,27 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
 
             <div style={{ color: "black" }}>
               <>
-              {user != "admin@admin.com" ?
-                <Link to={user ? "/requestpage" : "/registration"}>
-                  <button
-                    style={{
-                      borderRadius: "0.7rem",
-                      border: "none",
-                      color: "white",
-                      backgroundColor: "#25DAC5",
-                      padding: "12px 20px",
-                      margin: "15px 0",
-                      boxSizing: "border-box",
-                      fontSize: "14px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    REQUEST RATE{" "}
-                  </button>
-                </Link> : <></>}
+                {user != "admin@admin.com" ? (
+                  <Link to={user ? "/requestpage" : "/registration"}>
+                    <button
+                      style={{
+                        borderRadius: "0.7rem",
+                        border: "none",
+                        color: "white",
+                        backgroundColor: "#25DAC5",
+                        padding: "12px 20px",
+                        margin: "15px 0",
+                        boxSizing: "border-box",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      REQUEST RATE{" "}
+                    </button>
+                  </Link>
+                ) : (
+                  <></>
+                )}
                 {/* <ReactFlagsSelect
                   countries={["US", "LB"]}
                   // id="userFlag"
@@ -503,8 +522,6 @@ const Home2 = ({ user, converter, setConverter,actions,setAction }) => {
                   style={{ backgroundColor: "black" }}
                 /> */}
               </>
-
-              
 
               {/* <label htmlFor="lower" style={{ color:"white" }}>Black Market Rate</label><br/>
                 <input type="number" id="lower" name="upper" placeholder="amount" style={{ borderTopLeftRadius:"2rem" , borderBottomLeftRadius:"2rem"}} />
