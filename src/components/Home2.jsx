@@ -77,7 +77,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
     if (selected == "US") {
       rates
         ? (document.getElementById("SayrafaDollarRate").value =
-            e.target.value * rates[0].bdl_rate)
+            e.target.value * rates[0].bdl_rate )
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
       rates
         ? (document.getElementById("PrevailingMarketRate").value =
@@ -90,15 +90,15 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
     if (selected == "LB") {
       rates
         ? (document.getElementById("SayrafaDollarRate").value =
-            e.target.value / rates[0].bdl_rate)
+            (e.target.value / rates[0].bdl_rate).toFixed(2))
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
       rates
         ? (document.getElementById("PrevailingMarketRate").value =
-            e.target.value / rates[0].black_market_rate)
+            (e.target.value / rates[0].black_market_rate).toFixed(2))
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
       document.getElementById("officialDollarRate").value =
-        e.target.value / 1515;
+        (e.target.value / 1515).toFixed(2);
     }
   };
 

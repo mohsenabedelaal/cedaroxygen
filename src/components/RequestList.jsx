@@ -145,7 +145,7 @@ const RequestList = (props) => {
             console.log(err);
           });
       }
-      if (ele[i].value == "Reject") {
+      if (ele[i].value == "Rejected") {
         axios
           .post(
             "http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id=" +
@@ -209,7 +209,7 @@ const RequestList = (props) => {
   };
 
   const rateConfig = (request) => {
-    if (request.status == "Accept" && request.rate && !request.ratestatus) {
+    if (request.status == "Accepted" && request.rate && !request.ratestatus) {
       return (
         <>
           <label
@@ -218,7 +218,7 @@ const RequestList = (props) => {
           >
             <input
               type="radio"
-              value="Accept"
+              value="Accepted"
               id={("first", request.Id)}
               name={request.Id}
             />{" "}
@@ -230,7 +230,7 @@ const RequestList = (props) => {
           >
             <input
               type="radio"
-              value="Reject"
+              value="Rejected"
               id={("second", request.Id)}
               name={request.Id}
             />{" "}
@@ -260,11 +260,11 @@ const RequestList = (props) => {
         </>
       );
     } else if (
-      request.status == "Reject" &&
+      request.status == "Rejected" &&
       request.rate == 0 &&
       !request.ratestatus
     ) {
-      return <>Canceled</>;
+      return <>Cancled</>;
     } else if (request.ratestatus) {
       return request.ratestatus;
     } else if (!request.ratestatus) {
@@ -273,7 +273,7 @@ const RequestList = (props) => {
   };
 
   const settingRate = (request) => {
-    if (request.status == "Accept" && !request.rate) {
+    if (request.status == "Accepted" && !request.rate) {
       return (
         <>
           <label
@@ -316,12 +316,12 @@ const RequestList = (props) => {
           </label>
         </>
       );
-    } else if (request.status == "Reject") {
+    } else if (request.status == "Rejected") {
       return "Cancled";
-    } else if (request.status != "Accept" && request.status != "Reject") {
-      return "Unset";
+    } else if (request.status != "Accepted" && request.status != "Rejected") {
+      return "Pending";
     } else {
-      return request.rate;
+      return (request.currency == "US Dollar ($)" ? parseFloat(request.rate).toLocaleString("en")+" per USD" : parseFloat(request.rate).toLocaleString("en")+" per LBP")
     }
   };
 
@@ -338,7 +338,7 @@ const RequestList = (props) => {
           //{" "}
         </div>
       );
-    } else if (request.status == "Reject" || request.ratestatus) {
+    } else if (request.status == "Rejected" || request.ratestatus) {
       return "Done";
     } else {
       return (
@@ -397,9 +397,9 @@ const RequestList = (props) => {
                 <th>Amount </th>
                 <th>Currency </th>
                 <th>Action </th>
-                <th>Admin Response</th>
+                <th>Request Status</th>
                 <th>Rate</th>
-                <th>Client Response</th>
+                <th>Client Decision</th>
                 {props.user == "admin@admin.com" ? <th>Client</th> : ""}
                 {/* <th>User</th> */}
                 <th>Delete</th>
@@ -423,8 +423,8 @@ const RequestList = (props) => {
                           <td>{request.status}</td>
                           <td>
                             {request.rate
-                              ? parseFloat(request.rate).toLocaleString("en")
-                              : "Unset"}
+                              ? parseFloat(request.rate * request.amount).toLocaleString("en")
+                              : "Pending"}
                           </td>
                           {/* <td>{request.ratestatus ? request.ratestatus : "Pending"}</td> */}
                           <td>{rateConfig(request)}</td>
@@ -466,8 +466,8 @@ const RequestList = (props) => {
                           <td>{request.action}</td>
                           {/* <td>{request.status}</td> */}
                           <td>
-                            {request.status != "Reject" &&
-                            request.status != "Accept" ? (
+                            {request.status != "Rejected" &&
+                            request.status != "Accepted" ? (
                               <>
                                 <label
                                   class="radio-inline radiocolor"
@@ -475,7 +475,7 @@ const RequestList = (props) => {
                                 >
                                   <input
                                     type="radio"
-                                    value="Accept"
+                                    value="Accepted"
                                     id={("first", request.Id)}
                                     name={request.Id}
                                   />{" "}
@@ -487,7 +487,7 @@ const RequestList = (props) => {
                                 >
                                   <input
                                     type="radio"
-                                    value="Reject"
+                                    value="Rejected"
                                     id={("second", request.Id)}
                                     name={request.Id}
                                   />{" "}

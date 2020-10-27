@@ -3,6 +3,7 @@ import "../App.css";
 import "../componentscss/Home2.css";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const Register = (props) => {
   const {
@@ -31,6 +32,27 @@ const Register = (props) => {
 
   const [show, setShow] = useState(true);
   // const [loading,setLoading] = useState(false);
+  const handleSubm = (event) =>{
+    event.preventDefault();
+    emailjs
+            .sendForm(
+              "service_xxo3rvv",
+              "template_acwms5k",
+              event.target,
+              "user_xNiJ51uaJsII6WOxS8oSm"
+            )
+            .then(
+              (result) => {
+
+                console.log(result.text);
+              },
+              (error) => {
+
+                console.log(error.text);
+              }
+            );
+    handleSignup(event)
+  }
 
   return (
     <div className="container-fluid bg1">
@@ -70,6 +92,7 @@ const Register = (props) => {
                   margin: "auto",
                 }}
               >
+                <form onSubmit={handleSubm}>
                 <div
                   className={"box"}
                   style={{
@@ -89,7 +112,8 @@ const Register = (props) => {
                   >
                     <input
                       className={"form-control regInput"}
-                      type={"text"}
+                      type={"email"}
+                      name="email"
                       placeholder={"Email"}
                       // autoFocus
                       readOnly={loading}
@@ -112,6 +136,7 @@ const Register = (props) => {
                   <div className="input-group mb-2">
                     <input
                       type="password"
+                      name="password"
                       className="form-control regInput"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
@@ -151,6 +176,7 @@ const Register = (props) => {
                     <input
                       className={"form-control regInput"}
                       type={"text"}
+                      name="name"
                       placeholder={"First Name"}
                       required
                       value={name}
@@ -162,6 +188,7 @@ const Register = (props) => {
                     <input
                       className={"form-control regInput"}
                       type={"text"}
+                      name="last_name"
                       placeholder={"Last Name"}
                       required
                       readOnly={loading}
@@ -173,6 +200,7 @@ const Register = (props) => {
                     <input
                       className={"form-control regInput"}
                       type={"text"}
+                      name="phone"
                       placeholder={"Phone Number"}
                       required
                       readOnly={loading}
@@ -198,7 +226,7 @@ const Register = (props) => {
                     <button
                       className={"btnAuth"}
                       type="submit"
-                      onClick={handleSignup}
+                      // onClick={handleSignup}
                       style={{
                         // marginTop: "2rem",
                         width: "60%",
@@ -223,6 +251,7 @@ const Register = (props) => {
                     <span class="sr-only">Loading...</span>
                     </div> */}
                 </div>
+                </form>
               </div>
             </div>
           </div>

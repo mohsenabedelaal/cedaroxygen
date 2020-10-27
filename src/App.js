@@ -37,6 +37,7 @@ import ReactFlagsSelect from "react-flags-select";
 import "react-flags-select/css/react-flags-select.css";
 import { Spinner, Accordion, Card, Toast } from "react-bootstrap";
 import NumberFormat from "react-number-format";
+import emailjs from "emailjs-com";
 import "./App.css";
 // ------------------------------------------------------------------------------
 
@@ -120,6 +121,8 @@ const App = () => {
 
   // -----------------------------------------------------------------------------------------------------
 
+
+
   // function responsible for login using api -------------------------------------------------
 
   const handleLogin = () => {
@@ -144,9 +147,9 @@ const App = () => {
           window.location.href = "https://cedars-oxygen-8a47a.web.app/";
         } else {
           // console.log(response);
-          alert("Something Wrong")
-          setEmailError("Check Your Email");
-          setPasswordError("Check Your Password");
+
+          // setEmailError("Check Your Email");
+          setPasswordError("Incorrect email or password. Please re-enter");
           setLoading(false);
           clearInputs();
         }
@@ -168,7 +171,7 @@ const App = () => {
   // -----------------------------------------------------------------------------------------------------
 
   // function responsible for sign up using api -------------------------------------------------
-  const handleSignup = () => {
+  const handleSignup = (e) => {
     clearErrors();
     // console.log("in the sign up")
     // alert(typeof phone)
@@ -200,9 +203,14 @@ const App = () => {
         )
         .then((res) => console.log(res.data))
         .then((response) => {
+
+
+
+
           handleLogin();
-        })
-        .catch((err) => console.log(err));
+
+
+        }).catch((err) => console.log(err));
     }
   };
 
