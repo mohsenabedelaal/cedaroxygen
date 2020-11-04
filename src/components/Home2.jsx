@@ -3,6 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import "../componentscss/Home2.css";
 import ReactFlagsSelect from "react-flags-select";
 import "react-flags-select/css/react-flags-select.css";
+import NumberFormat from "react-number-format";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
@@ -77,28 +78,29 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
     if (selected == "US") {
       rates
         ? (document.getElementById("SayrafaDollarRate").value =
-            e.target.value * rates[0].bdl_rate )
+            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) * rates[0].bdl_rate): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") )
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
       rates
         ? (document.getElementById("PrevailingMarketRate").value =
-            e.target.value * rates[0].black_market_rate)
+            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) * rates[0].black_market_rate): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
       document.getElementById("officialDollarRate").value =
-        e.target.value * 1515;
+        parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) *  1515): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
     if (selected == "LB") {
       rates
         ? (document.getElementById("SayrafaDollarRate").value =
-            (e.target.value / rates[0].bdl_rate).toFixed(2))
+            (parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / rates[0].bdl_rate): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")))
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
+      console.log(parseInt(e.target.value.replace(/,/g, "")))
       rates
         ? (document.getElementById("PrevailingMarketRate").value =
-            (e.target.value / rates[0].black_market_rate).toFixed(2))
+            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / rates[0].black_market_rate): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
       document.getElementById("officialDollarRate").value =
-        (e.target.value / 1515).toFixed(2);
+        parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / 1515): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   };
 
@@ -135,10 +137,10 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                 align: "justify",
               }}
             >
-              Cedar Oxygen is <br />
-              committed to Lebanon
+              Cedar Oxygen's <br />
+              FX P2P Platform for Lebanon's
               <br />
-              and its industry
+              Industrial Sector
             </h1>
             <h4
               style={{
@@ -149,69 +151,10 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                 marginBottom: "16px",
               }}
             >
-              Join us to get the best exchange rate
+              Register now in order to solve your FX needs
             </h4>
-            <p
-              style={{
-                fontFamily: "arial",
-                fontSize: "16px",
-                align: "justify",
-              }}
-            >
-              The world's banking systems weren't designed for people without
-              borders.<br/> That's why we're building a new one.
-            </p>
-            <p
-              style={{
-                fontFamily: "arial",
-                color: "rgb(37, 218, 197)",
-              }}
-            >
 
-              <span
-                style={{
-                  align: "justify",
-                  color: "white",
-                  fontFamily: "arial",
-                }}
-              >
-                <span style={{
-                  align: "justify",
-                  color: "rgb(37, 218, 197)",
-                  fontFamily: "arial",
-                }}>1.</span>&nbsp; Be radically transparent
-              </span>
-              <br />
-              <span
-                style={{
-                  fontFamily: "arial",
-                  align: "justify",
-                  color: "white",
-                }}
-              >
 
-                <span style={{
-                  align: "justify",
-                  color: "rgb(37, 218, 197)",
-                  fontFamily: "arial",
-                }}>2.</span>&nbsp; Charge as little as possible
-              </span>
-              <br />
-
-              <span
-                style={{
-                  align: "justify",
-                  color: "white",
-                  fontFamily: "arial",
-                }}
-              >
-                <span style={{
-                  align: "justify",
-                  color: "rgb(37, 218, 197)",
-                  fontFamily: "arial",
-                }}>3.</span>&nbsp; Make premium the new
-              </span>
-            </p>
           </div>
           {/* the second half of the home screen ============================================================================================ */}
           <div
@@ -268,9 +211,10 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                     </label>
                   </div>
                 </div>
-                <input
+                <NumberFormat
                   className="rates"
-                  type="number"
+                  thousandSeparator={true}
+                  // type="number"
                   id="main"
                   name="upper"
                   placeholder="You're exchanging"
@@ -430,7 +374,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                 <br />
                 <input
                   className="rates"
-                  type="number"
+                  type="text"
                   id="PrevailingMarketRate"
                   readOnly
                   name="upper"

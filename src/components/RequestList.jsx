@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import RequestsForm from "../components/RequestsForm";
 import firebase from "../firebase/firebase";
+import emailjs from "emailjs-com";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
@@ -105,6 +106,21 @@ const RequestList = (props) => {
       }
     }
   };
+
+  const findusername = (request) =>{
+    for(var i = 0; i < users.length; i++){
+      if(users[i].Id == request){
+        return users[i].name;
+      }
+    }
+  };
+  const findrate = (request) =>{
+    for(var i = 0; i < users.length; i++){
+      if(users[i].Id == request){
+        return users[i].rate;
+      }
+    }
+  };
   //------------------------------------------------------------------------------------------------------------------------------------
 
   //Delete specific request------------------------------------------------------------------------------------------------------------
@@ -124,7 +140,8 @@ const RequestList = (props) => {
     }
   };
 
-  const onSave = (id) => {
+  const onSave = (request) => {
+    let id = request.Id
     setSaving("forrequeststatus" + id);
     let ele = document.getElementsByName(id);
     // alert("innnn",id)
@@ -139,13 +156,50 @@ const RequestList = (props) => {
               ele[i].value
           )
           .then((res) => console.log(res.data))
-          .then((done) => window.location.reload())
           .catch((err) => {
             setSaving(false);
             console.log(err);
           });
       }
       if (ele[i].value == "Rejected") {
+
+        var email = findUsers(request.client_id);
+        var nameuser = findusername(request.client_id);
+
+
+        if(email && nameuser){
+        var templated = {
+
+          adminstatus: "Rejected",
+          username: nameuser,
+          user: email,
+          amount: request.amount,
+          action: request.action,
+          currency: request.currency,
+          message: "Unfortunately,",
+          rate:""
+
+        }
+
+        emailjs
+            .send(
+            "service_3hmxaes",
+            "template_dlxn602",
+            templated,
+            "user_nOtz7jsUpNqSqqfoMjk9l"
+          )
+          .then(
+            (result) => {
+              console.log(result.text);
+              return result.text
+            },
+            (error) => {
+              console.log(error.text);
+            }
+          ).then((done) => {
+            if(done == "OK"){
+            window.location.reload()}});}
+
         axios
           .post(
             "http://fx-p2p-platform.herokuapp.com/api/requests/updaterate?request_id=" +
@@ -159,11 +213,15 @@ const RequestList = (props) => {
             setSaving(false);
             console.log(err);
           });
-      }
-    }
-  };
 
-  const onSet = (id) => {
+      }
+
+
+      }
+    };
+
+  const onSet = (request) => {
+    var id = request.Id
     setSaving("forsetrate" + id);
     // alert(document.getElementById("rateset").value)
     let rate = document.getElementById("rateset").value;
@@ -177,12 +235,61 @@ const RequestList = (props) => {
           rate
       )
       .then((res) => console.log(res.data))
-      .then((done) => window.location.reload())
       .catch((err) => {
         setSaving(false);
         console.log(err);
       });
-  };
+      var email = findUsers(request.client_id);
+        var nameuser = findusername(request.client_id);
+        var setrate = document.getElementById('rateset').value
+      console.log(email);
+      console.log(nameuser);
+      console.log(setrate);
+        if(email && nameuser && setrate){
+
+        var templated2 = {
+
+          adminstatus: "Accepted",
+          username: nameuser,
+          user: email,
+          amount: request.amount,
+          action: request.action,
+          currency: request.currency,
+          message: "",
+          rate: " on a "+setrate+" per USD"
+
+        }
+
+        emailjs
+            .send(
+            "service_3hmxaes",
+            "template_dlxn602",
+            templated2,
+            "user_nOtz7jsUpNqSqqfoMjk9l"
+          )
+          .then(
+            (result) => {
+              console.log(result.text);
+              return result.text
+            },
+            (error) => {
+              console.log(error.text);
+            }
+          ).then((res)=>{
+            if(res =="OK"){
+              window.location.reload()
+            }
+          });
+        }
+
+
+
+
+
+
+
+
+    };
 
   const onDeal = (id) => {
     setSaving("fordeal" + id);
@@ -307,7 +414,7 @@ const RequestList = (props) => {
                 className="btn btn-primary"
                 style={{ backgroundColor:"rgb(0, 84, 84)" }}
                 onClick={() => {
-                  onSet(request.Id);
+                  onSet(request);
                 }}
               >
                 Set
@@ -321,7 +428,7 @@ const RequestList = (props) => {
     } else if (request.status != "Accepted" && request.status != "Rejected") {
       return "Pending";
     } else {
-      return (request.currency == "US Dollar ($)" ? parseFloat(request.rate).toLocaleString("en")+" per USD" : parseFloat(request.rate).toLocaleString("en")+" per LBP")
+      return (request.currency == "US Dollar ($)" ? parseFloat(request.rate).toLocaleString("en")+" per USD" : parseFloat(request.rate).toLocaleString("en")+" per USD")
     }
   };
 
@@ -510,7 +617,7 @@ const RequestList = (props) => {
                                         border: "none",
                                       }}
                                       onClick={() => {
-                                        onSave(request.Id);
+                                        onSave(request);
                                       }}
                                     >
                                       Save

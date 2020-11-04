@@ -16,7 +16,7 @@ const Home3 = () => {
           marginTop: "0%",
         }}
       >
-        Why to Trade With CEDAR OXYGEN?
+        Why register on Cedar Oxygen's FX P2P platform?
       </h1>
       <p
         style={{
@@ -83,7 +83,7 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Transactions performed on our platform are all fast and secure
+              Be part of the community creating significant social, economic and financial impact in Lebanon
             </p>
           </div>
           <div className="col-sm">
@@ -121,8 +121,8 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Cedar Oxygen's intuitive interface makes trading easier for
-              everyone
+              Contribute to an inflow of fresh dollars critical for the Industrial sector and recovery of the Lebanese economy
+
             </p>
           </div>
 
@@ -160,8 +160,8 @@ const Home3 = () => {
                 textAlign: "center",
               }}
             >
-              Cedar Oxygen's excellent support team is available to help you, 5
-              days/week
+                Our proprietary algorithm calculates an FX rate based on macro factors and market forces
+
             </p>
           </div>
         </div>

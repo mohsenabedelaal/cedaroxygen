@@ -22,7 +22,7 @@ const RequestsForm = (props) => {
     initialFieldValues.currency = "US Dollar ($)";
   }
   if (props.converter.selected == "LB") {
-    initialFieldValues.currency = "Lira(LBP)";
+    initialFieldValues.currency = "Lebanese Pound (LBP)";
   }
   if (props.actions) {
     initialFieldValues.action = props.actions;

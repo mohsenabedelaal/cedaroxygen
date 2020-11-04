@@ -332,7 +332,7 @@ const App = () => {
                     />
                   </div>
                   <div class="col" style={{ marginRight: "3%" }}>
-                    <RequestList user={user} />
+                    <RequestList user={user} username={username} />
                   </div>
                 </div>
               </div>
