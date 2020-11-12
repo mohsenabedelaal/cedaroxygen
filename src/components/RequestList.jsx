@@ -148,6 +148,7 @@ const RequestList = (props) => {
     for (var i = 0; i < ele.length; i++) {
       if (ele[i].checked) {
         // alert(ele[i].value)
+        var choosen = ele[i].value
         axios
           .post(
             "http://fx-p2p-platform.herokuapp.com/api/requests/updatestatus?request_id=" +
@@ -160,23 +161,27 @@ const RequestList = (props) => {
             setSaving(false);
             console.log(err);
           });
-      }
-      if (ele[i].value == "Rejected") {
-
+      }}
+      if (choosen == "Rejected") {
+        // alert("yes 1st rejected")
         var email = findUsers(request.client_id);
-        var nameuser = findusername(request.client_id);
-
+         var nameuser = findusername(request.client_id);
+        var nameuser = nameuser.charAt(0).toUpperCase() + nameuser.slice(1)
+        var reqamount = request.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 
         if(email && nameuser){
+        // alert("yes okay")
+        // return
         var templated = {
 
-          adminstatus: "Rejected",
+          // adminstatus: "Rejected",
+          adminstatusbody: "rejected.",
           username: nameuser,
           user: email,
-          amount: request.amount,
+          amount: reqamount,
           action: request.action,
           currency: request.currency,
-          message: "Unfortunately,",
+          // message: "Unfortunately,",
           rate:""
 
         }
@@ -198,7 +203,10 @@ const RequestList = (props) => {
             }
           ).then((done) => {
             if(done == "OK"){
-            window.location.reload()}});}
+            window.location.reload()}});
+
+
+          }
 
         axios
           .post(
@@ -214,10 +222,10 @@ const RequestList = (props) => {
             console.log(err);
           });
 
+      }else{
+        window.location.reload()
       }
 
-
-      }
     };
 
   const onSet = (request) => {
@@ -246,17 +254,18 @@ const RequestList = (props) => {
       console.log(nameuser);
       console.log(setrate);
         if(email && nameuser && setrate){
-
+          var reqamount = request.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          var currencyamount = (request.currency == "US Dollar ($)" ? "$" : "LBP")
         var templated2 = {
 
-          adminstatus: "Accepted",
+          adminstatusbody: "accepted",
           username: nameuser,
           user: email,
-          amount: request.amount,
+          amount: reqamount,
           action: request.action,
-          currency: request.currency,
+          currency: currencyamount,
           message: "",
-          rate: " on a "+setrate+" per USD"
+          rate: " at a "+setrate+" LBP/USD rate."
 
         }
 

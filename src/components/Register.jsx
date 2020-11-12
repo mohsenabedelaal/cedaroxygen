@@ -32,6 +32,12 @@ const Register = (props) => {
 
   const [show, setShow] = useState(true);
   // const [loading,setLoading] = useState(false);
+
+
+
+
+
+
   const handleSubm = (event) =>{
     event.preventDefault();
     emailjs
@@ -181,7 +187,7 @@ const Register = (props) => {
                       required
                       value={name}
                       readOnly={loading}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                     />
                   </div>
                   <div className="mb-2">
@@ -201,6 +207,7 @@ const Register = (props) => {
                       className={"form-control regInput"}
                       type={"text"}
                       name="phone"
+                      id="myInput"
                       placeholder={"Phone Number"}
                       required
                       readOnly={loading}
@@ -225,6 +232,7 @@ const Register = (props) => {
                   {!loading ? (
                     <button
                       className={"btnAuth"}
+                      id="myBtn"
                       type="submit"
                       // onClick={handleSignup}
                       style={{

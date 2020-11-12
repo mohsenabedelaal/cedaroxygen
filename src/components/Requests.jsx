@@ -156,6 +156,7 @@ const Requests = (props) => {
                     setCurrentId={setCurrentId}
                     contactObjects={contactObjects}
                     loading={loading}
+                    setLoading={setLoading}
                     actions={props.actions}
                     username={props.username}
                     // setLoading={setLoading}

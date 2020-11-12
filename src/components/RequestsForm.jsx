@@ -63,9 +63,18 @@ const RequestsForm = (props) => {
     // alert(event.target.username.value);
     // return
     event.preventDefault();
+    props.setLoading(true);
+
+    if(!values.action || !values.amount || !values.currency){
+      alert("Please Complete the Submit Form")
+      props.setLoading(false);
+      return
+    }
     values.amount = values.amount.replace(/,/g, "");
     if (values.amount.length > 10) {
+      props.setLoading(false);
       alert("Reduce the amount ");
+
       return;
     }
     if (!values.amount || !values.currency || !values.action) {
@@ -101,13 +110,16 @@ const RequestsForm = (props) => {
       .then(
         (result) => {
           console.log(result.text);
+          if(result.text == "OK"){
+            props.addorEdit(values);
+          }
         },
         (error) => {
           console.log(error.text);
         }
       );
 
-    props.addorEdit(values);
+
     // notificationOnClick();
   };
 
