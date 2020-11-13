@@ -8,6 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { Button, Spinner, Accordion, Card, Toast } from "react-bootstrap";
+import UpdateRates from "./UpdateRates.jsx";
 //---------------------------------------------------------------------------
 
 const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
@@ -77,30 +78,61 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
     setConverter({ selected: selected, amount: e.target.value });
     if (selected == "US") {
       rates
-        ? (document.getElementById("SayrafaDollarRate").value =
-            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) * rates[0].bdl_rate): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") )
+        ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
+            e.target.value
+              ? parseInt(e.target.value.replace(/,/g, "")) * rates[0].bdl_rate
+              : 0
+          )
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
       rates
-        ? (document.getElementById("PrevailingMarketRate").value =
-            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) * rates[0].black_market_rate): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+        ? (document.getElementById("PrevailingMarketRate").value = parseFloat(
+            e.target.value
+              ? parseInt(e.target.value.replace(/,/g, "")) *
+                  rates[0].black_market_rate
+              : 0
+          )
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
-      document.getElementById("officialDollarRate").value =
-        parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) *  1515): 0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      document.getElementById("officialDollarRate").value = parseFloat(
+        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) * 1515 : 0
+      )
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
     if (selected == "LB") {
       rates
-        ? (document.getElementById("SayrafaDollarRate").value =
-            (parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / rates[0].bdl_rate): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")))
+        ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
+            e.target.value
+              ? parseInt(e.target.value.replace(/,/g, "")) / rates[0].bdl_rate
+              : 0
+          )
+            .toFixed(2)
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("SayrafaDollarRate").value = "Loading...");
-      console.log(parseInt(e.target.value.replace(/,/g, "")))
+      console.log(parseInt(e.target.value.replace(/,/g, "")));
       rates
-        ? (document.getElementById("PrevailingMarketRate").value =
-            parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / rates[0].black_market_rate): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+        ? (document.getElementById("PrevailingMarketRate").value = parseFloat(
+            e.target.value
+              ? parseInt(e.target.value.replace(/,/g, "")) /
+                  rates[0].black_market_rate
+              : 0
+          )
+            .toFixed(2)
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
-      document.getElementById("officialDollarRate").value =
-        parseFloat(e.target.value ? (parseInt(e.target.value.replace(/,/g, "")) / 1515): 0).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      document.getElementById("officialDollarRate").value = parseFloat(
+        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) / 1515 : 0
+      )
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   };
 
@@ -129,32 +161,37 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
               padding: "5%",
             }}
           >
-            <h1
-              style={{
-                fontFamily: "arial",
-                fontSize: "47.69px",
-                fontWeight: "bold",
-                align: "justify",
-              }}
-            >
-              Cedar Oxygen's <br />
-              FX P2P Platform for Lebanon's
-              <br />
-              Industrial Sector
-            </h1>
-            <h4
-              style={{
-                fontFamily: "arial",
-                fontSize: "16px",
-                fontWeight: "bold",
-                align: "justify",
-                marginBottom: "16px",
-              }}
-            >
-              Register now in order to solve your FX needs
-            </h4>
+            {user == "admin@admin.com" ? (
+              <UpdateRates />
+            ) : (
+              <>
+                <h1
+                  style={{
+                    fontFamily: "arial",
+                    fontSize: "47.69px",
+                    fontWeight: "bold",
+                    align: "justify",
+                  }}
+                >
+                  Cedar Oxygen's <br />
+                  FX P2P Platform for Lebanon's
+                  <br />
+                  Industrial Sector
+                </h1>
 
-
+                <h4
+                  style={{
+                    fontFamily: "arial",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    align: "justify",
+                    marginBottom: "16px",
+                  }}
+                >
+                  Register now in order to solve your FX needs.
+                </h4>
+              </>
+            )}
           </div>
           {/* the second half of the home screen ============================================================================================ */}
           <div
@@ -287,8 +324,18 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
                     role="button"
                     aria-expanded="false"
                     aria-controls="multiCollapseExample1"
-                  >{" "}
-                  <span style={{ fontFamily:"Arial",fontWeight:"bold",fontSize:"17px" }}>Show Market Rates</span></i>
+                  >
+                    {" "}
+                    <span
+                      style={{
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        fontSize: "17px",
+                      }}
+                    >
+                      Show Market Rates
+                    </span>
+                  </i>
                 </label>
               ) : (
                 <i

@@ -1,0 +1,14 @@
+.bg-stats {
+  background-image: url("../media/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  align-items: center;
+  background-attachment: fixed;
+}
+
+.pt-3-half {
+  padding-top: 1.4rem;
+}
