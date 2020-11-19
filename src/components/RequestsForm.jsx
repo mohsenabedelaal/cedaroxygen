@@ -8,7 +8,7 @@ import "../componentscss/RequestForm.css";
 const RequestsForm = (props) => {
   const initialFieldValues = {
     amount: "",
-    currency: "",
+    currency: "USD ",
     action: "",
     user: props.user,
     status: "Pending",
@@ -65,10 +65,10 @@ const RequestsForm = (props) => {
     event.preventDefault();
     props.setLoading(true);
 
-    if(!values.action || !values.amount || !values.currency){
-      alert("Please Complete the Submit Form")
+    if (!values.action || !values.amount) {
+      alert("Please Complete the Submit Form");
       props.setLoading(false);
-      return
+      return;
     }
     values.amount = values.amount.replace(/,/g, "");
     if (values.amount.length > 10) {
@@ -77,7 +77,7 @@ const RequestsForm = (props) => {
 
       return;
     }
-    if (!values.amount || !values.currency || !values.action) {
+    if (!values.amount || !values.action) {
       alert("Fill the submit form");
       return;
     }
@@ -100,7 +100,7 @@ const RequestsForm = (props) => {
     //     }
     //   );
 
-      emailjs
+    emailjs
       .sendForm(
         "service_3hmxaes",
         "template_lu74ray",
@@ -110,7 +110,7 @@ const RequestsForm = (props) => {
       .then(
         (result) => {
           console.log(result.text);
-          if(result.text == "OK"){
+          if (result.text == "OK") {
             props.addorEdit(values);
           }
         },
@@ -118,7 +118,6 @@ const RequestsForm = (props) => {
           console.log(error.text);
         }
       );
-
 
     // notificationOnClick();
   };
@@ -170,48 +169,23 @@ const RequestsForm = (props) => {
                 id="inputCity"
                 style={{ width: "90%" }}
               /> */}
-                    <NumberFormat
-                      required
-                      class="form-control"
-                      name="amount"
-                      value={values.amount}
-                      onChange={handleInputChange}
-                      thousandSeparator={true}
-                      style={{ width: "90%" }}
-                      allowNegative={false}
-                      readOnly={props.loading}
-                    />
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <NumberFormat
+                        required
+                        class="form-control"
+                        name="amount"
+                        value={values.amount}
+                        onChange={handleInputChange}
+                        thousandSeparator={true}
+                        allowNegative={false}
+                        readOnly={props.loading}
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="form-group col-auto "
-                    style={{ padding: "0%" }}
-                  >
-                    <label
-                      id="tara"
-                      htmlFor="inputCurrency"
-                      style={{ padding: "0%" }}
-                    >
-                      Currency
-                    </label>
-                    <select
-                      id="inputCurrency"
-                      name="currency"
-                      className="form-control"
-                      onChange={handleInputChange}
-                      value={values.currency}
-                      readOnly={props.loading}
-                      style={{ padding: "0%", width: "90%" }}
-                    >
-                      {/* <option defaultValue>Choose...</option>
-           <option value="amount">amount</option> */}
-                      <option value="...">Choose Currency</option>
-                      <option value="US Dollar ($)">US Dollar ($)</option>
-                      <option value="Lebanese Pound (LBP)">Lebanese Pound (LBP)</option>
-                      {/* <option value="Euro (€)">Euro (€)</option> */}
-                    </select>
-                    {/* {error ? <div className="alert alert-danger" role="alert"> This is a primary alert—check it out!</div> : ""} */}
-                    {/* {console.log()} */}
-                  </div>
+
                   <div className="form-group">
                     <label id="tara" htmlFor="inputAction">
                       Action

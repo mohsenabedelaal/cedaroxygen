@@ -38,6 +38,7 @@ import "react-flags-select/css/react-flags-select.css";
 import { Spinner, Accordion, Card, Toast } from "react-bootstrap";
 import NumberFormat from "react-number-format";
 import emailjs from "emailjs-com";
+import Stats from "./components/Stats.jsx";
 import "./App.css";
 // ------------------------------------------------------------------------------
 
@@ -121,8 +122,6 @@ const App = () => {
 
   // -----------------------------------------------------------------------------------------------------
 
-
-
   // function responsible for login using api -------------------------------------------------
 
   const handleLogin = () => {
@@ -177,7 +176,7 @@ const App = () => {
     // alert(typeof phone)
     // alert()
 
-    if (!name || !phone || !last_name || !email || !password ) {
+    if (!name || !phone || !last_name || !email || !password) {
       alert("Fill the Form");
       return;
     }
@@ -203,14 +202,9 @@ const App = () => {
         )
         .then((res) => console.log(res.data))
         .then((response) => {
-
-
-
-
           handleLogin();
-
-
-        }).catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -302,27 +296,25 @@ const App = () => {
                 <div className="container">
                   <div className="container-fluid">
                     <div className="row" style={{ marginTop: "10%" }}>
-                      <div className="col-6">
-
-                      </div>
+                      <div className="col-6"></div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col">
-                  <h1
-                     style={{
-                            // textAlign: "center",
-                            // marginLeft: "25%",
-                      color: "white",
-                      fontFamily: "arial",
-                      fontSize: "36px",
-                      fontWeight: "bold",
-                      marginLeft:"23%"
-                          }}
-                        >
-                          Submit a Request
-                        </h1>
+                    <h1
+                      style={{
+                        // textAlign: "center",
+                        // marginLeft: "25%",
+                        color: "white",
+                        fontFamily: "arial",
+                        fontSize: "36px",
+                        fontWeight: "bold",
+                        marginLeft: "23%",
+                      }}
+                    >
+                      Submit a Request
+                    </h1>
                     <Requests
                       user={user}
                       converter={converter}
@@ -363,6 +355,42 @@ const App = () => {
           </Route>
 
           {/* ------------------------------------------------------------------------------ */}
+          <Route path="/stats" exact>
+            {!user ? <Redirect to="/" /> : <></>}
+
+            <Navbarn
+              handleLogout={handleLogout}
+              user={user}
+              handleShow={handleShow}
+              username={username}
+            />
+            {/* <Requests user={user} />  */}
+            {/* <div className="home-bg3" /> */}
+            {/* <div class="grid-container">
+
+            <div class="nav-bar">
+            <Navbarn handleLogout={handleLogout} user={user} handleShow={handleShow} />
+            </div>
+            <div class="submit">
+            <Requests user={user} />
+            </div>
+            <div class="table">
+            <RequestList user={user}/>
+            </div>
+            </div> */}
+            {user == "admin@admin.com" ? (
+              <Stats
+                user={user}
+                converter={converter}
+                setConverter={setConverter}
+                actions={actions}
+                setAction={setAction}
+              />
+            ) : (
+              <></>
+            )}
+          </Route>
+          {/* ------------------------------------------------------------------------------ */}
 
           {/* --------------------------------------------------------------------------------------------------------------------------- */}
           <Route path="/" exact>
@@ -378,6 +406,7 @@ const App = () => {
               actions={actions}
               setAction={setAction}
             />
+
             <div
               className="jumbotron jumbotron-fluid"
               style={{
@@ -486,59 +515,58 @@ const App = () => {
 
           {/* Registration route--------------------------------------------------------------------------------------------------------- */}
 
-              <Route path="/registration" exact>
-                {user ? <Redirect to="/" /> : <></>}
-                <Register
-                  // loginSection = {loginSection}
-                  // registerSection = {registerSection}
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  name={name}
-                  setName={setName}
-                  last_name={last_name}
-                  setLastName={setLastName}
-                  phone={phone}
-                  setPhone={setPhone}
-                  address={address}
-                  setAddress={setAddress}
-                  handleLogin={handleLogin}
-                  handleSignup={handleSignup}
-                  hasAccount={hasAccount}
-                  setHasAccount={setHasAccount}
-                  emailError={emailError}
-                  passwordError={passwordError}
-                />
-              </Route>
-              {/* ---------------------------------------------------------------------------------- */}
+          <Route path="/registration" exact>
+            {user ? <Redirect to="/" /> : <></>}
+            <Register
+              // loginSection = {loginSection}
+              // registerSection = {registerSection}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              name={name}
+              setName={setName}
+              last_name={last_name}
+              setLastName={setLastName}
+              phone={phone}
+              setPhone={setPhone}
+              address={address}
+              setAddress={setAddress}
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              emailError={emailError}
+              passwordError={passwordError}
+            />
+          </Route>
+          {/* ---------------------------------------------------------------------------------- */}
 
-              {/* Login route------------------------------------------------------------------------ */}
-              <Route path="/login" exact>
-                {user ? <Redirect to="/" exact/> : ""}
-                <Navbarn
-                  handleLogout={handleLogout}
-                  user={user}
-                  firstName={name}
-                  username={username}
-                />
-                <Login
-                  // loginSection = {loginSection}
-                  // registerSection = {registerSection}
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  handleLogin={handleLogin}
-                  handleSignup={handleSignup}
-                  hasAccount={hasAccount}
-                  setHasAccount={setHasAccount}
-                  emailError={emailError}
-                  passwordError={passwordError}
-                  loading={loading}
-                />
-              </Route>
-
+          {/* Login route------------------------------------------------------------------------ */}
+          <Route path="/login" exact>
+            {user ? <Redirect to="/" exact /> : ""}
+            <Navbarn
+              handleLogout={handleLogout}
+              user={user}
+              firstName={name}
+              username={username}
+            />
+            <Login
+              // loginSection = {loginSection}
+              // registerSection = {registerSection}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              emailError={emailError}
+              passwordError={passwordError}
+              loading={loading}
+            />
+          </Route>
 
           {/* ---------------------------------------------------------------------------------------- */}
           {/* --Testing Route-------------------------------------------------------------------------- */}

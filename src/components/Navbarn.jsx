@@ -1,14 +1,11 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import "../componentscss/Navbarn.css";
 import { HashLink } from "react-router-hash-link";
 
-const Navbarn = ({ handleLogout, user,username }) => {
-
+const Navbarn = ({ handleLogout, user, username }) => {
   const [users, setUsers] = useState([]);
-
-
 
   // useEffect(() => {
   //   axios.get("https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/api/clients/listall")
@@ -87,6 +84,16 @@ const Navbarn = ({ handleLogout, user,username }) => {
                 <Link className="nav-link active" to="/registration">
                   Request
                 </Link>
+              )}
+              {/* <Link to="/requestpage" className="nav-link disabled">Request</Link> */}
+            </li>
+            <li className="nav-item mr-2">
+              {user ? (
+                <Link className="nav-link active" to="/stats">
+                  {user == "admin@admin.com" ? "Stats" : ""}
+                </Link>
+              ) : (
+                <Link className="nav-link active" to="/registration"></Link>
               )}
               {/* <Link to="/requestpage" className="nav-link disabled">Request</Link> */}
             </li>
