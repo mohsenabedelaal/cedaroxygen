@@ -291,13 +291,6 @@ const RequestList = (props) => {
           });
         }
 
-
-
-
-
-
-
-
     };
 
   const onDeal = (id) => {

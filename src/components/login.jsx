@@ -28,6 +28,18 @@ const Login = (props) => {
   // }, [])
   // const [loading,setLoading] = useState(false)
 
+  const onKeyUpValue =(event)=>{
+    if(event.charCode === 13){
+      handleLogin()
+    }
+  }
+
+
+
+
+
+
+
   return (
     <div
       className={"authBox"}
@@ -97,6 +109,7 @@ const Login = (props) => {
                     placeholder={"Password"}
                     required
                     value={password}
+                    onKeyPress={onKeyUpValue}
                     readOnly={loading}
                     onChange={(e) => setPassword(e.target.value)}
                   />

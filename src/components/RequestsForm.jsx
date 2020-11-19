@@ -8,7 +8,7 @@ import "../componentscss/RequestForm.css";
 const RequestsForm = (props) => {
   const initialFieldValues = {
     amount: "",
-    currency: "USD ",
+    currency: "US Dollar ($)",
     action: "",
     user: props.user,
     status: "Pending",
@@ -18,12 +18,12 @@ const RequestsForm = (props) => {
   // console.log("hon honnnnnnnnnnnnnnnnnnnnn",props.converter.selected)
   // props.converter.selected ? "" : initialFieldValues.currency = "Lira(LBP)";
 
-  if (props.converter.selected == "US") {
+  if (props.converter.selected == "US" || props.converter.selected == "LB") {
     initialFieldValues.currency = "US Dollar ($)";
   }
-  if (props.converter.selected == "LB") {
-    initialFieldValues.currency = "Lebanese Pound (LBP)";
-  }
+  // if (props.converter.selected == "LB") {
+  //   initialFieldValues.currency = "Lebanese Pound (LBP)";
+  // }
   if (props.actions) {
     initialFieldValues.action = props.actions;
   }
@@ -120,6 +120,7 @@ const RequestsForm = (props) => {
       );
 
     // notificationOnClick();
+    // props.addorEdit(values)
   };
 
   //---------------------------------------------------------------------------------------------------
