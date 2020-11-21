@@ -80,7 +80,8 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
       rates
         ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
             e.target.value
-              ? parseInt(e.target.value.replace(/,/g, "")) * rates[0].bdl_rate
+              ? parseInt(e.target.value.replace(/,/g, "")) *
+                  rates[rates.length - 1].bdl_rate
               : 0
           )
             .toString()
@@ -90,7 +91,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         ? (document.getElementById("PrevailingMarketRate").value = parseFloat(
             e.target.value
               ? parseInt(e.target.value.replace(/,/g, "")) *
-                  rates[0].black_market_rate
+                  rates[rates.length - 1].black_market_rate
               : 0
           )
             .toString()
@@ -107,7 +108,8 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
       rates
         ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
             e.target.value
-              ? parseInt(e.target.value.replace(/,/g, "")) / rates[0].bdl_rate
+              ? parseInt(e.target.value.replace(/,/g, "")) /
+                  rates[rates.length - 1].bdl_rate
               : 0
           )
             .toFixed(2)
@@ -119,7 +121,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         ? (document.getElementById("PrevailingMarketRate").value = parseFloat(
             e.target.value
               ? parseInt(e.target.value.replace(/,/g, "")) /
-                  rates[0].black_market_rate
+                  rates[rates.length - 1].black_market_rate
               : 0
           )
             .toFixed(2)
