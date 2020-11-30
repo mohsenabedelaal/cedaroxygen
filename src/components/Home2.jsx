@@ -19,7 +19,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
   useEffect(() => {
     axios
       .get(
-        "https://cors-anywhere.herokuapp.com/http://fx-p2p-platform.herokuapp.com/rates/listall"
+        "http://fx-p2p-platform.herokuapp.com/rates/listall"
       )
       .then((res) => {
         // console.log(res.data);
@@ -81,7 +81,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
             e.target.value
               ? parseInt(e.target.value.replace(/,/g, "")) *
-                  rates[rates.length - 1].bdl_rate
+                  rates[rates.length - 1]?.platform_rate
               : 0
           )
             .toString()
@@ -99,7 +99,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
       document.getElementById("officialDollarRate").value = parseFloat(
-        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) * 1515 : 0
+        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) * parseInt(rates[rates.length - 1]?.bdl_rate) : 0
       )
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -109,7 +109,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         ? (document.getElementById("SayrafaDollarRate").value = parseFloat(
             e.target.value
               ? parseInt(e.target.value.replace(/,/g, "")) /
-                  rates[rates.length - 1].bdl_rate
+              rates[rates.length - 1]?.platform_rate
               : 0
           )
             .toFixed(2)
@@ -130,7 +130,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         : (document.getElementById("PrevailingMarketRate").value =
             "Loading...");
       document.getElementById("officialDollarRate").value = parseFloat(
-        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) / 1515 : 0
+        e.target.value ? parseInt(e.target.value.replace(/,/g, "")) / parseInt(rates[rates.length - 1]?.bdl_rate) : 0
       )
         .toFixed(2)
         .toString()
@@ -142,6 +142,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
 
   return (
     <>
+
       <div
         className="container-fluid bg1"
         // style={{
@@ -149,6 +150,7 @@ const Home2 = ({ user, converter, setConverter, actions, setAction }) => {
         //   // border: "1px solid red"
         // }}
       >
+        {console.log(rates[rates.length - 1]?.bdl_rate)}
         <div
           className="row"
           style={{
